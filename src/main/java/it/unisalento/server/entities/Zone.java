@@ -45,19 +45,19 @@ public class Zone {
         this.stepList = stepList;
     }
 
-    public Machine getMachine() {
+    public it.unisalento.server.entities.Machine getMachine() {
         return machine;
     }
 
-    public void setMachine(Machine machine) {
+    public void setMachine(it.unisalento.server.entities.Machine machine) {
         this.machine = machine;
     }
 
-    public Beacon getBeacon() {
+    public it.unisalento.server.entities.Beacon getBeacon() {
         return beacon;
     }
 
-    public void setBeacon(Beacon beacon) {
+    public void setBeacon(it.unisalento.server.entities.Beacon beacon) {
         this.beacon = beacon;
     }
 }

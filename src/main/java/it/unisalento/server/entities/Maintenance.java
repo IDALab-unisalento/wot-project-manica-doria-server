@@ -47,11 +47,11 @@ public class Maintenance {
         this.date = date;
     }
 
-    public Machine getMachine() {
+    public it.unisalento.server.entities.Machine getMachine() {
         return machine;
     }
 
-    public void setMachine(Machine machine) {
+    public void setMachine(it.unisalento.server.entities.Machine machine) {
         this.machine = machine;
     }
 

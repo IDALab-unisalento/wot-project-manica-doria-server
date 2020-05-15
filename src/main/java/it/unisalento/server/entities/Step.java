@@ -46,11 +46,11 @@ public class Step {
         this.description = description;
     }
 
-    public List<Attachment> getAttachmentList() {
+    public List<it.unisalento.server.entities.Attachment> getAttachmentList() {
         return attachmentList;
     }
 
-    public void setAttachmentList(List<Attachment> attachmentList) {
+    public void setAttachmentList(List<it.unisalento.server.entities.Attachment> attachmentList) {
         this.attachmentList = attachmentList;
     }
 
