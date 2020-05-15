@@ -32,5 +32,5 @@ out/
 
 ### VS Code ###
 .vscode/
-
+*.http
 **/.DS_Store

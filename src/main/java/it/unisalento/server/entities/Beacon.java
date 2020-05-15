@@ -9,11 +9,11 @@ public class Beacon {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    String nome;
+    String name;
     String mac;
 
     @OneToOne(mappedBy = "beacon")
-    Zona zona;
+    Zone zone;
 
     public int getId() {
         return id;
@@ -23,12 +23,12 @@ public class Beacon {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getMac() {
@@ -39,11 +39,11 @@ public class Beacon {
         this.mac = mac;
     }
 
-    public Zona getZona() {
-        return zona;
+    public Zone getZone() {
+        return zone;
     }
 
-    public void setZona(Zona zona) {
-        this.zona = zona;
+    public void setZone(Zone zone) {
+        this.zone = zone;
     }
 }

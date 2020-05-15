@@ -3,7 +3,7 @@ package it.unisalento.server.entities;
 import javax.persistence.*;
 
 @Entity
-public class Allegato {
+public class Attachment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +14,7 @@ public class Allegato {
     String type;
 
     @ManyToOne
-    Passaggio passaggio;
+    Step step;
 
     public int getId() {
         return id;
@@ -48,11 +48,11 @@ public class Allegato {
         this.type = type;
     }
 
-    public Passaggio getPassaggio() {
-        return passaggio;
+    public Step getStep() {
+        return step;
     }
 
-    public void setPassaggio(Passaggio passaggio) {
-        this.passaggio = passaggio;
+    public void setStep(Step step) {
+        this.step = step;
     }
 }
