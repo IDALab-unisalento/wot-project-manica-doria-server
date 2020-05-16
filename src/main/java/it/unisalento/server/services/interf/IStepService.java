@@ -7,4 +7,5 @@ import java.util.List;
 public interface IStepService {
 
     List<Step> getAllByMaintenaceId(int id);
+    Step save(Step step);
 }

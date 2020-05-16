@@ -21,5 +21,10 @@ public class MaintenanceService implements IMaintenanceService {
         return maintenanceRepository.findAll();
     }
 
+    @Override
+    public Maintenance save(Maintenance maintenance) {
+        return maintenanceRepository.save(maintenance);
+    }
+
 
 }

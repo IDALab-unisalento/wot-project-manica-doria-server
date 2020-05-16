@@ -18,4 +18,10 @@ public class StepService implements IStepService {
     public List<Step> getAllByMaintenaceId(int id) {
         return stepRepository.findAllByMaintenance_Id(id);
     }
+
+    @Override
+    public Step save(Step step) {
+        return stepRepository.save(step);
+    }
+
 }
