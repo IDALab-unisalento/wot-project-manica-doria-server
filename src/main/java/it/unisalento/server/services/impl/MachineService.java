@@ -15,7 +15,7 @@ public class MachineService implements IMachineService {
     MachineRepository machineRepository;
 
     @Override
-    public List<Machine> findAll() {
+    public List<Machine> getAll() {
         return machineRepository.findAll();
     }
 

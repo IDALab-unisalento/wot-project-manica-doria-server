@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface IMachineService {
 
-    List<Machine> findAll();
+    List<Machine> getAll();
     Machine save(Machine machine);
 }
