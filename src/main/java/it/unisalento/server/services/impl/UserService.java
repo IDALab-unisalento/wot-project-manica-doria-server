@@ -1,12 +1,16 @@
 package it.unisalento.server.services.impl;
 
 import it.unisalento.server.entities.User;
+import it.unisalento.server.exception.UserAlreadyExistException;
+import it.unisalento.server.exception.UserNotFoundException;
 import it.unisalento.server.repositories.UserRepository;
 import it.unisalento.server.services.interf.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,32 +23,50 @@ public class UserService implements IUserService {
     @Override
     @Transactional
     public List<User> getAll() {
-        return userRepository.findAll();
-    }
-
-    @Override
-    @Transactional
-    public User getByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
-
-    @Override
-    public User save(User user) {
-        return userRepository.save(user);
+        List<User> userList = userRepository.findAll();
+        if (userList.isEmpty())
+            return new ArrayList<>();
+        else
+            return userList;
     }
 
     @Override
     public List<User> getAllByRole(String role) {
-        return userRepository.findAllByRole(role);
+        List<User> userList = userRepository.findAllByRole(role);
+        if (userList.isEmpty())
+            return new ArrayList<>();
+        else
+            return userList;
     }
 
     @Override
-    public void delete(User user) {
-        userRepository.delete(user);
+    @Transactional
+    public User getByEmail(String email) throws UserNotFoundException {
+        return userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User with email='"+email+"' Not Found"));
     }
 
     @Override
-    public Optional<User> getById(int id) {
-        return userRepository.findById(id);
+    public User getById(int id) throws UserNotFoundException {
+        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User with id='"+id+"' Not Found"));
     }
+
+    @Override
+    public User save(User user) throws UserAlreadyExistException {
+        if (userRepository.findByEmailAndSerialNumber(user.getEmail(), user.getSerialNumber()).isPresent())
+            throw new UserAlreadyExistException("User Already Exist");
+        else
+            return userRepository.save(user);
+    }
+
+    @Override
+    @Transactional
+    public void delete(User user) throws UserNotFoundException {
+        Optional<User> deleted = userRepository.findById(user.getId());
+        if (deleted.isPresent())
+            userRepository.delete(deleted.get());
+
+        else
+            throw new UserNotFoundException("User Not Found");
+    }
+
 }

@@ -3,14 +3,14 @@ package it.unisalento.server.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(code = HttpStatus.NOT_FOUND)
-public class UserNotFoundExecption extends Exception {
+@ResponseStatus(code = HttpStatus.NOT_ACCEPTABLE)
+public class UserAlreadyExistException extends Exception {
 
-    public UserNotFoundExecption() {
+    public UserAlreadyExistException() {
         super();
     }
 
-    public UserNotFoundExecption(String message) {
+    public UserAlreadyExistException(String message) {
         super(message);
     }
 
