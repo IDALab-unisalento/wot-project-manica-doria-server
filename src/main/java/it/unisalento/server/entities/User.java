@@ -1,5 +1,7 @@
 package it.unisalento.server.entities;
 
+import it.unisalento.server.DTO.UserDTO;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -17,70 +19,92 @@ public class User {
     String password;
     String role;
 
+    public User() {
+    }
+
     @OneToMany(mappedBy = "user")
     List<Maintenance> maintenanceList;
 
-    public int getId() {
-        return id;
+    public static User cvtUser(UserDTO userDTO){
+        User user = new User();
+        user.setName(userDTO.getName());
+        user.setSurname(userDTO.getSurname());
+        user.setSerialNumber(userDTO.getSerialNumber());
+        user.setEmail(userDTO.getEmail());
+        user.setPassword(userDTO.getPassword());
+        user.setRole(userDTO.getRole());
+        return user;
     }
 
-    public void setId(int id) {
+    public User setId(int id) {
         this.id = id;
+        return this;
+    }
+
+    public User setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public User setSurname(String surname) {
+        this.surname = surname;
+        return this;
+    }
+
+    public User setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+        return this;
+    }
+
+    public User setEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public User setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
+    public User setRole(String role) {
+        this.role = role;
+        return this;
+    }
+
+    public User setMaintenanceList(List<Maintenance> maintenanceList) {
+        this.maintenanceList = maintenanceList;
+        return this;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getSurname() {
         return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
     }
 
     public String getSerialNumber() {
         return serialNumber;
     }
 
-    public void setSerialNumber(String serialNumber) {
-        this.serialNumber = serialNumber;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getRole() {
         return role;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public List<Maintenance> getMaintenanceList() {
         return maintenanceList;
-    }
-
-    public void setMaintenanceList(List<Maintenance> maintenanceList) {
-        this.maintenanceList = maintenanceList;
     }
 }

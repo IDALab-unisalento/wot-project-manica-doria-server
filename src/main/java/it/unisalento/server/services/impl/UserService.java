@@ -60,13 +60,12 @@ public class UserService implements IUserService {
 
     @Override
     @Transactional
-    public void delete(User user) throws UserNotFoundException {
-        Optional<User> deleted = userRepository.findById(user.getId());
-        if (deleted.isPresent())
+    public User delete(int id) throws UserNotFoundException {
+        Optional<User> deleted = userRepository.findById(id);
+        if (deleted.isPresent()) {
             userRepository.delete(deleted.get());
-
-        else
-            throw new UserNotFoundException("User Not Found");
+            return deleted.get();
+        } else throw new UserNotFoundException("User Not Found");
     }
 
 }

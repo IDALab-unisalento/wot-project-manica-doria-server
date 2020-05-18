@@ -83,6 +83,14 @@ public class UserDTO {
         this.passwordVerify = passwordVerify;
     }
 
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -102,6 +110,7 @@ public class UserDTO {
         userDTO.setSurname(user.getSurname());
         userDTO.setRole(user.getRole());
         userDTO.setEmail(user.getEmail());
+        userDTO.setSerialNumber(user.getSerialNumber());
         return userDTO;
     }
 }

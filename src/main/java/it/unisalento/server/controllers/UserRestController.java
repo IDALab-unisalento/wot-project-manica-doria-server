@@ -48,23 +48,22 @@ public class UserRestController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> save(@RequestBody User user) throws UserAlreadyExistException {
-        User userSaved = userService.save(user);
-        UserDTO userDTO = UserDTO.cvtUserDTO(userSaved);
-        return new ResponseEntity<>("User saved successfully\n"+userDTO, HttpStatus.OK);
+    public ResponseEntity<String> save(@RequestBody UserDTO userDTO) throws UserAlreadyExistException {
+       User userSaved = User.cvtUser(userDTO);
+       UserDTO userResponse = UserDTO.cvtUserDTO(userService.save(userSaved));
+       return new ResponseEntity<>("User saved successfully\n"+userResponse, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> delete(@RequestBody User user) throws UserNotFoundException {
-        userService.delete(user);
-        UserDTO userDTO = UserDTO.cvtUserDTO(user);
-        return new ResponseEntity<>("User deleted successfully\n"+userDTO, HttpStatus.OK);
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> delete(@PathVariable int id) throws UserNotFoundException {
+       UserDTO userResponse = UserDTO.cvtUserDTO(userService.delete(id));
+       return new ResponseEntity<>("User deleted successfully\n"+userResponse, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/getById/{id}", method = RequestMethod.GET)
     public UserDTO getById(@PathVariable int id) throws UserNotFoundException {
-        User userSaved = userService.getById(id);
-        return UserDTO.cvtUserDTO(userSaved);
+       User userSaved = userService.getById(id);
+       return UserDTO.cvtUserDTO(userSaved);
     }
 
 }

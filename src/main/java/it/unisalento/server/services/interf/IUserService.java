@@ -10,7 +10,7 @@ public interface IUserService {
 
     /* --------------------- CRUD --------------------- */
     User save(User user) throws UserAlreadyExistException;
-    void delete(User user) throws UserNotFoundException;
+    User delete(int id) throws UserNotFoundException;
 
     /* -------------------- GETTER -------------------- */
     List<User> getAll();
