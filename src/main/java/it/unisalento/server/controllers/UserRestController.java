@@ -20,9 +20,9 @@ import java.util.List;
 public class UserRestController {
 
     @Autowired
-    IUserService userService;
+    private IUserService userService;
 
-    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
+    @GetMapping(value = "/getAll")
     public List<UserDTO> getAll(){
         List<UserDTO> userDTOList = new ArrayList<>();
         List<User> userList = userService.getAll();
@@ -32,12 +32,12 @@ public class UserRestController {
         return userDTOList;
     }
 
-    @RequestMapping(value = "/getByEmail/{email}", method = RequestMethod.GET)
+    @GetMapping(value = "/getByEmail/{email}")
     public User getByEmail(@PathVariable String email) throws UserNotFoundException {
         return userService.getByEmail(email);
     }
 
-    @RequestMapping(value = "/getAllByRole/{role}", method = RequestMethod.GET)
+    @GetMapping(value = "/getAllByRole/{role}")
     public List<UserDTO> getAllByRole(@PathVariable String role) {
         List<UserDTO> userDTOList = new ArrayList<>();
         List<User> userList = userService.getAllByRole(role);
@@ -47,20 +47,19 @@ public class UserRestController {
         return userDTOList;
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> save(@RequestBody UserDTO userDTO) throws UserAlreadyExistException {
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public UserDTO save(@RequestBody UserDTO userDTO) throws UserAlreadyExistException {
        User userSaved = User.cvtUser(userDTO);
-       UserDTO userResponse = UserDTO.cvtUserDTO(userService.save(userSaved));
-       return new ResponseEntity<>("User saved successfully\n"+userResponse, HttpStatus.OK);
+       return UserDTO.cvtUserDTO(userService.save(userSaved));
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> delete(@PathVariable int id) throws UserNotFoundException {
-       UserDTO userResponse = UserDTO.cvtUserDTO(userService.delete(id));
-       return new ResponseEntity<>("User deleted successfully\n"+userResponse, HttpStatus.OK);
+    @DeleteMapping(value = "/delete/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public UserDTO delete(@PathVariable int id) throws UserNotFoundException {
+       return UserDTO.cvtUserDTO(userService.delete(id));
     }
 
-    @RequestMapping(value = "/getById/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/getById/{id}")
     public UserDTO getById(@PathVariable int id) throws UserNotFoundException {
        User userSaved = userService.getById(id);
        return UserDTO.cvtUserDTO(userSaved);
