@@ -15,6 +15,15 @@ public class Beacon {
     @OneToOne(mappedBy = "beacon")
     Zone zone;
 
+    public Beacon() {
+    }
+
+    public Beacon(int id, String name, String mac) {
+        this.id = id;
+        this.name = name;
+        this.mac = mac;
+    }
+
     public int getId() {
         return id;
     }

@@ -21,6 +21,14 @@ public class Zone {
     @OneToOne
     Beacon beacon;
 
+    public Zone() {
+    }
+
+    public Zone(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }

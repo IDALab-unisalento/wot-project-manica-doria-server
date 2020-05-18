@@ -1,63 +1,66 @@
 package it.unisalento.server.DTO;
 
-import it.unisalento.server.entities.Beacon;
-import it.unisalento.server.entities.Zone;
-
 public class BeaconDTO {
 
     int id;
     String name;
     String mac;
-    Zone zone;
+    ZoneDTO zoneDTO;
 
     public BeaconDTO() {
     }
 
-    public BeaconDTO(int id, String name, String mac, Zone zone) {
+    public BeaconDTO(int id, String name, String mac, ZoneDTO zoneDTO) {
         this.id = id;
         this.name = name;
         this.mac = mac;
-        this.zone = zone;
+        this.zoneDTO = zoneDTO;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getMac() {
         return mac;
     }
 
-    public void setMac(String mac) {
-        this.mac = mac;
+    public ZoneDTO getZoneDTO() {
+        return zoneDTO;
     }
 
-    public Zone getZone() {
-        return zone;
-    }
+    public static class BeaconDTOBuilder {
+        int id;
+        String name;
+        String mac;
+        ZoneDTO zoneDTO;
 
-    public void setZone(Zone zone) {
-        this.zone = zone;
-    }
+        public BeaconDTOBuilder setId(int id) {
+            this.id = id;
+            return this;
+        }
 
-    public static BeaconDTO cvtBeaconDTO(Beacon beacon) {
-        BeaconDTO beaconDTO = new BeaconDTO();
-        beaconDTO.setId(beacon.getId());
-        beaconDTO.setMac(beacon.getMac());
-        beaconDTO.setName(beacon.getName());
-        beaconDTO.setZone(beacon.getZone());
-        return beaconDTO;
+        public BeaconDTOBuilder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public BeaconDTOBuilder setMac(String mac) {
+            this.mac = mac;
+            return this;
+        }
+
+        public BeaconDTOBuilder setZoneDTO(ZoneDTO zoneDTO) {
+            this.zoneDTO = zoneDTO;
+            return this;
+        }
+
+        public BeaconDTO build() {
+            return new BeaconDTO(id, name, mac, zoneDTO);
+        }
     }
 }

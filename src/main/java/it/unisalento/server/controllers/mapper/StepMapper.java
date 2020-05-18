@@ -1,8 +1,6 @@
 package it.unisalento.server.controllers.mapper;
 
-import it.unisalento.server.DTO.AttachmentDTO;
 import it.unisalento.server.DTO.StepDTO;
-import it.unisalento.server.entities.Attachment;
 import it.unisalento.server.entities.Step;
 
 import java.util.ArrayList;

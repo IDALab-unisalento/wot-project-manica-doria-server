@@ -1,78 +1,80 @@
 package it.unisalento.server.DTO;
 
-import it.unisalento.server.entities.Beacon;
-import it.unisalento.server.entities.Machine;
-import it.unisalento.server.entities.Step;
-import it.unisalento.server.entities.Zone;
-
 import java.util.List;
 
 public class ZoneDTO {
 
     int id;
     String name;
-    List<Step> stepList;
-    Machine machine;
-    Beacon beacon;
+    List<StepDTO> stepDTOList;
+    MachineDTO machineDTO;
+    BeaconDTO beaconDTO;
 
     public ZoneDTO() {
     }
 
-    public ZoneDTO(int id, String name, List<Step> stepList, Machine machine, Beacon beacon) {
+    public ZoneDTO(int id, String name, List<StepDTO> stepDTOList, MachineDTO machineDTO, BeaconDTO beaconDTO) {
         this.id = id;
         this.name = name;
-        this.stepList = stepList;
-        this.machine = machine;
-        this.beacon = beacon;
+        this.stepDTOList = stepDTOList;
+        this.machineDTO = machineDTO;
+        this.beaconDTO = beaconDTO;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public List<StepDTO> getStepDTOList() {
+        return stepDTOList;
     }
 
-    public List<Step> getStepList() {
-        return stepList;
+    public MachineDTO getMachineDTO() {
+        return machineDTO;
     }
 
-    public void setStepList(List<Step> stepList) {
-        this.stepList = stepList;
+    public BeaconDTO getBeaconDTO() {
+        return beaconDTO;
     }
 
-    public Machine getMachine() {
-        return machine;
-    }
+    public static class ZoneDTOBuilder {
+        int id;
+        String name;
+        List<StepDTO> stepDTOList;
+        MachineDTO machineDTO;
+        BeaconDTO beaconDTO;
 
-    public void setMachine(Machine machine) {
-        this.machine = machine;
-    }
+        public ZoneDTOBuilder setId(int id) {
+            this.id = id;
+            return this;
+        }
 
-    public Beacon getBeacon() {
-        return beacon;
-    }
+        public ZoneDTOBuilder setName(String name) {
+            this.name = name;
+            return this;
+        }
 
-    public void setBeacon(Beacon beacon) {
-        this.beacon = beacon;
-    }
+        public ZoneDTOBuilder setStepDTOList(List<StepDTO> stepDTOList) {
+            this.stepDTOList = stepDTOList;
+            return this;
+        }
 
-    public static ZoneDTO cvtZoneDTO(Zone zone) {
-        ZoneDTO zoneDTO = new ZoneDTO();
-        zoneDTO.setId(zone.getId());
-        zoneDTO.setName(zone.getName());
-        zoneDTO.setBeacon(zone.getBeacon());
-        zoneDTO.setMachine(zone.getMachine());
-        zoneDTO.setStepList(zone.getStepList());
-        return zoneDTO;
+        public ZoneDTOBuilder setMachineDTO(MachineDTO machineDTO) {
+            this.machineDTO = machineDTO;
+            return this;
+        }
+
+        public ZoneDTOBuilder setBeaconDTO(BeaconDTO beaconDTO) {
+            this.beaconDTO = beaconDTO;
+            return this;
+        }
+
+        public ZoneDTO build() {
+            return new ZoneDTO(id, name, stepDTOList, machineDTO, beaconDTO);
+        }
     }
 }
