@@ -1,9 +1,5 @@
 package it.unisalento.server.DTO;
 
-import it.unisalento.server.entities.Attachment;
-import it.unisalento.server.entities.Maintenance;
-import it.unisalento.server.entities.Step;
-import it.unisalento.server.entities.Zone;
 import java.util.List;
 
 public class StepDTO {
@@ -11,78 +7,88 @@ public class StepDTO {
     int id;
     String name;
     String description;
-    List<Attachment> attachmentList;
-    Maintenance maintenance;
-    Zone zone;
+    List<AttachmentDTO> attachmentDTOList;
+    MaintenanceDTO maintenanceDTO;
+    ZoneDTO zoneDTO;
 
     public StepDTO() {
     }
 
-    public StepDTO(int id, String name, String description, List<Attachment> attachmentList, Maintenance maintenance, Zone zone) {
+    public StepDTO(int id, String name, String description, List<AttachmentDTO> attachmentDTOList, MaintenanceDTO maintenanceDTO, ZoneDTO zoneDTO) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.attachmentList = attachmentList;
-        this.maintenance = maintenance;
-        this.zone = zone;
+        this.attachmentDTOList = attachmentDTOList;
+        this.maintenanceDTO = maintenanceDTO;
+        this.zoneDTO = zoneDTO;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public List<AttachmentDTO> getAttachmentDTOList() {
+        return attachmentDTOList;
     }
 
-    public List<Attachment> getAttachmentList() {
-        return attachmentList;
+    public MaintenanceDTO getMaintenanceDTO() {
+        return maintenanceDTO;
     }
 
-    public void setAttachmentList(List<Attachment> attachmentList) {
-        this.attachmentList = attachmentList;
+    public ZoneDTO getZoneDTO() {
+        return zoneDTO;
     }
 
-    public Maintenance getMaintenance() {
-        return maintenance;
+    public static class StepDTOBuilder {
+        int id;
+        String name;
+        String description;
+        List<AttachmentDTO> attachmentDTOList;
+        MaintenanceDTO maintenanceDTO;
+        ZoneDTO zoneDTO;
+
+
+        public StepDTOBuilder setId(int id) {
+            this.id = id;
+            return this;
+        }
+
+        public StepDTOBuilder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public StepDTOBuilder setDescription(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public StepDTOBuilder setAttachmentDTOList(List<AttachmentDTO> attachmentDTOList) {
+            this.attachmentDTOList = attachmentDTOList;
+            return this;
+        }
+
+        public StepDTOBuilder setMaintenanceDTO(MaintenanceDTO maintenanceDTO) {
+            this.maintenanceDTO = maintenanceDTO;
+            return this;
+        }
+
+        public StepDTOBuilder setZoneDTO(ZoneDTO zoneDTO) {
+            this.zoneDTO = zoneDTO;
+            return this;
+        }
+
+        public StepDTO build() {
+            return new StepDTO(id, name, description, attachmentDTOList, maintenanceDTO, zoneDTO);
+        }
     }
 
-    public void setMaintenance(Maintenance maintenance) {
-        this.maintenance = maintenance;
-    }
-
-    public Zone getZone() {
-        return zone;
-    }
-
-    public void setZone(Zone zone) {
-        this.zone = zone;
-    }
-
-    public static StepDTO cvtStepDTO(Step step) {
-        StepDTO stepDTO = new StepDTO();
-        stepDTO.setId(step.getId());
-        stepDTO.setName(step.getName());
-        stepDTO.setDescription(step.getDescription());
-        stepDTO.setMaintenance(step.getMaintenance());
-        stepDTO.setAttachmentList(step.getAttachmentList());
-        stepDTO.setZone(step.getZone());
-        return stepDTO;
-    }
 }

@@ -1,5 +1,6 @@
 package it.unisalento.server.controllers;
 
+import it.unisalento.server.DTO.BeaconDTO;
 import it.unisalento.server.entities.Beacon;
 import it.unisalento.server.services.interf.IBeaconService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,7 @@ public class BeaconRestController {
     }
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
-    public List<Beacon> getAll(){
-        return beaconService.getAll();
-    }
+    public List<Beacon> getAll(){ return beaconService.getAll(); }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void delete(@RequestBody Beacon beacon) {

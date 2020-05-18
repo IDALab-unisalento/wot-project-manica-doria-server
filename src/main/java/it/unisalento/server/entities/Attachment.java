@@ -16,6 +16,16 @@ public class Attachment {
     @ManyToOne
     Step step;
 
+    public Attachment() {
+    }
+
+    public Attachment(int id, String path, String filename, String type) {
+        this.id = id;
+        this.path = path;
+        this.filename = filename;
+        this.type = type;
+    }
+
     public int getId() {
         return id;
     }

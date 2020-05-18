@@ -22,6 +22,15 @@ public class Step {
     @ManyToOne
     Zone zone;
 
+    public Step() {
+    }
+
+    public Step(int id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+
     public int getId() {
         return id;
     }
