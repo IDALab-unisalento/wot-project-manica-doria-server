@@ -1,5 +1,6 @@
 package it.unisalento.server.entities;
 
+import javax.crypto.Mac;
 import javax.persistence.*;
 import java.util.List;
 
@@ -16,6 +17,15 @@ public class Machine {
 
     @OneToMany(mappedBy = "machine")
     List<Zone> zoneList;
+
+    public Machine(){
+
+    }
+
+    public Machine(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public int getId() {
         return id;

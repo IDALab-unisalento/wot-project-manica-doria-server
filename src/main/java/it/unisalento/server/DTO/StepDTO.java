@@ -4,21 +4,19 @@ import java.util.List;
 
 public class StepDTO {
 
-    int id;
-    String name;
-    String description;
-    List<AttachmentDTO> attachmentDTOList;
-    MaintenanceDTO maintenanceDTO;
-    ZoneDTO zoneDTO;
+    private int id;
+    private String name;
+    private String description;
+    private MaintenanceDTO maintenanceDTO;
+    private ZoneDTO zoneDTO;
 
     public StepDTO() {
     }
 
-    public StepDTO(int id, String name, String description, List<AttachmentDTO> attachmentDTOList, MaintenanceDTO maintenanceDTO, ZoneDTO zoneDTO) {
+    private StepDTO(int id, String name, String description, MaintenanceDTO maintenanceDTO, ZoneDTO zoneDTO) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.attachmentDTOList = attachmentDTOList;
         this.maintenanceDTO = maintenanceDTO;
         this.zoneDTO = zoneDTO;
     }
@@ -35,10 +33,6 @@ public class StepDTO {
         return description;
     }
 
-    public List<AttachmentDTO> getAttachmentDTOList() {
-        return attachmentDTOList;
-    }
-
     public MaintenanceDTO getMaintenanceDTO() {
         return maintenanceDTO;
     }
@@ -48,12 +42,11 @@ public class StepDTO {
     }
 
     public static class StepDTOBuilder {
-        int id;
-        String name;
-        String description;
-        List<AttachmentDTO> attachmentDTOList;
-        MaintenanceDTO maintenanceDTO;
-        ZoneDTO zoneDTO;
+        private int id;
+        private String name;
+        private String description;
+        private MaintenanceDTO maintenanceDTO;
+        private ZoneDTO zoneDTO;
 
 
         public StepDTOBuilder setId(int id) {
@@ -71,11 +64,6 @@ public class StepDTO {
             return this;
         }
 
-        public StepDTOBuilder setAttachmentDTOList(List<AttachmentDTO> attachmentDTOList) {
-            this.attachmentDTOList = attachmentDTOList;
-            return this;
-        }
-
         public StepDTOBuilder setMaintenanceDTO(MaintenanceDTO maintenanceDTO) {
             this.maintenanceDTO = maintenanceDTO;
             return this;
@@ -87,7 +75,7 @@ public class StepDTO {
         }
 
         public StepDTO build() {
-            return new StepDTO(id, name, description, attachmentDTOList, maintenanceDTO, zoneDTO);
+            return new StepDTO(id, name, description, maintenanceDTO, zoneDTO);
         }
     }
 

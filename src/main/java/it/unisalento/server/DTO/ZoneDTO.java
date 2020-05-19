@@ -6,17 +6,15 @@ public class ZoneDTO {
 
     int id;
     String name;
-    List<StepDTO> stepDTOList;
     MachineDTO machineDTO;
     BeaconDTO beaconDTO;
 
     public ZoneDTO() {
     }
 
-    public ZoneDTO(int id, String name, List<StepDTO> stepDTOList, MachineDTO machineDTO, BeaconDTO beaconDTO) {
+    public ZoneDTO(int id, String name, MachineDTO machineDTO, BeaconDTO beaconDTO) {
         this.id = id;
         this.name = name;
-        this.stepDTOList = stepDTOList;
         this.machineDTO = machineDTO;
         this.beaconDTO = beaconDTO;
     }
@@ -27,10 +25,6 @@ public class ZoneDTO {
 
     public String getName() {
         return name;
-    }
-
-    public List<StepDTO> getStepDTOList() {
-        return stepDTOList;
     }
 
     public MachineDTO getMachineDTO() {
@@ -44,7 +38,6 @@ public class ZoneDTO {
     public static class ZoneDTOBuilder {
         int id;
         String name;
-        List<StepDTO> stepDTOList;
         MachineDTO machineDTO;
         BeaconDTO beaconDTO;
 
@@ -55,11 +48,6 @@ public class ZoneDTO {
 
         public ZoneDTOBuilder setName(String name) {
             this.name = name;
-            return this;
-        }
-
-        public ZoneDTOBuilder setStepDTOList(List<StepDTO> stepDTOList) {
-            this.stepDTOList = stepDTOList;
             return this;
         }
 
@@ -74,7 +62,7 @@ public class ZoneDTO {
         }
 
         public ZoneDTO build() {
-            return new ZoneDTO(id, name, stepDTOList, machineDTO, beaconDTO);
+            return new ZoneDTO(id, name, machineDTO, beaconDTO);
         }
     }
 }

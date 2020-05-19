@@ -10,7 +10,6 @@ public class Maintenance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-
     String status;
     Date date;
 
@@ -22,6 +21,17 @@ public class Maintenance {
 
     @OneToMany(mappedBy = "maintenance")
     List<Step> stepList;
+
+    public Maintenance() {
+    }
+
+    public Maintenance(int id, String status, Date date, Machine machine, User user) {
+        this.id = id;
+        this.status = status;
+        this.date = date;
+        this.machine = machine;
+        this.user = user;
+    }
 
     public int getId() {
         return id;
@@ -47,11 +57,11 @@ public class Maintenance {
         this.date = date;
     }
 
-    public it.unisalento.server.entities.Machine getMachine() {
+    public Machine getMachine() {
         return machine;
     }
 
-    public void setMachine(it.unisalento.server.entities.Machine machine) {
+    public void setMachine(Machine machine) {
         this.machine = machine;
     }
 
@@ -61,13 +71,5 @@ public class Maintenance {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public List<Step> getStepList() {
-        return stepList;
-    }
-
-    public void setStepList(List<Step> stepList) {
-        this.stepList = stepList;
     }
 }

@@ -1,7 +1,5 @@
 package it.unisalento.server.entities;
 
-import it.unisalento.server.DTO.UserDTO;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,30 +8,28 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-
-    String name;
-    String surname;
-    String serialNumber;
-    String email;
-    String password;
-    String role;
-
-    public User() {
-    }
+    private int id;
+    private String name;
+    private String surname;
+    private String serialNumber;
+    private String email;
+    private String password;
+    private String role;
 
     @OneToMany(mappedBy = "user")
     List<Maintenance> maintenanceList;
 
-    public static User cvtUser(UserDTO userDTO){
-        User user = new User();
-        user.setName(userDTO.getName());
-        user.setSurname(userDTO.getSurname());
-        user.setSerialNumber(userDTO.getSerialNumber());
-        user.setEmail(userDTO.getEmail());
-        user.setPassword(userDTO.getPassword());
-        user.setRole(userDTO.getRole());
-        return user;
+    public User() {
+    }
+
+    public User(int id, String name, String surname, String serialNumber, String email, String password, String role) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.serialNumber = serialNumber;
+        this.email = email;
+        this.password = password;
+        this.role = role;
     }
 
     public User setId(int id) {

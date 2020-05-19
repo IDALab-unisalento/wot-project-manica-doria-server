@@ -2,11 +2,11 @@ package it.unisalento.server.DTO;
 
 public class AttachmentDTO {
 
-    int id;
-    String path;
-    String filename;
-    String type;
-    StepDTO stepDTO;
+    private int id;
+    private String path;
+    private String filename;
+    private String type;
+    private StepDTO stepDTO;
 
     public AttachmentDTO() { }
 
@@ -39,11 +39,11 @@ public class AttachmentDTO {
     }
 
     public static class AttachmentDTOBuilder {
-        int id;
-        String path;
-        String filename;
-        String type;
-        StepDTO stepDTO;
+        private int id;
+        private String path;
+        private String filename;
+        private String type;
+        private StepDTO stepDTO;
 
         public AttachmentDTOBuilder setId(int id) {
             this.id = id;

@@ -1,22 +1,17 @@
 package it.unisalento.server.DTO;
 
-import it.unisalento.server.entities.User;
-
 public class UserDTO {
 
-    int id;
-    String name;
-    String surname;
-    String role;
-    String email;
-    String password;
-    String passwordVerify;
-    String serialNumber;
+    private int id;
+    private String name;
+    private String surname;
+    private String role;
+    private String email;
+    private String password;
+    private String passwordVerify;
+    private String serialNumber;
 
-    public UserDTO() {
-    }
-
-    public UserDTO(int id, String name, String surname, String role, String email, String password, String passwordVerify, String serialNumber) {
+    private UserDTO(int id, String name, String surname, String role, String email, String password, String passwordVerify, String serialNumber) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -31,86 +26,86 @@ public class UserDTO {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getSurname() {
         return surname;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
     public String getRole() {
         return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getPasswordVerify() {
         return passwordVerify;
     }
 
-    public void setPasswordVerify(String passwordVerify) {
-        this.passwordVerify = passwordVerify;
-    }
-
     public String getSerialNumber() {
         return serialNumber;
     }
 
-    public void setSerialNumber(String serialNumber) {
-        this.serialNumber = serialNumber;
-    }
+    public static class UserDTOBuilder {
+        private int id;
+        private String name;
+        private String surname;
+        private String role;
+        private String email;
+        private String password;
+        private String passwordVerify;
+        private String serialNumber;
 
-    @Override
-    public String toString() {
-        return "{" +
-                "name: " + this.name +
-                ",\nsurname: " + this.surname +
-                ",\nemail: " + this.email +
-                ",\nrole: " + this.role +
-                ",\nserialNumber: " + this.serialNumber +
-                "}";
+        public UserDTOBuilder setId(int id) {
+            this.id = id;
+            return this;
+        }
 
-    }
+        public UserDTOBuilder setName(String name) {
+            this.name = name;
+            return this;
+        }
 
-    public static UserDTO cvtUserDTO(User user) {
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(user.getId());
-        userDTO.setName(user.getName());
-        userDTO.setSurname(user.getSurname());
-        userDTO.setRole(user.getRole());
-        userDTO.setEmail(user.getEmail());
-        userDTO.setSerialNumber(user.getSerialNumber());
-        return userDTO;
+        public UserDTOBuilder setSurname(String surname) {
+            this.surname = surname;
+            return this;
+        }
+
+        public UserDTOBuilder setRole(String role) {
+            this.role = role;
+            return this;
+        }
+
+        public UserDTOBuilder setEmail(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public UserDTOBuilder setPassword(String password) {
+            this.password = password;
+            return this;
+        }
+
+        public UserDTOBuilder setPasswordVerify(String passwordVerify) {
+            this.passwordVerify = passwordVerify;
+            return this;
+        }
+
+        public UserDTOBuilder setSerialNumber(String serialNumber) {
+            this.serialNumber = serialNumber;
+            return this;
+        }
+
+        public UserDTO build() {
+            return new UserDTO(id, name, surname, role, email, password, passwordVerify, serialNumber);
+        }
     }
 }

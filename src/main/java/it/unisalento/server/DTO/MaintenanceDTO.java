@@ -1,89 +1,85 @@
 package it.unisalento.server.DTO;
 
-import it.unisalento.server.entities.Machine;
-import it.unisalento.server.entities.Maintenance;
-import it.unisalento.server.entities.Step;
-import it.unisalento.server.entities.User;
 import java.util.Date;
 import java.util.List;
 
 public class MaintenanceDTO {
 
-    int id;
-    String status;
-    Date date;
-    Machine machine;
-    User user;
-    List<Step> stepList;
+    private int id;
+    private String status;
+    private Date date;
+    private MachineDTO machine;
+    private UserDTO user;
 
-    public MaintenanceDTO() {
-    }
-
-    public MaintenanceDTO(int id, String status, Date date, Machine machine, User user, List<Step> stepList) {
+    public MaintenanceDTO(int id, String status, Date date, MachineDTO machine, UserDTO user) {
         this.id = id;
         this.status = status;
         this.date = date;
         this.machine = machine;
         this.user = user;
-        this.stepList = stepList;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getStatus() {
         return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public Date getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Machine getMachine() {
+    public MachineDTO getMachine() {
         return machine;
     }
 
-    public void setMachine(Machine machine) {
-        this.machine = machine;
-    }
-
-    public User getUser() {
+    public UserDTO getUser() {
         return user;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+    public static class MaintenanceDTOBuilder {
 
-    public List<Step> getStepList() {
-        return stepList;
-    }
+        private int id;
+        private String status;
+        private Date date;
+        private MachineDTO machine;
+        private UserDTO user;
+        private List<StepDTO> stepList;
 
-    public void setStepList(List<Step> stepList) {
-        this.stepList = stepList;
-    }
+        public MaintenanceDTOBuilder setId(int id) {
+            this.id = id;
+            return this;
+        }
 
-    public static MaintenanceDTO cvtMaintenanceDTO(Maintenance maintenance) {
-        MaintenanceDTO maintenanceDTO = new MaintenanceDTO();
-        maintenanceDTO.setId(maintenance.getId());
-        maintenanceDTO.setDate(maintenance.getDate());
-        maintenanceDTO.setStatus(maintenance.getStatus());
-        maintenanceDTO.setMachine(maintenance.getMachine());
-        maintenanceDTO.setStepList(maintenance.getStepList());
-        maintenanceDTO.setUser(maintenance.getUser());
-        return maintenanceDTO;
+        public MaintenanceDTOBuilder setStatus(String status) {
+            this.status = status;
+            return this;
+        }
+
+        public MaintenanceDTOBuilder setDate(Date date) {
+            this.date = date;
+            return this;
+        }
+
+        public MaintenanceDTOBuilder setMachine(MachineDTO machine) {
+            this.machine = machine;
+            return this;
+        }
+
+        public MaintenanceDTOBuilder setUser(UserDTO user) {
+            this.user = user;
+            return this;
+        }
+
+        public MaintenanceDTOBuilder setStepList(List<StepDTO> stepList) {
+            this.stepList = stepList;
+            return this;
+        }
+
+        public MaintenanceDTO build(){
+            return new MaintenanceDTO(id, status, date, machine, user);
+        }
     }
 }
