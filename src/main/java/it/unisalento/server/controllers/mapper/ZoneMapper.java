@@ -1,6 +1,7 @@
 package it.unisalento.server.controllers.mapper;
 
 import it.unisalento.server.DTO.ZoneDTO;
+import it.unisalento.server.entities.Machine;
 import it.unisalento.server.entities.Zone;
 
 import java.util.ArrayList;
@@ -13,12 +14,19 @@ public class ZoneMapper {
 
         ZoneDTO.ZoneDTOBuilder zoneDTOBuilder = new ZoneDTO.ZoneDTOBuilder()
                 .setId(zone.getId())
-                .setName(zone.getName());
+                .setName(zone.getName())
+                .setMachineDTO(MachineMapper.makeMachineDTO(zone.getMachine()))
+                .setBeaconDTO(BeaconMapper.makeBeaconDTO(zone.getBeacon()));
         return zoneDTOBuilder.build();
     }
 
     public static Zone makeZone(ZoneDTO zoneDTO) {
-        return new Zone(zoneDTO.getId(), zoneDTO.getName());
+        return new Zone(
+                zoneDTO.getId(),
+                zoneDTO.getName(),
+                MachineMapper.makeMachine(zoneDTO.getMachineDTO()),
+                BeaconMapper.makeBaacon(zoneDTO.getBeaconDTO())
+        );
     }
 
     public static List<ZoneDTO> makeZoneDTOList(List<Zone> zoneList) {

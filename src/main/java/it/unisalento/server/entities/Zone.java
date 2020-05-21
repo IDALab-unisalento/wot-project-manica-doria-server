@@ -9,7 +9,6 @@ public class Zone {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-
     String name;
 
     @OneToMany(mappedBy = "zone")
@@ -24,48 +23,55 @@ public class Zone {
     public Zone() {
     }
 
-    public Zone(int id, String name) {
+    public Zone(int id, String name, Machine machine, Beacon beacon) {
         this.id = id;
         this.name = name;
+        this.machine = machine;
+        this.beacon = beacon;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public Zone setId(int id) {
         this.id = id;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Zone setName(String name) {
         this.name = name;
+        return this;
     }
 
     public List<Step> getStepList() {
         return stepList;
     }
 
-    public void setStepList(List<Step> stepList) {
+    public Zone setStepList(List<Step> stepList) {
         this.stepList = stepList;
+        return this;
     }
 
-    public it.unisalento.server.entities.Machine getMachine() {
+    public Machine getMachine() {
         return machine;
     }
 
-    public void setMachine(it.unisalento.server.entities.Machine machine) {
+    public Zone setMachine(Machine machine) {
         this.machine = machine;
+        return this;
     }
 
-    public it.unisalento.server.entities.Beacon getBeacon() {
+    public Beacon getBeacon() {
         return beacon;
     }
 
-    public void setBeacon(it.unisalento.server.entities.Beacon beacon) {
+    public Zone setBeacon(Beacon beacon) {
         this.beacon = beacon;
+        return this;
     }
 }

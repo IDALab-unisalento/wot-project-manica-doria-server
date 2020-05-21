@@ -32,9 +32,17 @@ public class User {
         this.role = role;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public User setId(int id) {
         this.id = id;
         return this;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public User setName(String name) {
@@ -42,9 +50,17 @@ public class User {
         return this;
     }
 
+    public String getSurname() {
+        return surname;
+    }
+
     public User setSurname(String surname) {
         this.surname = surname;
         return this;
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
     }
 
     public User setSerialNumber(String serialNumber) {
@@ -52,9 +68,17 @@ public class User {
         return this;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public User setEmail(String email) {
         this.email = email;
         return this;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public User setPassword(String password) {
@@ -62,45 +86,21 @@ public class User {
         return this;
     }
 
+    public String getRole() {
+        return role;
+    }
+
     public User setRole(String role) {
         this.role = role;
         return this;
     }
 
+    public List<Maintenance> getMaintenanceList() {
+        return maintenanceList;
+    }
+
     public User setMaintenanceList(List<Maintenance> maintenanceList) {
         this.maintenanceList = maintenanceList;
         return this;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public String getSerialNumber() {
-        return serialNumber;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public List<Maintenance> getMaintenanceList() {
-        return maintenanceList;
     }
 }

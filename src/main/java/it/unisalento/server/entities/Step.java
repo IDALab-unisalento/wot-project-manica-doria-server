@@ -1,5 +1,7 @@
 package it.unisalento.server.entities;
 
+import it.unisalento.server.DTO.ZoneDTO;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,9 +11,10 @@ public class Step {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-
     String name;
     String description;
+    double duration;
+    double estimateDuration;
 
     @OneToMany(mappedBy = "step")
     List<Attachment> attachmentList;
@@ -25,10 +28,14 @@ public class Step {
     public Step() {
     }
 
-    public Step(int id, String name, String description) {
+    public Step(int id, String name, String description, double duration, double estimateDuration, Maintenance maintenance, Zone zone) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.duration = duration;
+        this.estimateDuration = estimateDuration;
+        this.maintenance = maintenance;
+        this.zone = zone;
     }
 
     public int getId() {
@@ -55,12 +62,20 @@ public class Step {
         this.description = description;
     }
 
-    public List<it.unisalento.server.entities.Attachment> getAttachmentList() {
-        return attachmentList;
+    public double getDuration() {
+        return duration;
     }
 
-    public void setAttachmentList(List<it.unisalento.server.entities.Attachment> attachmentList) {
-        this.attachmentList = attachmentList;
+    public void setDuration(double duration) {
+        this.duration = duration;
+    }
+
+    public double getEstimateDuration() {
+        return estimateDuration;
+    }
+
+    public void setEstimateDuration(double estimateDuration) {
+        this.estimateDuration = estimateDuration;
     }
 
     public Maintenance getMaintenance() {

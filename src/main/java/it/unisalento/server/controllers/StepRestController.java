@@ -1,8 +1,15 @@
 package it.unisalento.server.controllers;
 
+import it.unisalento.server.DTO.StepDTO;
+import it.unisalento.server.DTO.ZoneDTO;
+import it.unisalento.server.controllers.mapper.StepMapper;
+import it.unisalento.server.controllers.mapper.ZoneMapper;
 import it.unisalento.server.entities.Step;
+import it.unisalento.server.exception.UserAlreadyExistException;
+import it.unisalento.server.exception.UserNotFoundException;
 import it.unisalento.server.services.interf.IStepService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,14 +22,25 @@ public class StepRestController {
     @Autowired
     IStepService stepService;
 
-    @RequestMapping(value = "/getAllByMaintenanceId/{id}", method = RequestMethod.GET)
-    public List<Step> getAllVoti(@PathVariable int id) {
-        return stepService.getAllByMaintenaceId(id);
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public StepDTO save(@RequestBody StepDTO zoneDTO) throws UserAlreadyExistException {
+        return StepMapper.makeStepDTO(stepService.save(StepMapper.makeStep(zoneDTO)));
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Step save(@RequestBody Step step) {
-        return stepService.save(step);
+    @DeleteMapping(value = "/delete/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public StepDTO delete(@PathVariable int id) throws UserNotFoundException {
+        return StepMapper.makeStepDTO(stepService.delete(id));
+    }
+
+    @GetMapping(value = "/getById/{id}")
+    public StepDTO getById(@PathVariable int id) throws UserNotFoundException {
+        return StepMapper.makeStepDTO(stepService.getById(id));
+    }
+
+    @GetMapping(value = "/getAll")
+    public List<StepDTO> getAll(){
+        return StepMapper.makeStepDTOList(stepService.getAll());
     }
 
 }
