@@ -18,5 +18,5 @@ public interface IUserService {
     User getById(int id) throws UserNotFoundException;
     User getByEmail(String email) throws UserNotFoundException;
 
-
+    User update(User makeUser) throws UserNotFoundException;
 }

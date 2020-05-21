@@ -38,6 +38,21 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public User update(User user) throws UserNotFoundException {
+        Optional<User> updated = userRepository.findById(user.getId());
+        if (updated.isPresent()){
+            if (user.getName() != null) updated.get().setName(user.getName());
+            if (user.getSurname() != null) updated.get().setSurname(user.getSurname());
+            if (user.getSerialNumber() != null) updated.get().setSerialNumber(user.getSerialNumber());
+            if (user.getEmail() != null) updated.get().setEmail(user.getEmail());
+            if (user.getPassword() != null) updated.get().setPassword(user.getPassword());
+            if (user.getRole() != null) updated.get().setRole(user.getRole());
+            return userRepository.save(updated.get());
+        }
+        else throw new UserNotFoundException("User Not Found");
+    }
+
+    @Override
     public User getById(int id) throws UserNotFoundException {
         return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User with id='"+id+"' Not Found"));
     }
@@ -66,6 +81,8 @@ public class UserService implements IUserService {
     public User getByEmail(String email) throws UserNotFoundException {
         return userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User with email='"+email+"' Not Found"));
     }
+
+
 
 
 }

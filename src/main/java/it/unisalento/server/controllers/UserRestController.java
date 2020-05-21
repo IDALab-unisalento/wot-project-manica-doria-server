@@ -29,9 +29,14 @@ public class UserRestController {
         return UserMapper.makeUserDTO(userService.save(UserMapper.makeUser(userDTO)));
     }
 
-    @DeleteMapping(value = "/delete/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/delete/{id}")
     public UserDTO delete(@PathVariable int id) throws UserNotFoundException {
         return UserMapper.makeUserDTO(userService.delete(id));
+    }
+
+    @PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public UserDTO update(@RequestBody UserDTO userDTO) throws UserNotFoundException {
+        return UserMapper.makeUserDTO(userService.update(UserMapper.makeUser(userDTO)));
     }
 
     @GetMapping(value = "/getById/{id}")
