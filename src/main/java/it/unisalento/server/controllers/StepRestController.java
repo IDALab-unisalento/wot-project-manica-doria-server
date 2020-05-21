@@ -28,7 +28,7 @@ public class StepRestController {
         return StepMapper.makeStepDTO(stepService.save(StepMapper.makeStep(zoneDTO)));
     }
 
-    @DeleteMapping(value = "/delete/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/delete/{id}")
     public StepDTO delete(@PathVariable int id) throws UserNotFoundException {
         return StepMapper.makeStepDTO(stepService.delete(id));
     }

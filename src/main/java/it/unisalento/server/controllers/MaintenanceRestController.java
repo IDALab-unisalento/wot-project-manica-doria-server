@@ -6,6 +6,7 @@ import it.unisalento.server.exception.UserAlreadyExistException;
 import it.unisalento.server.exception.UserNotFoundException;
 import it.unisalento.server.services.interf.IMaintenanceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,22 +19,23 @@ public class MaintenanceRestController {
     @Autowired
     IMaintenanceService maintenanceService;
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
     public MaintenanceDTO save(@RequestBody MaintenanceDTO maintenanceDTO) throws UserAlreadyExistException {
         return MaintenanceMapper.makeMaintenanceDTO(maintenanceService.save(MaintenanceMapper.makeMaintenance(maintenanceDTO)));
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/delete/{id}")
     public MaintenanceDTO delete(@PathVariable int id) throws UserNotFoundException {
         return MaintenanceMapper.makeMaintenanceDTO(maintenanceService.delete(id));
     }
 
-    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
+    @GetMapping(value = "/getAll")
     public List<MaintenanceDTO> getAll(){
         return MaintenanceMapper.makeMaintenanceDTOList(maintenanceService.getAll());
     }
 
-    @RequestMapping(value = "/getById/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/getById/{id}")
     public MaintenanceDTO getById(@PathVariable int id) throws UserNotFoundException {
         return MaintenanceMapper.makeMaintenanceDTO(maintenanceService.getById(id));
     }

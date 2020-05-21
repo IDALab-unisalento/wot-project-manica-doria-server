@@ -28,7 +28,7 @@ public class ZoneRestController {
         return ZoneMapper.makeZoneDTO(zoneService.save(ZoneMapper.makeZone(zoneDTO)));
     }
 
-    @DeleteMapping(value = "/delete/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/delete/{id}")
     public ZoneDTO delete(@PathVariable int id) throws UserNotFoundException {
         return ZoneMapper.makeZoneDTO(zoneService.delete(id));
     }
