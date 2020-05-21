@@ -4,10 +4,14 @@ public class MachineDTO {
 
     private int id;
     private String name;
+    private String serialNumber;
 
-    private MachineDTO(int id, String name) {
+    public MachineDTO() { }
+
+    public MachineDTO(int id, String name, String serialNumber) {
         this.id = id;
         this.name = name;
+        this.serialNumber = serialNumber;
     }
 
     public int getId() {
@@ -18,9 +22,14 @@ public class MachineDTO {
         return name;
     }
 
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
     public static class MachineDTOBuilder {
         private int id;
         private String name;
+        private String serialNumber;
 
         public MachineDTOBuilder setId(int id) {
             this.id = id;
@@ -32,8 +41,13 @@ public class MachineDTO {
             return this;
         }
 
+        public MachineDTOBuilder setSerialNumber(String serialNumber) {
+            this.serialNumber = serialNumber;
+            return this;
+        }
+
         public MachineDTO build() {
-            return new MachineDTO(id, name);
+            return new MachineDTO(id, name, serialNumber);
         }
     }
 }

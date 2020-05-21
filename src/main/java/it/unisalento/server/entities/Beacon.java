@@ -15,8 +15,7 @@ public class Beacon {
     @OneToOne(mappedBy = "beacon")
     Zone zone;
 
-    public Beacon() {
-    }
+    public Beacon() { }
 
     public Beacon(int id, String name, String mac) {
         this.id = id;
@@ -28,31 +27,35 @@ public class Beacon {
         return id;
     }
 
-    public void setId(int id) {
+    public Beacon setId(int id) {
         this.id = id;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Beacon setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getMac() {
         return mac;
     }
 
-    public void setMac(String mac) {
+    public Beacon setMac(String mac) {
         this.mac = mac;
+        return this;
     }
 
     public Zone getZone() {
         return zone;
     }
 
-    public void setZone(Zone zone) {
+    public Beacon setZone(Zone zone) {
         this.zone = zone;
+        return this;
     }
 }

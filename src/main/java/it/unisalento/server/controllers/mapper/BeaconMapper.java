@@ -18,8 +18,11 @@ public class BeaconMapper {
         return beaconDTOBuilder.build();
     }
 
-    public static Beacon makeBaacon(BeaconDTO beaconDTO) {
-        return new Beacon(beaconDTO.getId(), beaconDTO.getName(), beaconDTO.getMac());
+    public static Beacon makeBeacon(BeaconDTO beaconDTO) {
+        return new Beacon(
+                beaconDTO.getId(),
+                beaconDTO.getName(),
+                beaconDTO.getMac());
     }
 
     public static List<BeaconDTO> makeBeaconDTOList(List<Beacon> beaconList) {
@@ -27,5 +30,12 @@ public class BeaconMapper {
         List<BeaconDTO> beaconDTOList = new ArrayList<>();
         while (iter.hasNext()) beaconDTOList.add(makeBeaconDTO(iter.next()));
         return beaconDTOList;
+    }
+
+    public static List<Beacon> makeBeaconList(List<BeaconDTO> beaconDTOList) {
+        Iterator<BeaconDTO> iter = beaconDTOList.iterator();
+        List<Beacon> beaconList = new ArrayList<>();
+        while (iter.hasNext()) beaconList.add(makeBeacon(iter.next()));
+        return beaconList;
     }
 }

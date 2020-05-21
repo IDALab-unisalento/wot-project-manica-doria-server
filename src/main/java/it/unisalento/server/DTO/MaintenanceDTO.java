@@ -1,20 +1,24 @@
 package it.unisalento.server.DTO;
 
 import java.util.Date;
-import java.util.List;
 
 public class MaintenanceDTO {
 
     private int id;
     private String status;
     private Date date;
+    private String type;
+
     private MachineDTO machine;
     private UserDTO user;
 
-    public MaintenanceDTO(int id, String status, Date date, MachineDTO machine, UserDTO user) {
+    public MaintenanceDTO() { }
+
+    public MaintenanceDTO(int id, String status, Date date, String type, MachineDTO machine, UserDTO user) {
         this.id = id;
         this.status = status;
         this.date = date;
+        this.type = type;
         this.machine = machine;
         this.user = user;
     }
@@ -31,6 +35,10 @@ public class MaintenanceDTO {
         return date;
     }
 
+    public String getType() {
+        return type;
+    }
+
     public MachineDTO getMachine() {
         return machine;
     }
@@ -44,9 +52,9 @@ public class MaintenanceDTO {
         private int id;
         private String status;
         private Date date;
+        private String type;
         private MachineDTO machine;
         private UserDTO user;
-        private List<StepDTO> stepList;
 
         public MaintenanceDTOBuilder setId(int id) {
             this.id = id;
@@ -63,6 +71,11 @@ public class MaintenanceDTO {
             return this;
         }
 
+        public MaintenanceDTOBuilder setType(String type) {
+            this.type = type;
+            return this;
+        }
+
         public MaintenanceDTOBuilder setMachine(MachineDTO machine) {
             this.machine = machine;
             return this;
@@ -73,13 +86,8 @@ public class MaintenanceDTO {
             return this;
         }
 
-        public MaintenanceDTOBuilder setStepList(List<StepDTO> stepList) {
-            this.stepList = stepList;
-            return this;
-        }
-
         public MaintenanceDTO build(){
-            return new MaintenanceDTO(id, status, date, machine, user);
+            return new MaintenanceDTO(id, status, date, type, machine, user);
         }
     }
 }

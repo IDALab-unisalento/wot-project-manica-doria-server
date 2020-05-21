@@ -6,6 +6,7 @@ public class AttachmentDTO {
     private String path;
     private String filename;
     private String type;
+
     private StepDTO stepDTO;
 
     public AttachmentDTO() { }
@@ -43,6 +44,7 @@ public class AttachmentDTO {
         private String path;
         private String filename;
         private String type;
+
         private StepDTO stepDTO;
 
         public AttachmentDTOBuilder setId(int id) {

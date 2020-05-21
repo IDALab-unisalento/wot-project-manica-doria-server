@@ -12,6 +12,7 @@ public class Maintenance {
     int id;
     String status;
     Date date;
+    String type;
 
     @OneToOne
     Machine machine;
@@ -22,13 +23,13 @@ public class Maintenance {
     @OneToMany(mappedBy = "maintenance")
     List<Step> stepList;
 
-    public Maintenance() {
-    }
+    public Maintenance() { }
 
-    public Maintenance(int id, String status, Date date, Machine machine, User user) {
+    public Maintenance(int id, String status, Date date, String type, Machine machine, User user) {
         this.id = id;
         this.status = status;
         this.date = date;
+        this.type = type;
         this.machine = machine;
         this.user = user;
     }
@@ -37,39 +38,62 @@ public class Maintenance {
         return id;
     }
 
-    public void setId(int id) {
+    public Maintenance setId(int id) {
         this.id = id;
+        return this;
     }
 
     public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public Maintenance setStatus(String status) {
         this.status = status;
+        return this;
     }
 
     public Date getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public Maintenance setDate(Date date) {
         this.date = date;
+        return this;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public Maintenance setType(String type) {
+        this.type = type;
+        return this;
     }
 
     public Machine getMachine() {
         return machine;
     }
 
-    public void setMachine(Machine machine) {
+    public Maintenance setMachine(Machine machine) {
         this.machine = machine;
+        return this;
     }
 
     public User getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public Maintenance setUser(User user) {
         this.user = user;
+        return this;
+    }
+
+    public List<Step> getStepList() {
+        return stepList;
+    }
+
+    public Maintenance setStepList(List<Step> stepList) {
+        this.stepList = stepList;
+        return this;
     }
 }

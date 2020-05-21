@@ -15,6 +15,8 @@ public class MaintenanceMapper {
                  .setId(maintenance.getId())
                  .setStatus(maintenance.getStatus())
                  .setDate(maintenance.getDate())
+                 .setType(maintenance.getType())
+                 .setMachine(MachineMapper.makeMachineDTO(maintenance.getMachine()))
                  .setUser(UserMapper.makeUserDTO(maintenance.getUser()));
 
          return maintenanceDTOBuilder.build();
@@ -25,20 +27,20 @@ public class MaintenanceMapper {
                  maintenanceDTO.getId(),
                  maintenanceDTO.getStatus(),
                  maintenanceDTO.getDate(),
+                 maintenanceDTO.getType(),
                  MachineMapper.makeMachine(maintenanceDTO.getMachine()),
-                 UserMapper.makeUser(maintenanceDTO.getUser())
-         );
+                 UserMapper.makeUser(maintenanceDTO.getUser()));
      }
 
-     public static List<MaintenanceDTO> makeUserDTOList(List<Maintenance> userList) {
-        Iterator<Maintenance> iter = userList.iterator();
+     public static List<MaintenanceDTO> makeMaintenanceDTOList(List<Maintenance> maintenanceList) {
+        Iterator<Maintenance> iter = maintenanceList.iterator();
         List<MaintenanceDTO> maintenanceDTOList = new ArrayList<>();
         while (iter.hasNext()) maintenanceDTOList.add(makeMaintenanceDTO(iter.next()));
         return maintenanceDTOList;
      }
 
-     public static List<Maintenance> makeUserList(List<MaintenanceDTO> userDTOList) {
-        Iterator<MaintenanceDTO> iter = userDTOList.iterator();
+     public static List<Maintenance> makeMaintenanceList(List<MaintenanceDTO> maintenanceDTOList) {
+        Iterator<MaintenanceDTO> iter = maintenanceDTOList.iterator();
         List<Maintenance> maintenanceList = new ArrayList<>();
         while (iter.hasNext()) maintenanceList.add(makeMaintenance(iter.next()));
         return maintenanceList;

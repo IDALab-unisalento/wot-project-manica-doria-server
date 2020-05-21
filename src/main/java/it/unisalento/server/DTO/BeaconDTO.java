@@ -6,8 +6,7 @@ public class BeaconDTO {
     private String name;
     private String mac;
 
-    public BeaconDTO() {
-    }
+    public BeaconDTO() { }
 
     public BeaconDTO(int id, String name, String mac) {
         this.id = id;

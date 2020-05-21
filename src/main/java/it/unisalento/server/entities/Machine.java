@@ -11,6 +11,7 @@ public class Machine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     String name;
+    String serialNumber;
 
     @OneToOne(mappedBy = "machine")
     Maintenance maintenance;
@@ -18,44 +19,56 @@ public class Machine {
     @OneToMany(mappedBy = "machine")
     List<Zone> zoneList;
 
-    public Machine(){
+    public Machine(){ }
 
-    }
-
-    public Machine(int id, String name) {
+    public Machine(int id, String name, String serialNumber) {
         this.id = id;
         this.name = name;
+        this.serialNumber = serialNumber;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public Machine setId(int id) {
         this.id = id;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Machine setName(String name) {
         this.name = name;
+        return this;
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public Machine setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+        return this;
     }
 
     public Maintenance getMaintenance() {
         return maintenance;
     }
 
-    public void setMaintenance(Maintenance maintenance) {
+    public Machine setMaintenance(Maintenance maintenance) {
         this.maintenance = maintenance;
+        return this;
     }
 
     public List<Zone> getZoneList() {
         return zoneList;
     }
 
-    public void setZoneList(List<Zone> zoneList) {
+    public Machine setZoneList(List<Zone> zoneList) {
         this.zoneList = zoneList;
+        return this;
     }
 }

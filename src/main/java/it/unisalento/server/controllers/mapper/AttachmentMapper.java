@@ -20,8 +20,13 @@ public class AttachmentMapper {
         return attachmentDTOBuilder.build();
     }
 
-    public static Attachment makeAttachmentDO(AttachmentDTO attachmentDTO) {
-        return new Attachment(attachmentDTO.getId(), attachmentDTO.getPath(), attachmentDTO.getFilename(), attachmentDTO.getType());
+    public static Attachment makeAttachment(AttachmentDTO attachmentDTO) {
+        return new Attachment(
+                attachmentDTO.getId(),
+                attachmentDTO.getPath(),
+                attachmentDTO.getFilename(),
+                attachmentDTO.getType(),
+                StepMapper.makeStep(attachmentDTO.getStepDTO()));
     }
 
     public static List<AttachmentDTO> makeAttachmentDTOList(List<Attachment> attachmentList) {
@@ -29,5 +34,12 @@ public class AttachmentMapper {
         List<AttachmentDTO> attachmentDTOList = new ArrayList<>();
         while (iter.hasNext()) attachmentDTOList.add(makeAttachmentDTO(iter.next()));
         return attachmentDTOList;
+    }
+
+    public static List<Attachment> makeAttachmentList(List<AttachmentDTO> attachmentDTOList) {
+        Iterator<AttachmentDTO> iter = attachmentDTOList.iterator();
+        List<Attachment> attachmentList = new ArrayList<>();
+        while (iter.hasNext()) attachmentList.add(makeAttachment(iter.next()));
+        return attachmentList;
     }
 }
