@@ -25,7 +25,7 @@ public class ZoneMapper {
                 zoneDTO.getId(),
                 zoneDTO.getName(),
                 MachineMapper.makeMachine(zoneDTO.getMachineDTO()),
-                BeaconMapper.makeBaacon(zoneDTO.getBeaconDTO())
+                BeaconMapper.makeBeacon(zoneDTO.getBeaconDTO())
         );
     }
 
