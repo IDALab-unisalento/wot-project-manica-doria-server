@@ -12,7 +12,7 @@ public class Beacon {
     private String name;
     private String mac;
 
-    @OneToOne(mappedBy = "beacon")
+    @OneToOne(mappedBy = "beacon", fetch = FetchType.LAZY)
     private Zone zone;
 
     public Beacon() { }

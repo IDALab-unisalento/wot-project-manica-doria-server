@@ -16,7 +16,7 @@ public class Step {
     private double duration;
     private double estimateDuration;
 
-    @OneToMany(mappedBy = "step")
+    @OneToMany(mappedBy = "step", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Attachment> attachmentList;
 
     @ManyToOne

@@ -21,7 +21,7 @@ public class Maintenance {
     @ManyToOne
     private User user;
 
-    @OneToMany(mappedBy = "maintenance")
+    @OneToMany(mappedBy = "maintenance", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Step> stepList;
 
     public Maintenance() { }

@@ -13,10 +13,10 @@ public class Machine {
     private String name;
     private String serialNumber;
 
-    @OneToOne(mappedBy = "machine")
+    @OneToOne(mappedBy = "machine", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Maintenance maintenance;
 
-    @OneToMany(mappedBy = "machine")
+    @OneToMany(mappedBy = "machine", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Zone> zoneList;
 
     public Machine(){ }
