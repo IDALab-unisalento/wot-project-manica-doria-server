@@ -8,17 +8,17 @@ public class Zone {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    String name;
+    private int id;
+    private String name;
 
     @OneToMany(mappedBy = "zone")
-    List<Step> stepList;
+    private List<Step> stepList;
 
     @ManyToOne
-    Machine machine;
+    private Machine machine;
 
     @OneToOne
-    Beacon beacon;
+    private Beacon beacon;
 
     public Zone() {
     }

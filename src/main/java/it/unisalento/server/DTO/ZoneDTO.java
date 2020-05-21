@@ -4,10 +4,10 @@ import java.util.List;
 
 public class ZoneDTO {
 
-    int id;
-    String name;
-    MachineDTO machineDTO;
-    BeaconDTO beaconDTO;
+    private int id;
+    private String name;
+    private MachineDTO machineDTO;
+    private BeaconDTO beaconDTO;
 
     public ZoneDTO() {
     }

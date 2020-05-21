@@ -10,20 +10,20 @@ public class Step {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    String name;
-    String description;
-    double duration;
-    double estimateDuration;
+    private int id;
+    private String name;
+    private String description;
+    private double duration;
+    private double estimateDuration;
 
     @OneToMany(mappedBy = "step")
-    List<Attachment> attachmentList;
+    private List<Attachment> attachmentList;
 
     @ManyToOne
-    Maintenance maintenance;
+    private Maintenance maintenance;
 
     @ManyToOne
-    Zone zone;
+    private Zone zone;
 
     public Step() {
     }

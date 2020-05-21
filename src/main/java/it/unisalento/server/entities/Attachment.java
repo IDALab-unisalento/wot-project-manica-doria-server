@@ -7,14 +7,14 @@ public class Attachment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
 
-    String path;
-    String filename;
-    String type;
+    private String path;
+    private String filename;
+    private String type;
 
     @ManyToOne
-    Step step;
+    private Step step;
 
     public Attachment() { }
 

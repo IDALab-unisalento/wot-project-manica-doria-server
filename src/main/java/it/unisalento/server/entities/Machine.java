@@ -9,15 +9,15 @@ public class Machine {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    String name;
-    String serialNumber;
+    private int id;
+    private String name;
+    private String serialNumber;
 
     @OneToOne(mappedBy = "machine")
-    Maintenance maintenance;
+    private Maintenance maintenance;
 
     @OneToMany(mappedBy = "machine")
-    List<Zone> zoneList;
+    private List<Zone> zoneList;
 
     public Machine(){ }
 

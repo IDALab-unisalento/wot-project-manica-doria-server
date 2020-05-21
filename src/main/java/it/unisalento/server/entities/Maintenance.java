@@ -9,19 +9,20 @@ public class Maintenance {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    String status;
-    Date date;
-    String type;
+    private int id;
+    private String status;
+    private Date date;
+    private String type;
+
 
     @OneToOne
-    Machine machine;
+    private Machine machine;
 
     @ManyToOne
-    User user;
+    private User user;
 
     @OneToMany(mappedBy = "maintenance")
-    List<Step> stepList;
+    private List<Step> stepList;
 
     public Maintenance() { }
 

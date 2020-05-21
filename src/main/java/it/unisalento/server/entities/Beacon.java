@@ -7,13 +7,13 @@ public class Beacon {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
 
-    String name;
-    String mac;
+    private String name;
+    private String mac;
 
     @OneToOne(mappedBy = "beacon")
-    Zone zone;
+    private Zone zone;
 
     public Beacon() { }
 
