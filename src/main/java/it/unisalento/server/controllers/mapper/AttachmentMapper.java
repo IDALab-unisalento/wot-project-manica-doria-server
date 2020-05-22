@@ -15,8 +15,7 @@ public class AttachmentMapper {
                 .setId(attachment.getId())
                 .setFilename(attachment.getFilename())
                 .setPath(attachment.getPath())
-                .setType(attachment.getType())
-                .setStepDTO((StepMapper.makeStepDTO(attachment.getStep())));
+                .setType(attachment.getType());
         return attachmentDTOBuilder.build();
     }
 
@@ -25,8 +24,7 @@ public class AttachmentMapper {
                 attachmentDTO.getId(),
                 attachmentDTO.getPath(),
                 attachmentDTO.getFilename(),
-                attachmentDTO.getType(),
-                StepMapper.makeStep(attachmentDTO.getStepDTO()));
+                attachmentDTO.getType());
     }
 
     public static List<AttachmentDTO> makeAttachmentDTOList(List<Attachment> attachmentList) {

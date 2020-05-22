@@ -38,62 +38,55 @@ public class Maintenance {
         return id;
     }
 
-    public Maintenance setId(int id) {
+    public void setId(int id) {
         this.id = id;
-        return this;
     }
 
     public String getStatus() {
         return status;
     }
 
-    public Maintenance setStatus(String status) {
+    public void setStatus(String status) {
         this.status = status;
-        return this;
     }
 
     public Date getDate() {
         return date;
     }
 
-    public Maintenance setDate(Date date) {
+    public void setDate(Date date) {
         this.date = date;
-        return this;
     }
 
     public String getType() {
         return type;
     }
 
-    public Maintenance setType(String type) {
+    public void setType(String type) {
         this.type = type;
-        return this;
     }
 
     public Machine getMachine() {
         return machine;
     }
 
-    public Maintenance setMachine(Machine machine) {
+    public void setMachine(Machine machine) {
         this.machine = machine;
-        return this;
     }
 
     public User getUser() {
         return user;
     }
 
-    public Maintenance setUser(User user) {
+    public void setUser(User user) {
         this.user = user;
-        return this;
     }
 
     public List<Step> getStepList() {
         return stepList;
     }
 
-    public Maintenance setStepList(List<Step> stepList) {
+    public void setStepList(List<Step> stepList) {
         this.stepList = stepList;
-        return this;
     }
 }

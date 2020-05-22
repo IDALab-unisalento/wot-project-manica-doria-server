@@ -15,8 +15,8 @@ public class ZoneMapper {
         ZoneDTO.ZoneDTOBuilder zoneDTOBuilder = new ZoneDTO.ZoneDTOBuilder()
                 .setId(zone.getId())
                 .setName(zone.getName())
-                .setMachineDTO(MachineMapper.makeMachineDTO(zone.getMachine()))
-                .setBeaconDTO(BeaconMapper.makeBeaconDTO(zone.getBeacon()));
+                .setStepList(StepMapper.makeStepDTOList(zone.getStepList()))
+                .setBeacon(BeaconMapper.makeBeaconDTO(zone.getBeacon()));
         return zoneDTOBuilder.build();
     }
 
@@ -24,8 +24,8 @@ public class ZoneMapper {
         return new Zone(
                 zoneDTO.getId(),
                 zoneDTO.getName(),
-                MachineMapper.makeMachine(zoneDTO.getMachineDTO()),
-                BeaconMapper.makeBeacon(zoneDTO.getBeaconDTO())
+                StepMapper.makeStepList(zoneDTO.getStepList()),
+                BeaconMapper.makeBeacon(zoneDTO.getBeacon())
         );
     }
 

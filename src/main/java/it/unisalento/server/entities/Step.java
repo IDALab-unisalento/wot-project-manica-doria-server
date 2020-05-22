@@ -28,14 +28,13 @@ public class Step {
     public Step() {
     }
 
-    public Step(int id, String name, String description, double duration, double estimateDuration, Maintenance maintenance, Zone zone) {
+    public Step(int id, String name, String description, double duration, double estimateDuration, List<Attachment> attachmentList) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.duration = duration;
         this.estimateDuration = estimateDuration;
-        this.maintenance = maintenance;
-        this.zone = zone;
+        this.attachmentList = attachmentList;
     }
 
     public int getId() {
@@ -76,6 +75,14 @@ public class Step {
 
     public void setEstimateDuration(double estimateDuration) {
         this.estimateDuration = estimateDuration;
+    }
+
+    public List<Attachment> getAttachmentList() {
+        return attachmentList;
+    }
+
+    public void setAttachmentList(List<Attachment> attachmentList) {
+        this.attachmentList = attachmentList;
     }
 
     public Maintenance getMaintenance() {

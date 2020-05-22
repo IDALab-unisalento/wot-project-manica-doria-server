@@ -36,71 +36,63 @@ public class User {
         return id;
     }
 
-    public User setId(int id) {
+    public void setId(int id) {
         this.id = id;
-        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public User setName(String name) {
+    public void setName(String name) {
         this.name = name;
-        return this;
     }
 
     public String getSurname() {
         return surname;
     }
 
-    public User setSurname(String surname) {
+    public void setSurname(String surname) {
         this.surname = surname;
-        return this;
     }
 
     public String getSerialNumber() {
         return serialNumber;
     }
 
-    public User setSerialNumber(String serialNumber) {
+    public void setSerialNumber(String serialNumber) {
         this.serialNumber = serialNumber;
-        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public User setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
-        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public User setPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
-        return this;
     }
 
     public String getRole() {
         return role;
     }
 
-    public User setRole(String role) {
+    public void setRole(String role) {
         this.role = role;
-        return this;
     }
 
     public List<Maintenance> getMaintenanceList() {
         return maintenanceList;
     }
 
-    public User setMaintenanceList(List<Maintenance> maintenanceList) {
+    public void setMaintenanceList(List<Maintenance> maintenanceList) {
         this.maintenanceList = maintenanceList;
-        return this;
     }
 }

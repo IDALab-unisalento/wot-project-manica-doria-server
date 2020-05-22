@@ -6,17 +6,19 @@ public class ZoneDTO {
 
     private int id;
     private String name;
-    private MachineDTO machineDTO;
-    private BeaconDTO beaconDTO;
+
+    private BeaconDTO beacon;
+    private List<StepDTO> stepList;
+
 
     public ZoneDTO() {
     }
 
-    public ZoneDTO(int id, String name, MachineDTO machineDTO, BeaconDTO beaconDTO) {
+    public ZoneDTO(int id, String name, BeaconDTO beacon, List<StepDTO> stepList) {
         this.id = id;
         this.name = name;
-        this.machineDTO = machineDTO;
-        this.beaconDTO = beaconDTO;
+        this.beacon = beacon;
+        this.stepList = stepList;
     }
 
     public int getId() {
@@ -27,19 +29,20 @@ public class ZoneDTO {
         return name;
     }
 
-    public MachineDTO getMachineDTO() {
-        return machineDTO;
+    public BeaconDTO getBeacon() {
+        return beacon;
     }
 
-    public BeaconDTO getBeaconDTO() {
-        return beaconDTO;
+    public List<StepDTO> getStepList() {
+        return stepList;
     }
 
     public static class ZoneDTOBuilder {
         int id;
         String name;
-        MachineDTO machineDTO;
-        BeaconDTO beaconDTO;
+
+        private BeaconDTO beacon;
+        private List<StepDTO> stepList;
 
         public ZoneDTOBuilder setId(int id) {
             this.id = id;
@@ -51,18 +54,18 @@ public class ZoneDTO {
             return this;
         }
 
-        public ZoneDTOBuilder setMachineDTO(MachineDTO machineDTO) {
-            this.machineDTO = machineDTO;
+        public ZoneDTOBuilder setBeacon(BeaconDTO beacon) {
+            this.beacon = beacon;
             return this;
         }
 
-        public ZoneDTOBuilder setBeaconDTO(BeaconDTO beaconDTO) {
-            this.beaconDTO = beaconDTO;
+        public ZoneDTOBuilder setStepList(List<StepDTO> stepList) {
+            this.stepList = stepList;
             return this;
         }
 
         public ZoneDTO build() {
-            return new ZoneDTO(id, name, machineDTO, beaconDTO);
+            return new ZoneDTO(id, name, beacon, stepList);
         }
     }
 }

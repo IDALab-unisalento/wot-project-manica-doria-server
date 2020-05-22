@@ -9,20 +9,19 @@ public class StepDTO {
     private String description;
     private double duration;
     private double estimateDuration;
-    private MaintenanceDTO maintenanceDTO;
-    private ZoneDTO zoneDTO;
+
+    private List<AttachmentDTO> attachmentList;
 
     public StepDTO() {
     }
 
-    public StepDTO(int id, String name, String description, double duration, double estimateDuration, MaintenanceDTO maintenanceDTO, ZoneDTO zoneDTO) {
+    public StepDTO(int id, String name, String description, double duration, double estimateDuration, List<AttachmentDTO> attachmentList) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.duration = duration;
         this.estimateDuration = estimateDuration;
-        this.maintenanceDTO = maintenanceDTO;
-        this.zoneDTO = zoneDTO;
+        this.attachmentList = attachmentList;
     }
 
     public int getId() {
@@ -45,12 +44,8 @@ public class StepDTO {
         return estimateDuration;
     }
 
-    public MaintenanceDTO getMaintenanceDTO() {
-        return maintenanceDTO;
-    }
-
-    public ZoneDTO getZoneDTO() {
-        return zoneDTO;
+    public List<AttachmentDTO> getAttachmentList() {
+        return attachmentList;
     }
 
     public static class StepDTOBuilder {
@@ -59,9 +54,8 @@ public class StepDTO {
         private String description;
         private double duration;
         private double estimateDuration;
-        private MaintenanceDTO maintenanceDTO;
-        private ZoneDTO zoneDTO;
 
+        private List<AttachmentDTO> attachmentList;
 
         public StepDTOBuilder setId(int id) {
             this.id = id;
@@ -88,18 +82,13 @@ public class StepDTO {
             return this;
         }
 
-        public StepDTOBuilder setMaintenanceDTO(MaintenanceDTO maintenanceDTO) {
-            this.maintenanceDTO = maintenanceDTO;
-            return this;
-        }
-
-        public StepDTOBuilder setZoneDTO(ZoneDTO zoneDTO) {
-            this.zoneDTO = zoneDTO;
+        public StepDTOBuilder setAttachmentList(List<AttachmentDTO> attachmentList) {
+            this.attachmentList = attachmentList;
             return this;
         }
 
         public StepDTO build() {
-            return new StepDTO(id, name, description, duration, estimateDuration, maintenanceDTO, zoneDTO);
+            return new StepDTO(id, name, description, duration, estimateDuration, attachmentList);
         }
     }
 

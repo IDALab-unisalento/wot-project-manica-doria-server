@@ -23,10 +23,10 @@ public class Zone {
     public Zone() {
     }
 
-    public Zone(int id, String name, Machine machine, Beacon beacon) {
+    public Zone(int id, String name, List<Step> stepList, Beacon beacon) {
         this.id = id;
         this.name = name;
-        this.machine = machine;
+        this.stepList = stepList;
         this.beacon = beacon;
     }
 
@@ -34,44 +34,39 @@ public class Zone {
         return id;
     }
 
-    public Zone setId(int id) {
+    public void setId(int id) {
         this.id = id;
-        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public Zone setName(String name) {
+    public void setName(String name) {
         this.name = name;
-        return this;
     }
 
     public List<Step> getStepList() {
         return stepList;
     }
 
-    public Zone setStepList(List<Step> stepList) {
+    public void setStepList(List<Step> stepList) {
         this.stepList = stepList;
-        return this;
     }
 
     public Machine getMachine() {
         return machine;
     }
 
-    public Zone setMachine(Machine machine) {
+    public void setMachine(Machine machine) {
         this.machine = machine;
-        return this;
     }
 
     public Beacon getBeacon() {
         return beacon;
     }
 
-    public Zone setBeacon(Beacon beacon) {
+    public void setBeacon(Beacon beacon) {
         this.beacon = beacon;
-        return this;
     }
 }

@@ -1,17 +1,24 @@
 package it.unisalento.server.DTO;
 
+import it.unisalento.server.entities.Zone;
+
+import java.util.List;
+
 public class MachineDTO {
 
     private int id;
     private String name;
     private String serialNumber;
 
+    private List<ZoneDTO> zoneList;
+
     public MachineDTO() { }
 
-    public MachineDTO(int id, String name, String serialNumber) {
+    public MachineDTO(int id, String name, String serialNumber, List<ZoneDTO> zoneList) {
         this.id = id;
         this.name = name;
         this.serialNumber = serialNumber;
+        this.zoneList = zoneList;
     }
 
     public int getId() {
@@ -26,10 +33,16 @@ public class MachineDTO {
         return serialNumber;
     }
 
+    public List<ZoneDTO> getZoneList() {
+        return zoneList;
+    }
+
     public static class MachineDTOBuilder {
         private int id;
         private String name;
         private String serialNumber;
+
+        private List<ZoneDTO> zoneList;
 
         public MachineDTOBuilder setId(int id) {
             this.id = id;
@@ -46,8 +59,13 @@ public class MachineDTO {
             return this;
         }
 
+        public MachineDTOBuilder setZoneList(List<ZoneDTO> zoneList) {
+            this.zoneList = zoneList;
+            return this;
+        }
+
         public MachineDTO build() {
-            return new MachineDTO(id, name, serialNumber);
+            return new MachineDTO(id, name, serialNumber, zoneList);
         }
     }
 }

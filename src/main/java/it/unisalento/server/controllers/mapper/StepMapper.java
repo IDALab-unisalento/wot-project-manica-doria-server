@@ -1,6 +1,7 @@
 package it.unisalento.server.controllers.mapper;
 
 import it.unisalento.server.DTO.StepDTO;
+import it.unisalento.server.entities.Attachment;
 import it.unisalento.server.entities.Step;
 
 import java.util.ArrayList;
@@ -17,8 +18,7 @@ public class StepMapper {
                 .setDescription(step.getDescription())
                 .setDuration(step.getDuration())
                 .setEstimateDuration(step.getEstimateDuration())
-                .setMaintenanceDTO(MaintenanceMapper.makeMaintenanceDTO(step.getMaintenance()))
-                .setZoneDTO(ZoneMapper.makeZoneDTO(step.getZone()));
+                .setAttachmentList(AttachmentMapper.makeAttachmentDTOList(step.getAttachmentList()));
         return stepDTOBuilder.build();
     }
 
@@ -29,8 +29,7 @@ public class StepMapper {
                 stepDTO.getDescription(),
                 stepDTO.getDuration(),
                 stepDTO.getEstimateDuration(),
-                MaintenanceMapper.makeMaintenance(stepDTO.getMaintenanceDTO()),
-                ZoneMapper.makeZone(stepDTO.getZoneDTO())
+                AttachmentMapper.makeAttachmentList(stepDTO.getAttachmentList())
         );
     }
 
