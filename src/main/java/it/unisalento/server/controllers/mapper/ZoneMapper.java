@@ -14,9 +14,11 @@ public class ZoneMapper {
 
         ZoneDTO.ZoneDTOBuilder zoneDTOBuilder = new ZoneDTO.ZoneDTOBuilder()
                 .setId(zone.getId())
-                .setName(zone.getName())
-                .setStepList(StepMapper.makeStepDTOList(zone.getStepList()))
-                .setBeacon(BeaconMapper.makeBeaconDTO(zone.getBeacon()));
+                .setName(zone.getName());
+        if (zone.getStepList() != null && zone.getBeacon() != null) {
+            zoneDTOBuilder.setStepList(StepMapper.makeStepDTOList(zone.getStepList()));
+            zoneDTOBuilder.setBeacon(BeaconMapper.makeBeaconDTO(zone.getBeacon()));
+        }
         return zoneDTOBuilder.build();
     }
 

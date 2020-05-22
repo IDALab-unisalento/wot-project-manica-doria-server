@@ -17,8 +17,10 @@ public class StepMapper {
                 .setName(step.getName())
                 .setDescription(step.getDescription())
                 .setDuration(step.getDuration())
-                .setEstimateDuration(step.getEstimateDuration())
-                .setAttachmentList(AttachmentMapper.makeAttachmentDTOList(step.getAttachmentList()));
+                .setEstimateDuration(step.getEstimateDuration());
+        if (step.getAttachmentList() != null) {
+            stepDTOBuilder.setAttachmentList(AttachmentMapper.makeAttachmentDTOList(step.getAttachmentList()));
+        }
         return stepDTOBuilder.build();
     }
 

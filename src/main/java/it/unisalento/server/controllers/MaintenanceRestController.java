@@ -2,6 +2,7 @@ package it.unisalento.server.controllers;
 
 import it.unisalento.server.DTO.MaintenanceDTO;
 import it.unisalento.server.controllers.mapper.MaintenanceMapper;
+import it.unisalento.server.entities.Maintenance;
 import it.unisalento.server.exception.UserAlreadyExistException;
 import it.unisalento.server.exception.UserNotFoundException;
 import it.unisalento.server.services.interf.IMaintenanceService;
@@ -21,8 +22,8 @@ public class MaintenanceRestController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public MaintenanceDTO save(@RequestBody MaintenanceDTO maintenanceDTO) throws UserAlreadyExistException {
-        return MaintenanceMapper.makeMaintenanceDTO(maintenanceService.save(MaintenanceMapper.makeMaintenance(maintenanceDTO)));
+    public MaintenanceDTO save(@RequestBody Maintenance maintenance) throws UserAlreadyExistException {
+        return MaintenanceMapper.makeMaintenanceDTO(maintenanceService.save(maintenance));
     }
 
     @DeleteMapping(value = "/delete/{id}")

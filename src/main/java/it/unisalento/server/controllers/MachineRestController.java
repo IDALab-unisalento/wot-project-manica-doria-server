@@ -2,6 +2,7 @@ package it.unisalento.server.controllers;
 
 import it.unisalento.server.DTO.MachineDTO;
 import it.unisalento.server.controllers.mapper.MachineMapper;
+import it.unisalento.server.entities.Machine;
 import it.unisalento.server.exception.UserAlreadyExistException;
 import it.unisalento.server.exception.UserNotFoundException;
 import it.unisalento.server.services.interf.IMachineService;
@@ -21,8 +22,8 @@ public class MachineRestController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public MachineDTO save(@RequestBody MachineDTO machineDTO) throws UserAlreadyExistException {
-        return MachineMapper.makeMachineDTO(machineService.save(MachineMapper.makeMachine(machineDTO)));
+    public MachineDTO save(@RequestBody Machine machine) throws UserAlreadyExistException {
+        return MachineMapper.makeMachineDTO(machineService.save(machine));
     }
 
     @DeleteMapping(value = "/delete/{id}")

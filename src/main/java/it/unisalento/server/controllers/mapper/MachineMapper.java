@@ -13,8 +13,11 @@ public class MachineMapper {
         MachineDTO.MachineDTOBuilder machineDTOBuilder = new MachineDTO.MachineDTOBuilder()
                 .setId(machine.getId())
                 .setName(machine.getName())
-                .setSerialNumber(machine.getSerialNumber())
-                .setZoneList(ZoneMapper.makeZoneDTOList(machine.getZoneList()));
+                .setSerialNumber(machine.getSerialNumber());
+        if (machine.getZoneList() != null) {
+            machineDTOBuilder.setZoneList(ZoneMapper.makeZoneDTOList(machine.getZoneList()));
+        }
+
         return machineDTOBuilder.build();
     }
 
