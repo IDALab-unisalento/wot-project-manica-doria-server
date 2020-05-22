@@ -35,4 +35,11 @@ public class ZoneMapper {
         while (iter.hasNext()) zoneDTOList.add(makeZoneDTO(iter.next()));
         return zoneDTOList;
     }
+
+    public static List<Zone> makeZoneList(List<ZoneDTO> zoneDTOList) {
+        Iterator<ZoneDTO> iter = zoneDTOList.iterator();
+        List<Zone> zoneList = new ArrayList<>();
+        while (iter.hasNext()) zoneList.add(makeZone(iter.next()));
+        return zoneList;
+    }
 }

@@ -16,7 +16,7 @@ public class User {
     private String password;
     private String role;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
     List<Maintenance> maintenanceList;
 
     public User() {

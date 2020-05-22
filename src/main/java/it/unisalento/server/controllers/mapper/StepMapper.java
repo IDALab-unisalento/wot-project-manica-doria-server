@@ -40,4 +40,11 @@ public class StepMapper {
         while (iter.hasNext()) stepDTOList.add(makeStepDTO(iter.next()));
         return stepDTOList;
     }
+
+    public static List<Step> makeStepList(List<StepDTO> stepDTOList) {
+        Iterator<StepDTO> iter = stepDTOList.iterator();
+        List<Step> stepList = new ArrayList<>();
+        while (iter.hasNext()) stepList.add(makeStep(iter.next()));
+        return stepList;
+    }
 }

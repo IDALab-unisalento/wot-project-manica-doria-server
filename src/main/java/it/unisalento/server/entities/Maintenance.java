@@ -14,14 +14,13 @@ public class Maintenance {
     private Date date;
     private String type;
 
-
     @OneToOne
     private Machine machine;
 
     @ManyToOne
     private User user;
 
-    @OneToMany(mappedBy = "maintenance", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "maintenance", orphanRemoval = true)
     private List<Step> stepList;
 
     public Maintenance() { }
