@@ -1,16 +1,16 @@
 package it.unisalento.server.services.interf;
 
 import it.unisalento.server.entities.Step;
-import it.unisalento.server.exception.UserAlreadyExistException;
-import it.unisalento.server.exception.UserNotFoundException;
+import it.unisalento.server.exception.ObjectAlreadyExistException;
+import it.unisalento.server.exception.ObjectNotFoundException;
 
 import java.util.List;
 
 public interface IStepService {
 
-    Step save(Step step) throws UserAlreadyExistException;
-    Step delete(int id) throws UserNotFoundException;
-    Step getById(int id) throws UserNotFoundException;
+    Step save(Step step) throws ObjectAlreadyExistException;
+    Step delete(int id) throws ObjectNotFoundException;
+    Step getById(int id) throws ObjectNotFoundException;
     List<Step> getAll();
 
 }

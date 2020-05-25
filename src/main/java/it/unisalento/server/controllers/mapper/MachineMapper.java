@@ -16,7 +16,7 @@ public class MachineMapper {
                 .setSerialNumber(machine.getSerialNumber());
         if (machine.getZoneList() != null) {
             machineDTOBuilder.setZoneList(ZoneMapper.makeZoneDTOList(machine.getZoneList()));
-        }
+        } else new ArrayList<>();
 
         return machineDTOBuilder.build();
     }

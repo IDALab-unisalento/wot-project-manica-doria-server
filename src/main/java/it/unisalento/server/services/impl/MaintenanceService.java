@@ -1,7 +1,7 @@
 package it.unisalento.server.services.impl;
 
 import it.unisalento.server.entities.Maintenance;
-import it.unisalento.server.exception.UserNotFoundException;
+import it.unisalento.server.exception.ObjectNotFoundException;
 import it.unisalento.server.repositories.MaintenanceRepository;
 import it.unisalento.server.services.interf.IMaintenanceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +25,14 @@ public class MaintenanceService implements IMaintenanceService {
 
     @Override
     @Transactional
-    public Maintenance delete(int id) throws UserNotFoundException {
+    public Maintenance delete(int id) throws ObjectNotFoundException {
         Optional<Maintenance> maintenance = maintenanceRepository.findById(id);
         if(maintenance.isPresent()) {
             maintenanceRepository.delete(maintenance.get());
             return maintenance.get();
         }
         else
-            throw new UserNotFoundException("Maintenance does not found");
+            throw new ObjectNotFoundException("Maintenance does not found");
     }
 
     @Override
@@ -43,7 +43,7 @@ public class MaintenanceService implements IMaintenanceService {
 
     @Override
     @Transactional
-    public Maintenance getById(int id) throws UserNotFoundException {
-        return maintenanceRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Machine with id='"+id+"' Not Found"));
+    public Maintenance getById(int id) throws ObjectNotFoundException {
+        return maintenanceRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Machine with id='"+id+"' Not Found"));
     }
 }

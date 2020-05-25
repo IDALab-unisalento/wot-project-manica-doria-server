@@ -15,9 +15,12 @@ public class MaintenanceMapper {
                  .setId(maintenance.getId())
                  .setStatus(maintenance.getStatus())
                  .setDate(maintenance.getDate())
-                 .setType(maintenance.getType())
-                 .setMachine(MachineMapper.makeMachineDTO(maintenance.getMachine()))
-                 .setUser(UserMapper.makeUserDTO(maintenance.getUser()));
+                 .setType(maintenance.getType());
+         if (maintenance.getMachine() != null)
+            maintenanceDTOBuilder.setMachine(MachineMapper.makeMachineDTO(maintenance.getMachine()));
+         
+        if (maintenance.getUser() != null)
+            maintenanceDTOBuilder.setUser(UserMapper.makeUserDTO(maintenance.getUser()));
 
          return maintenanceDTOBuilder.build();
      }

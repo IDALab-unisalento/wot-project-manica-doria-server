@@ -4,13 +4,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(code = HttpStatus.NOT_FOUND)
-public class UserNotFoundException extends Exception {
+public class ObjectNotFoundException extends Exception {
 
-    public UserNotFoundException() {
+    public ObjectNotFoundException() {
         super();
     }
 
-    public UserNotFoundException(String message) {
+    public ObjectNotFoundException(String message) {
         super(message);
     }
 

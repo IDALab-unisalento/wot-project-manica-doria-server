@@ -1,12 +1,10 @@
 package it.unisalento.server.controllers;
 
 import it.unisalento.server.DTO.StepDTO;
-import it.unisalento.server.DTO.ZoneDTO;
 import it.unisalento.server.controllers.mapper.StepMapper;
-import it.unisalento.server.controllers.mapper.ZoneMapper;
 import it.unisalento.server.entities.Step;
-import it.unisalento.server.exception.UserAlreadyExistException;
-import it.unisalento.server.exception.UserNotFoundException;
+import it.unisalento.server.exception.ObjectAlreadyExistException;
+import it.unisalento.server.exception.ObjectNotFoundException;
 import it.unisalento.server.services.interf.IStepService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,17 +22,17 @@ public class StepRestController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public StepDTO save(@RequestBody Step step) throws UserAlreadyExistException {
-        return StepMapper.makeStepDTO(stepService.save(step));
+    public StepDTO save(@RequestBody StepDTO step) throws ObjectAlreadyExistException {
+        return StepMapper.makeStepDTO(stepService.save(StepMapper.makeStep(step)));
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public StepDTO delete(@PathVariable int id) throws UserNotFoundException {
+    public StepDTO delete(@PathVariable int id) throws ObjectNotFoundException {
         return StepMapper.makeStepDTO(stepService.delete(id));
     }
 
     @GetMapping(value = "/getById/{id}")
-    public StepDTO getById(@PathVariable int id) throws UserNotFoundException {
+    public StepDTO getById(@PathVariable int id) throws ObjectNotFoundException {
         return StepMapper.makeStepDTO(stepService.getById(id));
     }
 

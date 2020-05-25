@@ -2,18 +2,14 @@ package it.unisalento.server.controllers;
 
 import it.unisalento.server.DTO.UserDTO;
 import it.unisalento.server.controllers.mapper.UserMapper;
-import it.unisalento.server.entities.User;
-import it.unisalento.server.exception.UserAlreadyExistException;
-import it.unisalento.server.exception.UserNotFoundException;
+import it.unisalento.server.exception.ObjectAlreadyExistException;
+import it.unisalento.server.exception.ObjectNotFoundException;
 import it.unisalento.server.services.interf.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @RestController
@@ -25,22 +21,22 @@ public class UserRestController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public UserDTO save(@RequestBody UserDTO userDTO) throws UserAlreadyExistException {
+    public UserDTO save(@RequestBody UserDTO userDTO) throws ObjectAlreadyExistException {
         return UserMapper.makeUserDTO(userService.save(UserMapper.makeUser(userDTO)));
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public UserDTO delete(@PathVariable int id) throws UserNotFoundException {
+    public UserDTO delete(@PathVariable int id) throws ObjectNotFoundException {
         return UserMapper.makeUserDTO(userService.delete(id));
     }
 
     @PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public UserDTO update(@RequestBody UserDTO userDTO) throws UserNotFoundException {
+    public UserDTO update(@RequestBody UserDTO userDTO) throws ObjectNotFoundException {
         return UserMapper.makeUserDTO(userService.update(UserMapper.makeUser(userDTO)));
     }
 
     @GetMapping(value = "/getById/{id}")
-    public UserDTO getById(@PathVariable int id) throws UserNotFoundException {
+    public UserDTO getById(@PathVariable int id) throws ObjectNotFoundException {
         return UserMapper.makeUserDTO(userService.getById(id));
     }
 
@@ -50,7 +46,7 @@ public class UserRestController {
     }
 
     @GetMapping(value = "/getByEmail/{email}")
-    public UserDTO getByEmail(@PathVariable String email) throws UserNotFoundException {
+    public UserDTO getByEmail(@PathVariable String email) throws ObjectNotFoundException {
         return UserMapper.makeUserDTO(userService.getByEmail(email));
     }
 

@@ -1,6 +1,7 @@
 package it.unisalento.server.controllers.mapper;
 
 import it.unisalento.server.DTO.ZoneDTO;
+import it.unisalento.server.entities.Beacon;
 import it.unisalento.server.entities.Machine;
 import it.unisalento.server.entities.Zone;
 
@@ -15,20 +16,29 @@ public class ZoneMapper {
         ZoneDTO.ZoneDTOBuilder zoneDTOBuilder = new ZoneDTO.ZoneDTOBuilder()
                 .setId(zone.getId())
                 .setName(zone.getName());
-        if (zone.getStepList() != null && zone.getBeacon() != null) {
-            zoneDTOBuilder.setStepList(StepMapper.makeStepDTOList(zone.getStepList()));
+        if (zone.getStepList() != null) {
             zoneDTOBuilder.setBeacon(BeaconMapper.makeBeaconDTO(zone.getBeacon()));
+        }
+        if (zone.getBeacon() != null) {
+            zoneDTOBuilder.setStepList(StepMapper.makeStepDTOList(zone.getStepList()));
+
         }
         return zoneDTOBuilder.build();
     }
 
     public static Zone makeZone(ZoneDTO zoneDTO) {
-        return new Zone(
+        Zone zone = new Zone(
                 zoneDTO.getId(),
-                zoneDTO.getName(),
-                StepMapper.makeStepList(zoneDTO.getStepList()),
-                BeaconMapper.makeBeacon(zoneDTO.getBeacon())
+                zoneDTO.getName()
         );
+        if (zoneDTO.getStepList() == null) zone.setStepList(new ArrayList<>());
+        else zone.setStepList(StepMapper.makeStepList(zoneDTO.getStepList()));
+
+        if (zoneDTO.getBeacon() == null ) zone.setBeacon(new Beacon());
+        else zone.setBeacon(BeaconMapper.makeBeacon(zoneDTO.getBeacon()));
+
+        return zone;
+
     }
 
     public static List<ZoneDTO> makeZoneDTOList(List<Zone> zoneList) {

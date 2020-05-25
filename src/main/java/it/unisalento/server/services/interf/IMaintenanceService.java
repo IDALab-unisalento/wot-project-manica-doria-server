@@ -1,16 +1,16 @@
 package it.unisalento.server.services.interf;
 
 import it.unisalento.server.entities.Maintenance;
-import it.unisalento.server.exception.UserNotFoundException;
+import it.unisalento.server.exception.ObjectNotFoundException;
 
 import java.util.List;
 
 public interface IMaintenanceService {
 
     Maintenance save(Maintenance maintenance);
-    Maintenance delete(int id) throws UserNotFoundException;
+    Maintenance delete(int id) throws ObjectNotFoundException;
 
     List<Maintenance> getAll();
-    Maintenance getById(int id) throws UserNotFoundException;
+    Maintenance getById(int id) throws ObjectNotFoundException;
 
 }

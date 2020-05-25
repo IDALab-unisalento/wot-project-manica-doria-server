@@ -1,11 +1,17 @@
 package it.unisalento.server.DTO;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import it.unisalento.server.entities.Step;
+
 public class AttachmentDTO {
 
     private int id;
     private String path;
     private String filename;
     private String type;
+
+    @JsonIgnore
+    private StepDTO step;
 
     public AttachmentDTO() { }
 

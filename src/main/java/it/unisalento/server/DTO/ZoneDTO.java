@@ -1,5 +1,5 @@
 package it.unisalento.server.DTO;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 
 public class ZoneDTO {
@@ -10,15 +10,19 @@ public class ZoneDTO {
     private BeaconDTO beacon;
     private List<StepDTO> stepList;
 
+    @JsonIgnore
+    private MachineDTO machine;
+
 
     public ZoneDTO() {
     }
 
-    public ZoneDTO(int id, String name, BeaconDTO beacon, List<StepDTO> stepList) {
+    public ZoneDTO(int id, String name, BeaconDTO beacon, List<StepDTO> stepList, MachineDTO machine) {
         this.id = id;
         this.name = name;
         this.beacon = beacon;
         this.stepList = stepList;
+        this.machine = machine;
     }
 
     public int getId() {
@@ -37,12 +41,18 @@ public class ZoneDTO {
         return stepList;
     }
 
+    public MachineDTO getMachine() {
+        return machine;
+    }
+
     public static class ZoneDTOBuilder {
         int id;
         String name;
 
         private BeaconDTO beacon;
         private List<StepDTO> stepList;
+
+        private MachineDTO machine;
 
         public ZoneDTOBuilder setId(int id) {
             this.id = id;
@@ -64,8 +74,13 @@ public class ZoneDTO {
             return this;
         }
 
+        public ZoneDTOBuilder setMachine(MachineDTO machine) {
+            this.machine = machine;
+            return this;
+        }
+
         public ZoneDTO build() {
-            return new ZoneDTO(id, name, beacon, stepList);
+            return new ZoneDTO(id, name, beacon, stepList, machine);
         }
     }
 }

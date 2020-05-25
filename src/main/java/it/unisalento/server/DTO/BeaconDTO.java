@@ -1,10 +1,16 @@
 package it.unisalento.server.DTO;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import it.unisalento.server.entities.Zone;
+
 public class BeaconDTO {
 
     private int id;
     private String name;
     private String mac;
+
+    @JsonIgnore
+    private ZoneDTO zone;
 
     public BeaconDTO() { }
 

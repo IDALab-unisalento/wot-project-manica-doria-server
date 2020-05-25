@@ -2,8 +2,8 @@ package it.unisalento.server.controllers;
 
 import it.unisalento.server.DTO.BeaconDTO;
 import it.unisalento.server.controllers.mapper.BeaconMapper;
-import it.unisalento.server.exception.UserAlreadyExistException;
-import it.unisalento.server.exception.UserNotFoundException;
+import it.unisalento.server.exception.ObjectAlreadyExistException;
+import it.unisalento.server.exception.ObjectNotFoundException;
 import it.unisalento.server.services.interf.IBeaconService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,12 +21,12 @@ public class BeaconRestController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public BeaconDTO save(@RequestBody BeaconDTO beaconDTO) throws UserAlreadyExistException {
+    public BeaconDTO save(@RequestBody BeaconDTO beaconDTO) throws ObjectAlreadyExistException {
         return BeaconMapper.makeBeaconDTO(beaconService.save(BeaconMapper.makeBeacon(beaconDTO)));
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public BeaconDTO delete(@PathVariable int id) throws UserNotFoundException {
+    public BeaconDTO delete(@PathVariable int id) throws ObjectNotFoundException {
         return BeaconMapper.makeBeaconDTO(beaconService.delete(id));
     }
 
@@ -36,7 +36,7 @@ public class BeaconRestController {
     }
 
     @GetMapping(value = "/getById/{id}")
-    public BeaconDTO getById(@PathVariable int id) throws UserNotFoundException {
+    public BeaconDTO getById(@PathVariable int id) throws ObjectNotFoundException {
         return BeaconMapper.makeBeaconDTO(beaconService.getById(id));
     }
 }

@@ -1,7 +1,7 @@
 package it.unisalento.server.services.impl;
 
 import it.unisalento.server.entities.Attachment;
-import it.unisalento.server.exception.UserNotFoundException;
+import it.unisalento.server.exception.ObjectNotFoundException;
 import it.unisalento.server.repositories.AttachmentRepository;
 import it.unisalento.server.services.interf.IAttachmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +25,14 @@ public class AttachmentService implements IAttachmentService {
 
     @Override
     @Transactional
-    public Attachment delete(int id) throws UserNotFoundException {
+    public Attachment delete(int id) throws ObjectNotFoundException {
         Optional<Attachment> attachment = attachmentRepository.findById(id);
         if(attachment.isPresent()) {
             attachmentRepository.delete(attachment.get());
             return attachment.get();
         }
         else
-            throw new UserNotFoundException("Attachment does not found");
+            throw new ObjectNotFoundException("Attachment does not found");
     }
 
     @Override
@@ -43,7 +43,7 @@ public class AttachmentService implements IAttachmentService {
 
     @Override
     @Transactional
-    public Attachment getById(int id) throws UserNotFoundException {
-        return attachmentRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Attachment with id='"+id+"' Not Found"));
+    public Attachment getById(int id) throws ObjectNotFoundException {
+        return attachmentRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Attachment with id='"+id+"' Not Found"));
     }
 }

@@ -1,8 +1,8 @@
 package it.unisalento.server.services.impl;
 
 import it.unisalento.server.entities.User;
-import it.unisalento.server.exception.UserAlreadyExistException;
-import it.unisalento.server.exception.UserNotFoundException;
+import it.unisalento.server.exception.ObjectAlreadyExistException;
+import it.unisalento.server.exception.ObjectNotFoundException;
 import it.unisalento.server.repositories.UserRepository;
 import it.unisalento.server.services.interf.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,25 +20,25 @@ public class UserService implements IUserService {
     UserRepository userRepository;
 
     @Override
-    public User save(User user) throws UserAlreadyExistException {
+    public User save(User user) throws ObjectAlreadyExistException {
         if (userRepository.findByEmailAndSerialNumber(user.getEmail(), user.getSerialNumber()).isPresent())
-            throw new UserAlreadyExistException("User Already Exist");
+            throw new ObjectAlreadyExistException("User Already Exist");
         else
             return userRepository.save(user);
     }
 
     @Override
     @Transactional
-    public User delete(int id) throws UserNotFoundException {
+    public User delete(int id) throws ObjectNotFoundException {
         Optional<User> deleted = userRepository.findById(id);
         if (deleted.isPresent()) {
             userRepository.delete(deleted.get());
             return deleted.get();
-        } else throw new UserNotFoundException("User Not Found");
+        } else throw new ObjectNotFoundException("User Not Found");
     }
 
     @Override
-    public User update(User user) throws UserNotFoundException {
+    public User update(User user) throws ObjectNotFoundException {
         Optional<User> updated = userRepository.findById(user.getId());
         if (updated.isPresent()){
             if (user.getName() != null) updated.get().setName(user.getName());
@@ -49,12 +49,12 @@ public class UserService implements IUserService {
             if (user.getRole() != null) updated.get().setRole(user.getRole());
             return userRepository.save(updated.get());
         }
-        else throw new UserNotFoundException("User Not Found");
+        else throw new ObjectNotFoundException("User Not Found");
     }
 
     @Override
-    public User getById(int id) throws UserNotFoundException {
-        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User with id='"+id+"' Not Found"));
+    public User getById(int id) throws ObjectNotFoundException {
+        return userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("User with id='"+id+"' Not Found"));
     }
 
     @Override
@@ -78,8 +78,8 @@ public class UserService implements IUserService {
 
     @Override
     @Transactional
-    public User getByEmail(String email) throws UserNotFoundException {
-        return userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User with email='"+email+"' Not Found"));
+    public User getByEmail(String email) throws ObjectNotFoundException {
+        return userRepository.findByEmail(email).orElseThrow(() -> new ObjectNotFoundException("User with email='"+email+"' Not Found"));
     }
 
 

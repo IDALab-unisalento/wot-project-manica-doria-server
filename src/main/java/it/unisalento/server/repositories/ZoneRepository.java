@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface ZoneRepository extends JpaRepository<Zone, Integer> {
-    Optional<Zone> findByNameAndBeacon_mac(String name, String mac);
+    Optional<Zone> findZoneByNameAndMachine_Id(String name, int id_machine);
 }

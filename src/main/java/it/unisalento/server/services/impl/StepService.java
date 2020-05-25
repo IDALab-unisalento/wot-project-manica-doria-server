@@ -1,9 +1,7 @@
 package it.unisalento.server.services.impl;
 
 import it.unisalento.server.entities.Step;
-import it.unisalento.server.entities.Zone;
-import it.unisalento.server.exception.UserAlreadyExistException;
-import it.unisalento.server.exception.UserNotFoundException;
+import it.unisalento.server.exception.ObjectNotFoundException;
 import it.unisalento.server.repositories.StepRepository;
 import it.unisalento.server.services.interf.IStepService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,16 +23,16 @@ public class StepService implements IStepService {
     }
 
     @Override
-    public Step delete(int id) throws UserNotFoundException {
+    public Step delete(int id) throws ObjectNotFoundException {
         Optional<Step> deleted = stepRepository.findById(id);
         if (deleted.isPresent()) { stepRepository.delete(deleted.get());
             return deleted.get();
-        } else throw new UserNotFoundException("Step Not Found");
+        } else throw new ObjectNotFoundException("Step Not Found");
     }
 
     @Override
-    public Step getById(int id) throws UserNotFoundException {
-        return stepRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Zone with id='"+id+"' Not Found"));
+    public Step getById(int id) throws ObjectNotFoundException {
+        return stepRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Zone with id='"+id+"' Not Found"));
     }
 
     @Override

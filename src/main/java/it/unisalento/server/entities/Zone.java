@@ -23,11 +23,9 @@ public class Zone {
     public Zone() {
     }
 
-    public Zone(int id, String name, List<Step> stepList, Beacon beacon) {
+    public Zone(int id, String name) {
         this.id = id;
         this.name = name;
-        this.stepList = stepList;
-        this.beacon = beacon;
     }
 
     public int getId() {

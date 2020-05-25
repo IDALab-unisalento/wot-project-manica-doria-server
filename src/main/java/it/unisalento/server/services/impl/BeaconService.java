@@ -1,8 +1,8 @@
 package it.unisalento.server.services.impl;
 
 import it.unisalento.server.entities.Beacon;
-import it.unisalento.server.exception.UserAlreadyExistException;
-import it.unisalento.server.exception.UserNotFoundException;
+import it.unisalento.server.exception.ObjectAlreadyExistException;
+import it.unisalento.server.exception.ObjectNotFoundException;
 import it.unisalento.server.repositories.BeaconRepository;
 import it.unisalento.server.services.interf.IBeaconService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,23 +20,23 @@ public class BeaconService implements IBeaconService {
 
     @Override
     @Transactional
-    public Beacon save(Beacon beacon) throws UserAlreadyExistException {
+    public Beacon save(Beacon beacon) throws ObjectAlreadyExistException {
         if(beaconRepository.findByMac(beacon.getMac()).isPresent())
-            throw new UserAlreadyExistException("Beacon Already Exist");
+            throw new ObjectAlreadyExistException("Beacon Already Exist");
         else
             return beaconRepository.save(beacon);
     }
 
     @Override
     @Transactional
-    public Beacon delete(int id) throws UserNotFoundException {
+    public Beacon delete(int id) throws ObjectNotFoundException {
         Optional<Beacon> beacon = beaconRepository.findById(id);
         if(beacon.isPresent()) {
             beaconRepository.delete(beacon.get());
             return beacon.get();
         }
         else
-            throw new UserNotFoundException("Beacon does not found");
+            throw new ObjectNotFoundException("Beacon does not found");
     }
 
     @Override
@@ -47,7 +47,7 @@ public class BeaconService implements IBeaconService {
 
     @Override
     @Transactional
-    public Beacon getById(int id) throws UserNotFoundException {
-        return beaconRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Beacon with id='"+id+"' Not Found"));
+    public Beacon getById(int id) throws ObjectNotFoundException {
+        return beaconRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Beacon with id='"+id+"' Not Found"));
     }
 }

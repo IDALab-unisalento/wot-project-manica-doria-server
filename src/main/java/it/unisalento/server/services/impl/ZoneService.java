@@ -1,9 +1,8 @@
 package it.unisalento.server.services.impl;
 
-import it.unisalento.server.entities.User;
 import it.unisalento.server.entities.Zone;
-import it.unisalento.server.exception.UserAlreadyExistException;
-import it.unisalento.server.exception.UserNotFoundException;
+import it.unisalento.server.exception.ObjectAlreadyExistException;
+import it.unisalento.server.exception.ObjectNotFoundException;
 import it.unisalento.server.repositories.ZoneRepository;
 import it.unisalento.server.services.interf.IZoneService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,26 +21,26 @@ public class ZoneService implements IZoneService {
 
     @Override
     @Transactional
-    public Zone save(Zone zone) throws UserAlreadyExistException {
-        if (zoneRepository.findByNameAndBeacon_mac(zone.getName(), zone.getBeacon().getMac()).isPresent())
-            throw new UserAlreadyExistException("Zone Already Exist");
+    public Zone save(Zone zone) throws ObjectAlreadyExistException {
+        if (zoneRepository.findZoneByNameAndMachine_Id(zone.getName(), zone.getMachine().getId()).isPresent())
+            throw new ObjectAlreadyExistException("Zone Already Exist");
         else
             return zoneRepository.save(zone);
     }
 
     @Override
     @Transactional
-    public Zone delete(int id) throws UserNotFoundException {
+    public Zone delete(int id) throws ObjectNotFoundException {
         Optional<Zone> deleted = zoneRepository.findById(id);
         if (deleted.isPresent()) { zoneRepository.delete(deleted.get());
             return deleted.get();
-        } else throw new UserNotFoundException("Zone Not Found");
+        } else throw new ObjectNotFoundException("Zone Not Found");
     }
 
     @Override
     @Transactional
-    public Zone getById(int id) throws UserNotFoundException {
-        return zoneRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Zone with id='"+id+"' Not Found"));
+    public Zone getById(int id) throws ObjectNotFoundException {
+        return zoneRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Zone with id='"+id+"' Not Found"));
     }
 
     @Override
