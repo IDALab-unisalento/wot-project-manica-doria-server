@@ -22,8 +22,8 @@ public class StepRestController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public StepDTO save(@RequestBody StepDTO step) throws ObjectAlreadyExistException {
-        return StepMapper.makeStepDTO(stepService.save(StepMapper.makeStep(step)));
+    public StepDTO save(@RequestBody StepDTO stepDTO) throws ObjectAlreadyExistException {
+        return StepMapper.makeStepDTO(stepService.save(StepMapper.makeStep(stepDTO)));
     }
 
     @DeleteMapping(value = "/delete/{id}")

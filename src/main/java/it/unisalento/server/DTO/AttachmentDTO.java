@@ -15,11 +15,12 @@ public class AttachmentDTO {
 
     public AttachmentDTO() { }
 
-    public AttachmentDTO(int id, String path, String filename, String type) {
+    public AttachmentDTO(int id, String path, String filename, String type, StepDTO step) {
         this.id = id;
         this.path = path;
         this.filename = filename;
         this.type = type;
+        this.step = step;
     }
 
     public int getId() {
@@ -38,11 +39,18 @@ public class AttachmentDTO {
         return type;
     }
 
+    public StepDTO getStep() {
+        return step;
+    }
+
     public static class AttachmentDTOBuilder {
         private int id;
         private String path;
         private String filename;
         private String type;
+
+        @JsonIgnore
+        private StepDTO step;
 
         public AttachmentDTOBuilder setId(int id) {
             this.id = id;
@@ -64,8 +72,13 @@ public class AttachmentDTO {
             return this;
         }
 
+        public AttachmentDTOBuilder setStep(StepDTO step) {
+            this.step = step;
+            return this;
+        }
+
         public AttachmentDTO build() {
-            return new AttachmentDTO(id, path, filename, type);
+            return new AttachmentDTO(id, path, filename, type, step);
         }
     }
 

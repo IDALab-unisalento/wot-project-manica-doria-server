@@ -2,6 +2,7 @@ package it.unisalento.server.controllers.mapper;
 
 import it.unisalento.server.DTO.AttachmentDTO;
 import it.unisalento.server.entities.Attachment;
+import it.unisalento.server.entities.Step;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -16,15 +17,23 @@ public class AttachmentMapper {
                 .setFilename(attachment.getFilename())
                 .setPath(attachment.getPath())
                 .setType(attachment.getType());
+        if (attachment.getStep() != null) {
+            attachmentDTOBuilder.setStep(StepMapper.makeStepDTO(attachment.getStep()));
+        }
         return attachmentDTOBuilder.build();
     }
 
     public static Attachment makeAttachment(AttachmentDTO attachmentDTO) {
-        return new Attachment(
+        Attachment attachment = new Attachment(
                 attachmentDTO.getId(),
                 attachmentDTO.getPath(),
                 attachmentDTO.getFilename(),
                 attachmentDTO.getType());
+
+        if (attachmentDTO.getStep() == null) attachment.setStep(new Step());
+        else attachment.setStep(StepMapper.makeStep(attachmentDTO.getStep()));
+
+        return attachment;
     }
 
     public static List<AttachmentDTO> makeAttachmentDTOList(List<Attachment> attachmentList) {

@@ -22,8 +22,8 @@ public class AttachmentRestController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public AttachmentDTO save(@RequestBody Attachment attachment) throws ObjectAlreadyExistException {
-        return AttachmentMapper.makeAttachmentDTO(attachmentService.save(attachment));
+    public AttachmentDTO save(@RequestBody AttachmentDTO attachmentDTO) throws ObjectAlreadyExistException {
+        return AttachmentMapper.makeAttachmentDTO(attachmentService.save(AttachmentMapper.makeAttachment(attachmentDTO)));
     }
 
     @DeleteMapping(value = "/delete/{id}")
