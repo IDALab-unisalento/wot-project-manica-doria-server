@@ -18,11 +18,12 @@ public class Attachment {
 
     public Attachment() { }
 
-    public Attachment(int id, String path, String filename, String type) {
+    public Attachment(int id, String path, String filename, String type, Step step) {
         this.id = id;
         this.path = path;
         this.filename = filename;
         this.type = type;
+        this.step = step;
     }
 
     public int getId() {

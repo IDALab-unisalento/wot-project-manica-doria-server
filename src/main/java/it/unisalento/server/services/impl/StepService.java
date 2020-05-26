@@ -1,8 +1,12 @@
 package it.unisalento.server.services.impl;
 
+import it.unisalento.server.entities.Maintenance;
 import it.unisalento.server.entities.Step;
+import it.unisalento.server.entities.Zone;
 import it.unisalento.server.exception.ObjectNotFoundException;
+import it.unisalento.server.repositories.MaintenanceRepository;
 import it.unisalento.server.repositories.StepRepository;
+import it.unisalento.server.repositories.ZoneRepository;
 import it.unisalento.server.services.interf.IStepService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,10 +20,25 @@ public class StepService implements IStepService {
 
     @Autowired
     StepRepository stepRepository;
+    @Autowired
+    MaintenanceRepository maintenanceRepository;
+    @Autowired
+    ZoneRepository zoneRepository;
 
     @Override
-    public Step save(Step step) {
-        return stepRepository.save(step);
+    public Step save(Step step) throws ObjectNotFoundException {
+        Optional<Maintenance> maintenance = maintenanceRepository.findById(step.getMaintenance().getId());
+        Optional<Zone> zone = zoneRepository.findById(step.getZone().getId());
+
+        if (maintenance.isPresent() && zone.isPresent()){
+            step.setMaintenance(maintenance.get());
+            step.setZone(zone.get());
+            return stepRepository.save(step);
+        }
+        else {
+            throw new ObjectNotFoundException("Child Object not Found");
+        }
+
     }
 
     @Override

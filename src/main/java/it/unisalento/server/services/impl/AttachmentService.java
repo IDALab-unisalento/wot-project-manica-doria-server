@@ -1,8 +1,12 @@
 package it.unisalento.server.services.impl;
 
 import it.unisalento.server.entities.Attachment;
+import it.unisalento.server.entities.Maintenance;
+import it.unisalento.server.entities.Step;
+import it.unisalento.server.entities.Zone;
 import it.unisalento.server.exception.ObjectNotFoundException;
 import it.unisalento.server.repositories.AttachmentRepository;
+import it.unisalento.server.repositories.StepRepository;
 import it.unisalento.server.services.interf.IAttachmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,10 +21,22 @@ public class AttachmentService implements IAttachmentService {
     @Autowired
     AttachmentRepository attachmentRepository;
 
+    @Autowired
+    StepRepository stepRepository;
+
     @Override
     @Transactional
-    public Attachment save(Attachment attachment) {
-        return attachmentRepository.save(attachment);
+    public Attachment save(Attachment attachment) throws ObjectNotFoundException {
+
+        Optional<Step> step = stepRepository.findById(attachment.getStep().getId());
+
+        if (step.isPresent()) {
+            attachment.setStep(step.get());
+            return attachmentRepository.save(attachment);
+        }
+        else {
+            throw new ObjectNotFoundException("Child Object not Found");
+        }
     }
 
     @Override

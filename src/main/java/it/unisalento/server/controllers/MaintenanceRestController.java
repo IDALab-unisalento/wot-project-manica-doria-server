@@ -26,8 +26,8 @@ public class MaintenanceRestController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public MaintenanceDTO save(@RequestBody Maintenance maintenance) throws ObjectAlreadyExistException {
-        return MaintenanceMapper.makeMaintenanceDTO(maintenanceService.save(maintenance));
+    public MaintenanceDTO save(@RequestBody MaintenanceDTO maintenanceDTO) throws ObjectAlreadyExistException, ObjectNotFoundException {
+        return MaintenanceMapper.makeMaintenanceDTO(maintenanceService.save(MaintenanceMapper.makeMaintenance(maintenanceDTO)));
     }
 
     @DeleteMapping(value = "/delete/{id}")

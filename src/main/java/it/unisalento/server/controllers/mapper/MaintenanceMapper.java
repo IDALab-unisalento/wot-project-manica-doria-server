@@ -1,7 +1,9 @@
 package it.unisalento.server.controllers.mapper;
 
 import it.unisalento.server.DTO.MaintenanceDTO;
+import it.unisalento.server.entities.Machine;
 import it.unisalento.server.entities.Maintenance;
+import it.unisalento.server.entities.User;
 
 
 import java.util.ArrayList;
@@ -19,20 +21,30 @@ public class MaintenanceMapper {
          if (maintenance.getMachine() != null)
             maintenanceDTOBuilder.setMachine(MachineMapper.makeMachineDTO(maintenance.getMachine()));
          
-        if (maintenance.getUser() != null)
+         if (maintenance.getUser() != null)
             maintenanceDTOBuilder.setUser(UserMapper.makeUserDTO(maintenance.getUser()));
 
          return maintenanceDTOBuilder.build();
      }
 
      public static Maintenance makeMaintenance(MaintenanceDTO maintenanceDTO) {
-         return new Maintenance(
+         Maintenance maintenance = new Maintenance(
                  maintenanceDTO.getId(),
                  maintenanceDTO.getStatus(),
                  maintenanceDTO.getDate(),
                  maintenanceDTO.getType(),
-                 MachineMapper.makeMachine(maintenanceDTO.getMachine()),
-                 UserMapper.makeUser(maintenanceDTO.getUser()));
+                 new Machine(),
+                 new User());
+
+         if (maintenanceDTO.getMachine() != null) {
+             maintenance.setMachine(MachineMapper.makeMachine(maintenanceDTO.getMachine()));
+         }
+         if (maintenanceDTO.getUser() != null) {
+             maintenance.setUser(UserMapper.makeUser(maintenanceDTO.getUser()));
+         }
+
+         return maintenance;
+
      }
 
      public static List<MaintenanceDTO> makeMaintenanceDTOList(List<Maintenance> maintenanceList) {

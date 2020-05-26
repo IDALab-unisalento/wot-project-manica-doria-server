@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IAttachmentService {
 
-    Attachment save(Attachment attachment);
+    Attachment save(Attachment attachment) throws ObjectNotFoundException;
     Attachment delete(int id) throws ObjectNotFoundException;
 
     List<Attachment> getAll();

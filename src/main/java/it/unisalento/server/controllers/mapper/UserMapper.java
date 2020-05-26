@@ -19,6 +19,7 @@ public class UserMapper {
                  .setPassword(user.getPassword())
                  .setPasswordVerify(user.getPassword())
                  .setSerialNumber(user.getSerialNumber());
+
          return userDTOBuilder.build();
     }
 

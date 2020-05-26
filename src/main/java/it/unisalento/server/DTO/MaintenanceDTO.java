@@ -1,11 +1,13 @@
 package it.unisalento.server.DTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import it.unisalento.server.entities.Step;
 
 import java.util.Date;
 import java.util.List;
 
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 public class MaintenanceDTO {
 
     private int id;
@@ -15,9 +17,6 @@ public class MaintenanceDTO {
 
     private MachineDTO machine;
     private UserDTO user;
-
-    @JsonIgnore
-    private List<StepDTO> stepList ;
 
     public MaintenanceDTO() { }
 

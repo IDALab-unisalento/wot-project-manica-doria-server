@@ -16,29 +16,34 @@ public class ZoneMapper {
         ZoneDTO.ZoneDTOBuilder zoneDTOBuilder = new ZoneDTO.ZoneDTOBuilder()
                 .setId(zone.getId())
                 .setName(zone.getName());
-        if (zone.getStepList() != null) {
+
+        if (zone.getBeacon() != null) {
             zoneDTOBuilder.setBeacon(BeaconMapper.makeBeaconDTO(zone.getBeacon()));
         }
-        if (zone.getBeacon() != null) {
+        if (zone.getStepList() != null) {
             zoneDTOBuilder.setStepList(StepMapper.makeStepDTOList(zone.getStepList()));
-
         }
+        /*if (zone.getMachine() != null) {
+            zoneDTOBuilder.setMachine(MachineMapper.makeMachineDTO(zone.getMachine()));
+        }*/
         return zoneDTOBuilder.build();
     }
 
     public static Zone makeZone(ZoneDTO zoneDTO) {
         Zone zone = new Zone(
                 zoneDTO.getId(),
-                zoneDTO.getName()
-        );
-        if (zoneDTO.getStepList() == null) zone.setStepList(new ArrayList<>());
-        else zone.setStepList(StepMapper.makeStepList(zoneDTO.getStepList()));
+                zoneDTO.getName(),
+                new Machine(),
+                new Beacon());
 
-        if (zoneDTO.getBeacon() == null ) zone.setBeacon(new Beacon());
-        else zone.setBeacon(BeaconMapper.makeBeacon(zoneDTO.getBeacon()));
+        if (zoneDTO.getMachine() != null) {
+            zone.setMachine(MachineMapper.makeMachine(zoneDTO.getMachine()));
+        }
+        if (zoneDTO.getBeacon() != null) {
+            zone.setBeacon(BeaconMapper.makeBeacon(zoneDTO.getBeacon()));
+        }
 
         return zone;
-
     }
 
     public static List<ZoneDTO> makeZoneDTOList(List<Zone> zoneList) {

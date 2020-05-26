@@ -24,14 +24,16 @@ public class StepMapper {
 
         if (step.getAttachmentList() != null) {
             stepDTOBuilder.setAttachmentList(AttachmentMapper.makeAttachmentDTOList(step.getAttachmentList()));
-        } else new ArrayList<AttachmentDTO>();
+        }
 
-        if (step.getMaintenance() != null) {
+        /*if (step.getMaintenance() != null) {
             stepDTOBuilder.setMaintenance(MaintenanceMapper.makeMaintenanceDTO(step.getMaintenance()));
         }
+
         if (step.getZone() != null) {
             stepDTOBuilder.setZone(ZoneMapper.makeZoneDTO(step.getZone()));
-        }
+        }*/
+
         return stepDTOBuilder.build();
     }
 
@@ -42,17 +44,16 @@ public class StepMapper {
                 stepDTO.getDescription(),
                 stepDTO.getDuration(),
                 stepDTO.getEstimateDuration(),
-                AttachmentMapper.makeAttachmentList(stepDTO.getAttachmentList())
-        );
+                new Maintenance(),
+                new Zone());
 
-        if (stepDTO.getAttachmentList() == null) step.setAttachmentList(new ArrayList<>());
-        else step.setAttachmentList(AttachmentMapper.makeAttachmentList(stepDTO.getAttachmentList()));
+        if (stepDTO.getMaintenance() != null) {
+            step.setMaintenance(MaintenanceMapper.makeMaintenance(stepDTO.getMaintenance()));
+        }
 
-        if (stepDTO.getMaintenance() == null) step.setMaintenance(new Maintenance());
-        else step.setMaintenance(MaintenanceMapper.makeMaintenance(stepDTO.getMaintenance()));
-
-        if (stepDTO.getZone() == null) step.setZone(new Zone());
-        else step.setZone(ZoneMapper.makeZone(stepDTO.getZone()));
+        if (stepDTO.getZone() != null) {
+            step.setZone(ZoneMapper.makeZone(stepDTO.getZone()));
+        }
 
         return step;
     }

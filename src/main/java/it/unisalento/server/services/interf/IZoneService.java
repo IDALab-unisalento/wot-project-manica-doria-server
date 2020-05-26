@@ -7,7 +7,7 @@ import it.unisalento.server.exception.ObjectNotFoundException;
 import java.util.List;
 
 public interface IZoneService {
-    Zone save(Zone zone) throws ObjectAlreadyExistException;
+    Zone save(Zone zone) throws ObjectAlreadyExistException, ObjectNotFoundException;
     Zone delete(int id) throws ObjectNotFoundException;
     Zone getById(int id) throws ObjectNotFoundException;
     List<Zone> getAll();

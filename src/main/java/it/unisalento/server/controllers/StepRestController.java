@@ -22,7 +22,7 @@ public class StepRestController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public StepDTO save(@RequestBody StepDTO stepDTO) throws ObjectAlreadyExistException {
+    public StepDTO save(@RequestBody StepDTO stepDTO) throws ObjectNotFoundException {
         return StepMapper.makeStepDTO(stepService.save(StepMapper.makeStep(stepDTO)));
     }
 

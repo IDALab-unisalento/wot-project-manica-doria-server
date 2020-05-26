@@ -21,11 +21,10 @@ public class Machine {
 
     public Machine(){ }
 
-    public Machine(int id, String name, String serialNumber, List<Zone> zoneList) {
+    public Machine(int id, String name, String serialNumber) {
         this.id = id;
         this.name = name;
         this.serialNumber = serialNumber;
-        this.zoneList = zoneList;
     }
 
     public int getId() {

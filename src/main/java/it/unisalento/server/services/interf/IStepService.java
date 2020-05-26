@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IStepService {
 
-    Step save(Step step) throws ObjectAlreadyExistException;
+    Step save(Step step) throws ObjectNotFoundException;
     Step delete(int id) throws ObjectNotFoundException;
     Step getById(int id) throws ObjectNotFoundException;
     List<Step> getAll();

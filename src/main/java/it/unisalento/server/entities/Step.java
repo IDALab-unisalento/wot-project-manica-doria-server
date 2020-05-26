@@ -28,13 +28,14 @@ public class Step {
     public Step() {
     }
 
-    public Step(int id, String name, String description, double duration, double estimateDuration, List<Attachment> attachmentList) {
+    public Step(int id, String name, String description, double duration, double estimateDuration, Maintenance maintenance, Zone zone) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.duration = duration;
         this.estimateDuration = estimateDuration;
-        this.attachmentList = attachmentList;
+        this.maintenance = maintenance;
+        this.zone = zone;
     }
 
     public int getId() {

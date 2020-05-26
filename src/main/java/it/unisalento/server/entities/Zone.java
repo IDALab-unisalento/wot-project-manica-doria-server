@@ -23,9 +23,11 @@ public class Zone {
     public Zone() {
     }
 
-    public Zone(int id, String name) {
+    public Zone(int id, String name, Machine machine, Beacon beacon) {
         this.id = id;
         this.name = name;
+        this.machine = machine;
+        this.beacon = beacon;
     }
 
     public int getId() {

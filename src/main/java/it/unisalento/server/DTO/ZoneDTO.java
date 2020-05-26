@@ -1,7 +1,12 @@
 package it.unisalento.server.DTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ZoneDTO {
 
     private int id;
@@ -10,19 +15,18 @@ public class ZoneDTO {
     private BeaconDTO beacon;
     private List<StepDTO> stepList;
 
-    @JsonIgnore
+    //@JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private MachineDTO machine;
-
 
     public ZoneDTO() {
     }
 
-    public ZoneDTO(int id, String name, BeaconDTO beacon, List<StepDTO> stepList, MachineDTO machine) {
+    public ZoneDTO(int id, String name, BeaconDTO beacon, List<StepDTO> stepList) {
         this.id = id;
         this.name = name;
         this.beacon = beacon;
         this.stepList = stepList;
-        this.machine = machine;
     }
 
     public int getId() {
@@ -41,6 +45,7 @@ public class ZoneDTO {
         return stepList;
     }
 
+
     public MachineDTO getMachine() {
         return machine;
     }
@@ -52,6 +57,7 @@ public class ZoneDTO {
         private BeaconDTO beacon;
         private List<StepDTO> stepList;
 
+        //@JsonIgnore
         private MachineDTO machine;
 
         public ZoneDTOBuilder setId(int id) {
@@ -80,7 +86,7 @@ public class ZoneDTO {
         }
 
         public ZoneDTO build() {
-            return new ZoneDTO(id, name, beacon, stepList, machine);
+            return new ZoneDTO(id, name, beacon, stepList);
         }
     }
 }

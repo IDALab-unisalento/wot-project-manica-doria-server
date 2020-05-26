@@ -1,9 +1,11 @@
 package it.unisalento.server.DTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.List;
 
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDTO {
 
     private int id;
@@ -14,9 +16,6 @@ public class UserDTO {
     private String password;
     private String passwordVerify;
     private String serialNumber;
-
-    @JsonIgnore
-    List<MaintenanceDTO> maintenanceList;
 
     private UserDTO(int id, String name, String surname, String role, String email, String password, String passwordVerify, String serialNumber) {
         this.id = id;

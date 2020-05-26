@@ -1,10 +1,13 @@
 package it.unisalento.server.DTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import it.unisalento.server.entities.Maintenance;
 
 import java.util.List;
 
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 public class StepDTO {
 
     private int id;
@@ -15,24 +18,24 @@ public class StepDTO {
 
     private List<AttachmentDTO> attachmentList;
 
-    @JsonIgnore
+    //@JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private MaintenanceDTO maintenance;
 
-    @JsonIgnore
+    //@JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private ZoneDTO zone;
 
     public StepDTO() {
     }
 
-    public StepDTO(int id, String name, String description, double duration, double estimateDuration, List<AttachmentDTO> attachmentList, MaintenanceDTO maintenance, ZoneDTO zone) {
+    public StepDTO(int id, String name, String description, double duration, double estimateDuration, List<AttachmentDTO> attachmentList) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.duration = duration;
         this.estimateDuration = estimateDuration;
         this.attachmentList = attachmentList;
-        this.maintenance = maintenance;
-        this.zone = zone;
     }
 
     public int getId() {
@@ -73,7 +76,9 @@ public class StepDTO {
         private String description;
         private double duration;
         private double estimateDuration;
+        //@JsonIgnore
         private MaintenanceDTO maintenance;
+        //@JsonIgnore
         private ZoneDTO zone;
         private List<AttachmentDTO> attachmentList;
 
@@ -118,7 +123,7 @@ public class StepDTO {
         }
 
         public StepDTO build() {
-            return new StepDTO(id, name, description, duration, estimateDuration, attachmentList, maintenance, zone);
+            return new StepDTO(id, name, description, duration, estimateDuration, attachmentList);
         }
     }
 

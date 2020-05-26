@@ -1,8 +1,13 @@
 package it.unisalento.server.services.impl;
 
+import it.unisalento.server.entities.Machine;
 import it.unisalento.server.entities.Maintenance;
+import it.unisalento.server.entities.User;
+import it.unisalento.server.exception.ObjectAlreadyExistException;
 import it.unisalento.server.exception.ObjectNotFoundException;
+import it.unisalento.server.repositories.MachineRepository;
 import it.unisalento.server.repositories.MaintenanceRepository;
+import it.unisalento.server.repositories.UserRepository;
 import it.unisalento.server.services.interf.IMaintenanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,11 +21,23 @@ public class MaintenanceService implements IMaintenanceService {
 
     @Autowired
     MaintenanceRepository maintenanceRepository;
+    @Autowired
+    MachineRepository machineRepository;
+    @Autowired
+    UserRepository userRepository;
 
     @Override
     @Transactional
-    public Maintenance save(Maintenance maintenance) {
-        return maintenanceRepository.save(maintenance);
+    public Maintenance save(Maintenance maintenance) throws ObjectAlreadyExistException, ObjectNotFoundException  {
+        Optional<Machine> machine = machineRepository.findById(maintenance.getMachine().getId());
+        Optional<User> user = userRepository.findById(maintenance.getUser().getId());
+        if (machine.isPresent() && user.isPresent()) {
+            maintenance.setMachine(machine.get());
+            maintenance.setUser(user.get());
+            return maintenanceRepository.save(maintenance);
+        } else {
+            throw new ObjectNotFoundException("Child Object not Found");
+        }
     }
 
     @Override

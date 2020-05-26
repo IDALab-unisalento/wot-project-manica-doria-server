@@ -22,8 +22,8 @@ public class MachineRestController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public MachineDTO save(@RequestBody Machine machine) throws ObjectAlreadyExistException {
-        return MachineMapper.makeMachineDTO(machineService.save(machine));
+    public MachineDTO save(@RequestBody MachineDTO machineDTO) throws ObjectAlreadyExistException {
+        return MachineMapper.makeMachineDTO(machineService.save(MachineMapper.makeMachine(machineDTO)));
     }
 
     @DeleteMapping(value = "/delete/{id}")

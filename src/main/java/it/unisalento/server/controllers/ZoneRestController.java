@@ -22,8 +22,8 @@ public class ZoneRestController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ZoneDTO save(@RequestBody ZoneDTO zone) throws ObjectAlreadyExistException {
-        return ZoneMapper.makeZoneDTO(zoneService.save(ZoneMapper.makeZone(zone)));
+    public ZoneDTO save(@RequestBody ZoneDTO zoneDTO) throws ObjectAlreadyExistException, ObjectNotFoundException {
+        return ZoneMapper.makeZoneDTO(zoneService.save(ZoneMapper.makeZone(zoneDTO)));
     }
 
     @DeleteMapping(value = "/delete/{id}")

@@ -17,23 +17,25 @@ public class AttachmentMapper {
                 .setFilename(attachment.getFilename())
                 .setPath(attachment.getPath())
                 .setType(attachment.getType());
-        if (attachment.getStep() != null) {
+        /*if (attachment.getStep() != null) {
             attachmentDTOBuilder.setStep(StepMapper.makeStepDTO(attachment.getStep()));
-        }
+        }*/
         return attachmentDTOBuilder.build();
     }
 
     public static Attachment makeAttachment(AttachmentDTO attachmentDTO) {
-        Attachment attachment = new Attachment(
+       Attachment attachment = new Attachment(
                 attachmentDTO.getId(),
                 attachmentDTO.getPath(),
                 attachmentDTO.getFilename(),
-                attachmentDTO.getType());
+                attachmentDTO.getType(),
+                new Step());
 
-        if (attachmentDTO.getStep() == null) attachment.setStep(new Step());
-        else attachment.setStep(StepMapper.makeStep(attachmentDTO.getStep()));
+       if(attachmentDTO.getStep() != null) {
+           attachment.setStep(StepMapper.makeStep(attachmentDTO.getStep()));
+       }
 
-        return attachment;
+       return attachment;
     }
 
     public static List<AttachmentDTO> makeAttachmentDTOList(List<Attachment> attachmentList) {

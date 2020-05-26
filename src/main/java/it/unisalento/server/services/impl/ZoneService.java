@@ -1,8 +1,12 @@
 package it.unisalento.server.services.impl;
 
+import it.unisalento.server.entities.Beacon;
+import it.unisalento.server.entities.Machine;
 import it.unisalento.server.entities.Zone;
 import it.unisalento.server.exception.ObjectAlreadyExistException;
 import it.unisalento.server.exception.ObjectNotFoundException;
+import it.unisalento.server.repositories.BeaconRepository;
+import it.unisalento.server.repositories.MachineRepository;
 import it.unisalento.server.repositories.ZoneRepository;
 import it.unisalento.server.services.interf.IZoneService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +22,26 @@ public class ZoneService implements IZoneService {
 
     @Autowired
     ZoneRepository zoneRepository;
+    @Autowired
+    MachineRepository machineRepository;
+    @Autowired
+    BeaconRepository beaconRepository;
 
     @Override
     @Transactional
-    public Zone save(Zone zone) throws ObjectAlreadyExistException {
+    public Zone save(Zone zone) throws ObjectAlreadyExistException, ObjectNotFoundException {
         if (zoneRepository.findZoneByNameAndMachine_Id(zone.getName(), zone.getMachine().getId()).isPresent())
             throw new ObjectAlreadyExistException("Zone Already Exist");
-        else
+        Optional<Machine> machine = machineRepository.findById(zone.getMachine().getId());
+        Optional<Beacon> beacon = beaconRepository.findById(zone.getBeacon().getId());
+        if (machine.isPresent() && beacon.isPresent()) {
+            zone.setMachine(machine.get());
+            zone.setBeacon(beacon.get());
             return zoneRepository.save(zone);
+        } else {
+            throw new ObjectNotFoundException("Child Object not Found");
+        }
+
     }
 
     @Override
