@@ -17,7 +17,7 @@ public class User {
     private String role;
 
     @OneToMany(mappedBy = "user", orphanRemoval = true)
-    List<Maintenance> maintenanceList;
+    List<UserMaintenance> userMaintenance;
 
     public User() {
     }
@@ -88,11 +88,11 @@ public class User {
         this.role = role;
     }
 
-    public List<Maintenance> getMaintenanceList() {
-        return maintenanceList;
+    public List<UserMaintenance> getUserMaintenance() {
+        return userMaintenance;
     }
 
-    public void setMaintenanceList(List<Maintenance> maintenanceList) {
-        this.maintenanceList = maintenanceList;
+    public void setUserMaintenance(List<UserMaintenance> userMaintenance) {
+        this.userMaintenance = userMaintenance;
     }
 }

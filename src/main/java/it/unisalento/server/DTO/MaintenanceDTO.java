@@ -2,6 +2,7 @@ package it.unisalento.server.DTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import it.unisalento.server.entities.Step;
 
 import java.util.Date;
@@ -16,6 +17,7 @@ public class MaintenanceDTO {
     private String type;
 
     private MachineDTO machine;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private UserDTO user;
 
     public MaintenanceDTO() { }

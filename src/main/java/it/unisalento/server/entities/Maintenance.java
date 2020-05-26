@@ -23,6 +23,9 @@ public class Maintenance {
     @OneToMany(mappedBy = "maintenance", orphanRemoval = true)
     private List<Step> stepList;
 
+    @OneToMany(mappedBy = "maintenance", orphanRemoval = true)
+    List<UserMaintenance> userMaintenance;
+
     public Maintenance() { }
 
     public Maintenance(int id, String status, Date date, String type, Machine machine, User user) {

@@ -44,9 +44,11 @@ public class StepService implements IStepService {
     @Override
     public Step delete(int id) throws ObjectNotFoundException {
         Optional<Step> deleted = stepRepository.findById(id);
-        if (deleted.isPresent()) { stepRepository.delete(deleted.get());
+        if (deleted.isPresent()) {
+            stepRepository.delete(deleted.get());
             return deleted.get();
-        } else throw new ObjectNotFoundException("Step Not Found");
+        } else
+            throw new ObjectNotFoundException("Step Not Found");
     }
 
     @Override
