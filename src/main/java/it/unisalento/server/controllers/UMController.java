@@ -1,11 +1,15 @@
 package it.unisalento.server.controllers;
 
+import it.unisalento.server.DTO.MaintenanceDTO;
 import it.unisalento.server.DTO.UserDTO;
 import it.unisalento.server.DTO.UserMaintenanceDTO;
+import it.unisalento.server.controllers.mapper.MaintenanceMapper;
 import it.unisalento.server.controllers.mapper.UserMaintenanceMapper;
+import it.unisalento.server.controllers.mapper.UserMapper;
 import it.unisalento.server.entities.Maintenance;
 import it.unisalento.server.entities.UserMaintenance;
 import it.unisalento.server.exception.ObjectAlreadyExistException;
+import it.unisalento.server.exception.ObjectNotFoundException;
 import it.unisalento.server.services.interf.IUserMaintenanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +28,11 @@ public class UMController {
     @GetMapping()
     public List<UserMaintenanceDTO> getAll(){
         return UserMaintenanceMapper.makeUserMaintenanceDTOList(userMaintenanceService.getAll());
+    }
+
+    @GetMapping(value = "/getById/{id}")
+    public List<MaintenanceDTO> getById(@PathVariable int id) throws ObjectNotFoundException {
+        return MaintenanceMapper.makeMaintenanceDTOList(userMaintenanceService.getUserMaintenanceById(id));
     }
 
     @ResponseStatus(HttpStatus.CREATED)

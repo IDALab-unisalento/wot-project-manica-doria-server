@@ -1,5 +1,6 @@
 package it.unisalento.server.services.interf;
 
+import it.unisalento.server.entities.Maintenance;
 import it.unisalento.server.entities.User;
 import it.unisalento.server.entities.UserMaintenance;
 import it.unisalento.server.exception.ObjectAlreadyExistException;
@@ -14,7 +15,7 @@ public interface IUserMaintenanceService {
     UserMaintenance delete(int id) throws ObjectNotFoundException;
 
     /* -------------------- GETTER -------------------- */
-    List<UserMaintenance> getUserMaintenanceById(int id);
+    List<Maintenance> getUserMaintenanceById(int id);
     List<UserMaintenance> getAll();
 
 
