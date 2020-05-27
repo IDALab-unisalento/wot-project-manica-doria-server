@@ -1,7 +1,5 @@
 package it.unisalento.server.entities;
 
-import it.unisalento.server.DTO.ZoneDTO;
-
 import javax.persistence.*;
 import java.util.List;
 

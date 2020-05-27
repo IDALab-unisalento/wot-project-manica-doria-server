@@ -2,7 +2,6 @@ package it.unisalento.server.controllers;
 
 import it.unisalento.server.DTO.MaintenanceDTO;
 import it.unisalento.server.controllers.mapper.MaintenanceMapper;
-import it.unisalento.server.entities.Maintenance;
 import it.unisalento.server.exception.ObjectAlreadyExistException;
 import it.unisalento.server.exception.ObjectNotFoundException;
 import it.unisalento.server.repositories.MaintenanceRepository;

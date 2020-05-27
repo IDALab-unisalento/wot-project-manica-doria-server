@@ -13,7 +13,6 @@ public class ZoneDTO {
     private String name;
 
     private BeaconDTO beacon;
-    private List<StepDTO> stepList;
 
     //@JsonIgnore
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -22,11 +21,10 @@ public class ZoneDTO {
     public ZoneDTO() {
     }
 
-    public ZoneDTO(int id, String name, BeaconDTO beacon, List<StepDTO> stepList) {
+    public ZoneDTO(int id, String name, BeaconDTO beacon) {
         this.id = id;
         this.name = name;
         this.beacon = beacon;
-        this.stepList = stepList;
     }
 
     public int getId() {
@@ -41,11 +39,6 @@ public class ZoneDTO {
         return beacon;
     }
 
-    public List<StepDTO> getStepList() {
-        return stepList;
-    }
-
-
     public MachineDTO getMachine() {
         return machine;
     }
@@ -55,7 +48,6 @@ public class ZoneDTO {
         String name;
 
         private BeaconDTO beacon;
-        private List<StepDTO> stepList;
 
         //@JsonIgnore
         private MachineDTO machine;
@@ -75,10 +67,6 @@ public class ZoneDTO {
             return this;
         }
 
-        public ZoneDTOBuilder setStepList(List<StepDTO> stepList) {
-            this.stepList = stepList;
-            return this;
-        }
 
         public ZoneDTOBuilder setMachine(MachineDTO machine) {
             this.machine = machine;
@@ -86,7 +74,7 @@ public class ZoneDTO {
         }
 
         public ZoneDTO build() {
-            return new ZoneDTO(id, name, beacon, stepList);
+            return new ZoneDTO(id, name, beacon);
         }
     }
 }

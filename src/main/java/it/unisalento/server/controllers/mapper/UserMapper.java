@@ -48,5 +48,4 @@ public class UserMapper {
         while (iter.hasNext()) userList.add(makeUser(iter.next()));
         return userList;
     }
-
 }

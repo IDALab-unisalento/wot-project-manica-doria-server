@@ -1,9 +1,5 @@
 package it.unisalento.server.DTO;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import it.unisalento.server.entities.Zone;
-
 //@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BeaconDTO {
 

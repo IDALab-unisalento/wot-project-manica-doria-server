@@ -1,8 +1,6 @@
 package it.unisalento.server.controllers.mapper;
 
-import it.unisalento.server.DTO.AttachmentDTO;
 import it.unisalento.server.DTO.StepDTO;
-import it.unisalento.server.entities.Attachment;
 import it.unisalento.server.entities.Maintenance;
 import it.unisalento.server.entities.Step;
 import it.unisalento.server.entities.Zone;
@@ -26,13 +24,9 @@ public class StepMapper {
             stepDTOBuilder.setAttachmentList(AttachmentMapper.makeAttachmentDTOList(step.getAttachmentList()));
         }
 
-        /*if (step.getMaintenance() != null) {
-            stepDTOBuilder.setMaintenance(MaintenanceMapper.makeMaintenanceDTO(step.getMaintenance()));
-        }
-
         if (step.getZone() != null) {
             stepDTOBuilder.setZone(ZoneMapper.makeZoneDTO(step.getZone()));
-        }*/
+        }
 
         return stepDTOBuilder.build();
     }

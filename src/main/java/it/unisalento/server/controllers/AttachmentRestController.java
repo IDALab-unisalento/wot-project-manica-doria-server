@@ -2,8 +2,6 @@ package it.unisalento.server.controllers;
 
 import it.unisalento.server.DTO.AttachmentDTO;
 import it.unisalento.server.controllers.mapper.AttachmentMapper;
-import it.unisalento.server.entities.Attachment;
-import it.unisalento.server.exception.ObjectAlreadyExistException;
 import it.unisalento.server.exception.ObjectNotFoundException;
 import it.unisalento.server.services.interf.IAttachmentService;
 import org.springframework.beans.factory.annotation.Autowired;

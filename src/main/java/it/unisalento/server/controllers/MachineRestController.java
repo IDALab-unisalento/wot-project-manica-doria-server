@@ -2,7 +2,6 @@ package it.unisalento.server.controllers;
 
 import it.unisalento.server.DTO.MachineDTO;
 import it.unisalento.server.controllers.mapper.MachineMapper;
-import it.unisalento.server.entities.Machine;
 import it.unisalento.server.exception.ObjectAlreadyExistException;
 import it.unisalento.server.exception.ObjectNotFoundException;
 import it.unisalento.server.services.interf.IMachineService;

@@ -1,13 +1,9 @@
 package it.unisalento.server.controllers;
 
 import it.unisalento.server.DTO.MaintenanceDTO;
-import it.unisalento.server.DTO.UserDTO;
 import it.unisalento.server.DTO.UserMaintenanceDTO;
 import it.unisalento.server.controllers.mapper.MaintenanceMapper;
 import it.unisalento.server.controllers.mapper.UserMaintenanceMapper;
-import it.unisalento.server.controllers.mapper.UserMapper;
-import it.unisalento.server.entities.Maintenance;
-import it.unisalento.server.entities.UserMaintenance;
 import it.unisalento.server.exception.ObjectAlreadyExistException;
 import it.unisalento.server.exception.ObjectNotFoundException;
 import it.unisalento.server.services.interf.IUserMaintenanceService;
@@ -41,5 +37,4 @@ public class UMController {
         return UserMaintenanceMapper.makeUserMaintenanceDTO(
                 userMaintenanceService.save(UserMaintenanceMapper.makeUserMaintenance(userMaintenanceDTO)));
     }
-
 }

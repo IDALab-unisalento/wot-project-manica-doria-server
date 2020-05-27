@@ -5,7 +5,6 @@ import it.unisalento.server.entities.Machine;
 import it.unisalento.server.entities.Maintenance;
 import it.unisalento.server.entities.User;
 
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -18,11 +17,12 @@ public class MaintenanceMapper {
                  .setStatus(maintenance.getStatus())
                  .setDate(maintenance.getDate())
                  .setType(maintenance.getType());
+
          if (maintenance.getMachine() != null)
             maintenanceDTOBuilder.setMachine(MachineMapper.makeMachineDTO(maintenance.getMachine()));
-         
-         if (maintenance.getUser() != null)
-            maintenanceDTOBuilder.setUser(UserMapper.makeUserDTO(maintenance.getUser()));
+
+         if (maintenance.getStepList() != null)
+             maintenanceDTOBuilder.setStepList(StepMapper.makeStepDTOList(maintenance.getStepList()));
 
          return maintenanceDTOBuilder.build();
      }
@@ -60,5 +60,4 @@ public class MaintenanceMapper {
         while (iter.hasNext()) maintenanceList.add(makeMaintenance(iter.next()));
         return maintenanceList;
      }
-
 }

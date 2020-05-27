@@ -1,9 +1,6 @@
 package it.unisalento.server.DTO;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import it.unisalento.server.entities.Step;
 
 import java.util.Date;
 import java.util.List;
@@ -16,19 +13,20 @@ public class MaintenanceDTO {
     private Date date;
     private String type;
 
-    private MachineDTO machine;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private UserDTO user;
+    private MachineDTO machine;
+    private List<StepDTO> stepList;
 
     public MaintenanceDTO() { }
 
-    public MaintenanceDTO(int id, String status, Date date, String type, MachineDTO machine, UserDTO user) {
+    public MaintenanceDTO(int id, String status, Date date, String type, MachineDTO machine, List<StepDTO> stepList) {
         this.id = id;
         this.status = status;
         this.date = date;
         this.type = type;
         this.machine = machine;
-        this.user = user;
+        this.stepList = stepList;
     }
 
     public int getId() {
@@ -55,14 +53,20 @@ public class MaintenanceDTO {
         return user;
     }
 
+    public List<StepDTO> getStepList() {
+        return stepList;
+    }
+
     public static class MaintenanceDTOBuilder {
 
         private int id;
         private String status;
         private Date date;
         private String type;
-        private MachineDTO machine;
+
         private UserDTO user;
+        private MachineDTO machine;
+        private List<StepDTO> stepList;
 
         public MaintenanceDTOBuilder setId(int id) {
             this.id = id;
@@ -94,8 +98,13 @@ public class MaintenanceDTO {
             return this;
         }
 
+        public MaintenanceDTOBuilder setStepList(List<StepDTO> stepList) {
+            this.stepList = stepList;
+            return this;
+        }
+
         public MaintenanceDTO build(){
-            return new MaintenanceDTO(id, status, date, type, machine, user);
+            return new MaintenanceDTO(id, status, date, type, machine, stepList);
         }
     }
 }

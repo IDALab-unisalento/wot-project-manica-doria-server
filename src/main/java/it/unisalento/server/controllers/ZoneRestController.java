@@ -2,7 +2,6 @@ package it.unisalento.server.controllers;
 
 import it.unisalento.server.DTO.ZoneDTO;
 import it.unisalento.server.controllers.mapper.ZoneMapper;
-import it.unisalento.server.entities.Zone;
 import it.unisalento.server.exception.ObjectAlreadyExistException;
 import it.unisalento.server.exception.ObjectNotFoundException;
 import it.unisalento.server.services.interf.IZoneService;

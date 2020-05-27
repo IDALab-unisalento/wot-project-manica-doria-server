@@ -20,9 +20,7 @@ public class ZoneMapper {
         if (zone.getBeacon() != null) {
             zoneDTOBuilder.setBeacon(BeaconMapper.makeBeaconDTO(zone.getBeacon()));
         }
-        if (zone.getStepList() != null) {
-            zoneDTOBuilder.setStepList(StepMapper.makeStepDTOList(zone.getStepList()));
-        }
+
         /*if (zone.getMachine() != null) {
             zoneDTOBuilder.setMachine(MachineMapper.makeMachineDTO(zone.getMachine()));
         }*/

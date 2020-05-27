@@ -1,6 +1,5 @@
 package it.unisalento.server.entities;
 
-import javax.crypto.Mac;
 import javax.persistence.*;
 import java.util.List;
 

@@ -1,9 +1,6 @@
 package it.unisalento.server.DTO;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import it.unisalento.server.entities.Maintenance;
 
 import java.util.List;
 
@@ -16,26 +13,22 @@ public class StepDTO {
     private double duration;
     private double estimateDuration;
 
-    private List<AttachmentDTO> attachmentList;
-
-    //@JsonIgnore
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private MaintenanceDTO maintenance;
-
-    //@JsonIgnore
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private List<AttachmentDTO> attachmentList;
     private ZoneDTO zone;
 
     public StepDTO() {
     }
 
-    public StepDTO(int id, String name, String description, double duration, double estimateDuration, List<AttachmentDTO> attachmentList) {
+    public StepDTO(int id, String name, String description, double duration, double estimateDuration, List<AttachmentDTO> attachmentList, ZoneDTO zone) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.duration = duration;
         this.estimateDuration = estimateDuration;
         this.attachmentList = attachmentList;
+        this.zone = zone;
     }
 
     public int getId() {
@@ -76,9 +69,8 @@ public class StepDTO {
         private String description;
         private double duration;
         private double estimateDuration;
-        //@JsonIgnore
+
         private MaintenanceDTO maintenance;
-        //@JsonIgnore
         private ZoneDTO zone;
         private List<AttachmentDTO> attachmentList;
 
@@ -123,8 +115,7 @@ public class StepDTO {
         }
 
         public StepDTO build() {
-            return new StepDTO(id, name, description, duration, estimateDuration, attachmentList);
+            return new StepDTO(id, name, description, duration, estimateDuration, attachmentList, zone);
         }
     }
-
 }

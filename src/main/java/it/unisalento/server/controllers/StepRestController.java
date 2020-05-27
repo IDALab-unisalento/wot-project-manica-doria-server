@@ -2,8 +2,6 @@ package it.unisalento.server.controllers;
 
 import it.unisalento.server.DTO.StepDTO;
 import it.unisalento.server.controllers.mapper.StepMapper;
-import it.unisalento.server.entities.Step;
-import it.unisalento.server.exception.ObjectAlreadyExistException;
 import it.unisalento.server.exception.ObjectNotFoundException;
 import it.unisalento.server.services.interf.IStepService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +38,4 @@ public class StepRestController {
     public List<StepDTO> getAll(){
         return StepMapper.makeStepDTOList(stepService.getAll());
     }
-
 }

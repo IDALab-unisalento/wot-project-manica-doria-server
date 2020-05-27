@@ -1,8 +1,5 @@
 package it.unisalento.server.DTO;
 
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class UserMaintenanceDTO {
 
     private int id;

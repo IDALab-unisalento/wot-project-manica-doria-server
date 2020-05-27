@@ -1,9 +1,6 @@
 package it.unisalento.server.DTO;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import it.unisalento.server.entities.Step;
 
 //@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AttachmentDTO {
@@ -13,7 +10,6 @@ public class AttachmentDTO {
     private String filename;
     private String type;
 
-    //@JsonIgnore
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private StepDTO step;
 
@@ -51,7 +47,7 @@ public class AttachmentDTO {
         private String path;
         private String filename;
         private String type;
-        //@JsonIgnore
+
         private StepDTO step;
 
         public AttachmentDTOBuilder setId(int id) {
@@ -83,6 +79,4 @@ public class AttachmentDTO {
             return new AttachmentDTO(id, path, filename, type);
         }
     }
-
-
 }

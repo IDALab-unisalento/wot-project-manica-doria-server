@@ -1,9 +1,5 @@
 package it.unisalento.server.entities;
 
-import it.unisalento.server.DTO.MaintenanceDTO;
-import it.unisalento.server.DTO.UserDTO;
-import sun.applet.Main;
-
 import javax.persistence.*;
 
 @Entity

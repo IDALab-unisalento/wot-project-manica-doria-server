@@ -15,10 +15,6 @@ public class MachineMapper {
                 .setName(machine.getName())
                 .setSerialNumber(machine.getSerialNumber());
 
-        if (machine.getZoneList() != null) {
-            machineDTOBuilder.setZoneList(ZoneMapper.makeZoneDTOList(machine.getZoneList()));
-        }
-
         return machineDTOBuilder.build();
     }
 

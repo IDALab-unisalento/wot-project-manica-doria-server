@@ -17,9 +17,7 @@ public class AttachmentMapper {
                 .setFilename(attachment.getFilename())
                 .setPath(attachment.getPath())
                 .setType(attachment.getType());
-        /*if (attachment.getStep() != null) {
-            attachmentDTOBuilder.setStep(StepMapper.makeStepDTO(attachment.getStep()));
-        }*/
+
         return attachmentDTOBuilder.build();
     }
 

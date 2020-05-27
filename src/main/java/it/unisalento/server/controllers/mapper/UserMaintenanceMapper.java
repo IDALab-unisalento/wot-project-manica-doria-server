@@ -1,9 +1,6 @@
 package it.unisalento.server.controllers.mapper;
 
 import it.unisalento.server.DTO.UserMaintenanceDTO;
-import it.unisalento.server.DTO.UserMaintenanceDTO;
-import it.unisalento.server.entities.Maintenance;
-import it.unisalento.server.entities.UserMaintenance;
 import it.unisalento.server.entities.UserMaintenance;
 
 import java.util.ArrayList;
@@ -15,6 +12,7 @@ public class UserMaintenanceMapper {
     public static UserMaintenanceDTO makeUserMaintenanceDTO(UserMaintenance userMaintenance) {
         UserMaintenanceDTO.UserMaintenanceBuilderDTO userMaintenanceBuilderDTO = new UserMaintenanceDTO.UserMaintenanceBuilderDTO()
             .setId(userMaintenance.getId());
+
         if (userMaintenance.getMaintenance() != null) {
             userMaintenanceBuilderDTO.setMaintenance(MaintenanceMapper.makeMaintenanceDTO(userMaintenance.getMaintenance()));
         }

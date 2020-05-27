@@ -1,12 +1,9 @@
 package it.unisalento.server.controllers;
 
 import it.unisalento.server.DTO.UserDTO;
-import it.unisalento.server.DTO.UserMaintenanceDTO;
-import it.unisalento.server.controllers.mapper.UserMaintenanceMapper;
 import it.unisalento.server.controllers.mapper.UserMapper;
 import it.unisalento.server.exception.ObjectAlreadyExistException;
 import it.unisalento.server.exception.ObjectNotFoundException;
-import it.unisalento.server.services.interf.IUserMaintenanceService;
 import it.unisalento.server.services.interf.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -57,6 +54,4 @@ public class UserRestController {
     public List<UserDTO> getAllByRole(@PathVariable String role) {
         return UserMapper.makeUserDTOList(userService.getAllByRole(role));
     }
-
-
 }
