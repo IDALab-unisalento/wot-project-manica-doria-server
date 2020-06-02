@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "api/user/maintenace")
-public class UMController {
+public class UMRestController {
 
     @Autowired
     private IUserMaintenanceService userMaintenanceService;
@@ -36,5 +36,10 @@ public class UMController {
     public UserMaintenanceDTO save(@RequestBody UserMaintenanceDTO userMaintenanceDTO) throws ObjectAlreadyExistException {
         return UserMaintenanceMapper.makeUserMaintenanceDTO(
                 userMaintenanceService.save(UserMaintenanceMapper.makeUserMaintenance(userMaintenanceDTO)));
+    }
+
+    @DeleteMapping(value = "/delete/{id}")
+    public UserMaintenanceDTO delete(@PathVariable int id) throws ObjectNotFoundException {
+        return UserMaintenanceMapper.makeUserMaintenanceDTO(userMaintenanceService.delete(id));
     }
 }

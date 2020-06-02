@@ -9,6 +9,7 @@ import it.unisalento.server.services.interf.IUserMaintenanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -21,11 +22,13 @@ public class UserMaintenanceService implements IUserMaintenanceService {
     UserMaintenanceRepository userMaintenanceRepository;
 
     @Override
+    @Transactional
     public UserMaintenance save(UserMaintenance userMaintenance) throws ObjectAlreadyExistException {
         return userMaintenanceRepository.save(userMaintenance);
     }
 
     @Override
+    @Transactional
     public UserMaintenance delete(int id) throws ObjectNotFoundException {
         Optional<UserMaintenance> deleted = userMaintenanceRepository.findById(id);
         if (deleted.isPresent()) {
@@ -35,6 +38,7 @@ public class UserMaintenanceService implements IUserMaintenanceService {
     }
 
     @Override
+    @Transactional
     public List<Maintenance> getUserMaintenanceById(int id) {
         List<UserMaintenance> userMaintenanceList = userMaintenanceRepository.findUserMaintenanceByUser_Id(id);
         List<Maintenance> maintenanceList = new ArrayList<>();
@@ -47,6 +51,7 @@ public class UserMaintenanceService implements IUserMaintenanceService {
     }
 
     @Override
+    @Transactional
     public List<UserMaintenance> getAll() {
         return userMaintenanceRepository.findAll();
     }
