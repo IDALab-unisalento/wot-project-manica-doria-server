@@ -4,6 +4,7 @@ import it.unisalento.server.DTO.ChatDTO;
 import it.unisalento.server.DTO.ChatDTO;
 import it.unisalento.server.entities.Chat;
 import it.unisalento.server.entities.Chat;
+import it.unisalento.server.entities.Maintenance;
 import it.unisalento.server.entities.Step;
 
 import java.util.ArrayList;
@@ -16,17 +17,24 @@ public class ChatMapper {
 
         ChatDTO.ChatDTOBuilder chatDTOBuilder = new ChatDTO.ChatDTOBuilder()
                 .setId(chat.getId())
-                .setMaintenance(MaintenanceMapper.makeMaintenanceDTO(chat.getMaintenance()))
-                .setMessage(MessageMapper.makeMessageDTOList(chat.getMessage()));
+                .setMaintenance(MaintenanceMapper.makeMaintenanceDTO(chat.getMaintenance()));
+
+        if(chat.getMessage() != null)
+            chatDTOBuilder.setMessage(MessageMapper.makeMessageDTOList(chat.getMessage()));
+
         return chatDTOBuilder.build();
     }
 
     public static Chat makeChat(ChatDTO chatDTO){
-        return new Chat(
+        Chat chat =  new Chat(
                 chatDTO.getId(),
-                MaintenanceMapper.makeMaintenance(chatDTO.getMaintenance()),
-                MessageMapper.makeMessageList(chatDTO.getMessage())
-        );
+                new Maintenance());
+
+        if (chatDTO.getMaintenance() != null) {
+            chat.setMaintenance(MaintenanceMapper.makeMaintenance(chatDTO.getMaintenance()));
+        }
+
+        return chat;
     }
 
     public static List<ChatDTO> makeChatDTOList(List<Chat> chatList) {

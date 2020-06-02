@@ -2,8 +2,10 @@ package it.unisalento.server.controllers.mapper;
 
 import it.unisalento.server.DTO.MessageDTO;
 import it.unisalento.server.DTO.MessageDTO;
+import it.unisalento.server.entities.Chat;
 import it.unisalento.server.entities.Message;
 import it.unisalento.server.entities.Message;
+import it.unisalento.server.entities.User;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -16,19 +18,26 @@ public class MessageMapper {
                 .setId(message.getId())
                 .setContent(message.getContent())
                 .setDate(message.getDate())
-                .setUser(UserMapper.makeUserDTO(message.getUser()))
-                .setChatList(ChatMapper.makeChatDTO(message.getChat()));
+                .setUser(UserMapper.makeUserDTO(message.getUser()));
         return messageDTOBuilder.build();
     }
 
     public static Message makeMessage(MessageDTO messageDTO) {
-        return new Message(
+        Message message =  new Message(
                 messageDTO.getId(),
                 messageDTO.getContent(),
                 messageDTO.getDate(),
-                UserMapper.makeUser(messageDTO.getUser()),
-                ChatMapper.makeChat(messageDTO.getChatList())
-        );
+                new User(),
+                new Chat());
+
+        if (messageDTO.getUser() != null) {
+            message.setUser(UserMapper.makeUser(messageDTO.getUser()));
+        }
+        if (messageDTO.getChat() != null) {
+            message.setChat(ChatMapper.makeChat(messageDTO.getChat()));
+        }
+
+        return message;
     }
 
     public static List<MessageDTO> makeMessageDTOList(List<Message> chatList) {

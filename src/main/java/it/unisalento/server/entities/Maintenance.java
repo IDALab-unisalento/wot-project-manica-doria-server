@@ -24,7 +24,7 @@ public class Maintenance {
     private List<Step> stepList;
 
     @OneToMany(mappedBy = "maintenance", orphanRemoval = true)
-    List<UserMaintenance> userMaintenance;
+    private List<UserMaintenance> userMaintenance;
 
     public Maintenance() { }
 
@@ -91,5 +91,13 @@ public class Maintenance {
 
     public void setStepList(List<Step> stepList) {
         this.stepList = stepList;
+    }
+
+    public List<UserMaintenance> getUserMaintenance() {
+        return userMaintenance;
+    }
+
+    public void setUserMaintenance(List<UserMaintenance> userMaintenance) {
+        this.userMaintenance = userMaintenance;
     }
 }

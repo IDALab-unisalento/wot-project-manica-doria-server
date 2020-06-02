@@ -17,7 +17,7 @@ public class Message {
     private User user;
 
     @ManyToOne
-    Chat chat;
+    private Chat chat;
 
     public Message() {
     }

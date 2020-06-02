@@ -17,7 +17,10 @@ public class User {
     private String role;
 
     @OneToMany(mappedBy = "user", orphanRemoval = true)
-    List<UserMaintenance> userMaintenance;
+    private List<UserMaintenance> userMaintenance;
+
+    @OneToOne(mappedBy = "user")
+    private Message message;
 
     public User() {
     }
@@ -94,5 +97,13 @@ public class User {
 
     public void setUserMaintenance(List<UserMaintenance> userMaintenance) {
         this.userMaintenance = userMaintenance;
+    }
+
+    public Message getMessage() {
+        return message;
+    }
+
+    public void setMessage(Message message) {
+        this.message = message;
     }
 }

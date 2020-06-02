@@ -15,4 +15,5 @@ public interface IChatService {
 
     List<Chat> getAll();
     Chat getById(int id) throws ObjectNotFoundException;
+    Chat getByMaintenance(int id);
 }

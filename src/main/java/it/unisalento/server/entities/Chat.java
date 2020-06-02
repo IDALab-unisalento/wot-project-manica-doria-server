@@ -1,7 +1,5 @@
 package it.unisalento.server.entities;
 
-import sun.applet.Main;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,18 +11,17 @@ public class Chat {
     private int id;
 
     @OneToOne
-    Maintenance maintenance;
+    private Maintenance maintenance;
 
     @OneToMany(mappedBy = "chat")
-    List<Message> message;
+    private List<Message> message;
 
     public Chat() {
     }
 
-    public Chat(int id, Maintenance maintenance, List<Message> message) {
+    public Chat(int id, Maintenance maintenance) {
         this.id = id;
         this.maintenance = maintenance;
-        this.message = message;
     }
 
     public int getId() {

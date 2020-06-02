@@ -1,5 +1,6 @@
 package it.unisalento.server.DTO;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import it.unisalento.server.entities.Maintenance;
 import it.unisalento.server.entities.Message;
 import it.unisalento.server.entities.User;
@@ -11,8 +12,11 @@ import java.util.List;
 public class ChatDTO {
 
     private int id;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private MaintenanceDTO maintenance;
     private  List<MessageDTO> message;
+
+    public ChatDTO() { }
 
     public ChatDTO(int id, MaintenanceDTO maintenance,  List<MessageDTO> message) {
         this.id = id;

@@ -1,5 +1,6 @@
 package it.unisalento.server.DTO;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import it.unisalento.server.entities.Chat;
 
 import java.util.Date;
@@ -11,14 +12,16 @@ public class MessageDTO {
     private String content;
     private Date date;
     private UserDTO user;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private ChatDTO chat;
 
-    private MessageDTO(int id, String content, Date date, UserDTO user,  ChatDTO  chat) {
+    public MessageDTO() { }
+
+    public MessageDTO(int id, String content, Date date, UserDTO user) {
         this.id = id;
         this.content = content;
         this.date = date;
         this.user = user;
-        this.chat = chat;
     }
 
     public int getId() {
@@ -37,7 +40,7 @@ public class MessageDTO {
         return user;
     }
 
-    public ChatDTO getChatList() {
+    public ChatDTO getChat() {
         return chat;
     }
 
@@ -68,13 +71,13 @@ public class MessageDTO {
             return this;
         }
 
-        public MessageDTOBuilder setChatList(ChatDTO chat) {
+        public MessageDTOBuilder setChat(ChatDTO chat) {
             this.chat = chat;
             return this;
         }
 
         public MessageDTO build() {
-            return new MessageDTO(id, content, date, user, chat);
+            return new MessageDTO(id, content, date, user);
         }
     }
 }
