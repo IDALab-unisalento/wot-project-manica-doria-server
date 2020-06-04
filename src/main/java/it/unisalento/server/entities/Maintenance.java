@@ -10,6 +10,8 @@ public class Maintenance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String name;
+    private String description;
     private String status;
     private Date date;
     private String type;
@@ -28,8 +30,10 @@ public class Maintenance {
 
     public Maintenance() { }
 
-    public Maintenance(int id, String status, Date date, String type, Machine machine, User user) {
+    public Maintenance(int id, String name, String description, String status, Date date, String type, Machine machine, User user) {
         this.id = id;
+        this.name = name;
+        this.description = description;
         this.status = status;
         this.date = date;
         this.type = type;
@@ -43,6 +47,22 @@ public class Maintenance {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getStatus() {

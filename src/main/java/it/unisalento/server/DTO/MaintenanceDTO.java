@@ -9,6 +9,8 @@ import java.util.List;
 public class MaintenanceDTO {
 
     private int id;
+    private String name;
+    private String description;
     private String status;
     private Date date;
     private String type;
@@ -20,8 +22,10 @@ public class MaintenanceDTO {
 
     public MaintenanceDTO() { }
 
-    public MaintenanceDTO(int id, String status, Date date, String type, MachineDTO machine, List<StepDTO> stepList) {
+    public MaintenanceDTO(int id, String name, String description, String status, Date date, String type, MachineDTO machine, List<StepDTO> stepList) {
         this.id = id;
+        this.name = name;
+        this.description = description;
         this.status = status;
         this.date = date;
         this.type = type;
@@ -31,6 +35,14 @@ public class MaintenanceDTO {
 
     public int getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public String getStatus() {
@@ -60,6 +72,8 @@ public class MaintenanceDTO {
     public static class MaintenanceDTOBuilder {
 
         private int id;
+        private String name;
+        private String description;
         private String status;
         private Date date;
         private String type;
@@ -70,6 +84,16 @@ public class MaintenanceDTO {
 
         public MaintenanceDTOBuilder setId(int id) {
             this.id = id;
+            return this;
+        }
+
+        public MaintenanceDTOBuilder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public MaintenanceDTOBuilder setDescription(String description) {
+            this.description = description;
             return this;
         }
 
@@ -104,7 +128,7 @@ public class MaintenanceDTO {
         }
 
         public MaintenanceDTO build(){
-            return new MaintenanceDTO(id, status, date, type, machine, stepList);
+            return new MaintenanceDTO(id, name, description, status, date, type, machine, stepList);
         }
     }
 }

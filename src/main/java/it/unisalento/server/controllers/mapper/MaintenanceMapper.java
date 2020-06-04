@@ -14,6 +14,8 @@ public class MaintenanceMapper {
      public static MaintenanceDTO makeMaintenanceDTO(Maintenance maintenance) {
          MaintenanceDTO.MaintenanceDTOBuilder maintenanceDTOBuilder = new MaintenanceDTO.MaintenanceDTOBuilder()
                  .setId(maintenance.getId())
+                 .setName(maintenance.getName())
+                 .setDescription(maintenance.getDescription())
                  .setStatus(maintenance.getStatus())
                  .setDate(maintenance.getDate())
                  .setType(maintenance.getType());
@@ -30,6 +32,8 @@ public class MaintenanceMapper {
      public static Maintenance makeMaintenance(MaintenanceDTO maintenanceDTO) {
          Maintenance maintenance = new Maintenance(
                  maintenanceDTO.getId(),
+                 maintenanceDTO.getName(),
+                 maintenanceDTO.getDescription(),
                  maintenanceDTO.getStatus(),
                  maintenanceDTO.getDate(),
                  maintenanceDTO.getType(),
