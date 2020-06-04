@@ -14,7 +14,7 @@ public class Maintenance {
     private Date date;
     private String type;
 
-    @OneToOne
+    @ManyToOne
     private Machine machine;
 
     @ManyToOne

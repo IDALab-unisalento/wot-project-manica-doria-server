@@ -19,8 +19,8 @@ public class User {
     @OneToMany(mappedBy = "user", orphanRemoval = true)
     private List<UserMaintenance> userMaintenance;
 
-    @OneToOne(mappedBy = "user")
-    private Message message;
+    @OneToMany(mappedBy = "user")
+    private List<Message> message;
 
     public User() {
     }
@@ -99,11 +99,11 @@ public class User {
         this.userMaintenance = userMaintenance;
     }
 
-    public Message getMessage() {
+    public List<Message> getMessage() {
         return message;
     }
 
-    public void setMessage(Message message) {
+    public void setMessage(List<Message> message) {
         this.message = message;
     }
 }

@@ -12,8 +12,8 @@ public class Machine {
     private String name;
     private String serialNumber;
 
-    @OneToOne(mappedBy = "machine", orphanRemoval = true)
-    private Maintenance maintenance;
+    @OneToMany(mappedBy = "machine", orphanRemoval = true)
+    private List<Maintenance> maintenanceList;
 
     @OneToMany(mappedBy = "machine", orphanRemoval = true)
     private List<Zone> zoneList;
@@ -50,12 +50,12 @@ public class Machine {
         this.serialNumber = serialNumber;
     }
 
-    public Maintenance getMaintenance() {
-        return maintenance;
+    public List<Maintenance> getMaintenanceList() {
+        return maintenanceList;
     }
 
-    public void setMaintenance(Maintenance maintenance) {
-        this.maintenance = maintenance;
+    public void setMaintenanceList(List<Maintenance> maintenanceList) {
+        this.maintenanceList = maintenanceList;
     }
 
     public List<Zone> getZoneList() {

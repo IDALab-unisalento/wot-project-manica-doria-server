@@ -13,7 +13,7 @@ public class Message {
     private String content;
     private Date date;
 
-    @OneToOne
+    @ManyToOne
     private User user;
 
     @ManyToOne
