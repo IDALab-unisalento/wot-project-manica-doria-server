@@ -18,11 +18,10 @@ public class MaintenanceDTO {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private UserDTO user;
     private MachineDTO machine;
-    private List<StepDTO> stepList;
 
     public MaintenanceDTO() { }
 
-    public MaintenanceDTO(int id, String name, String description, String status, Date date, String type, MachineDTO machine, List<StepDTO> stepList) {
+    public MaintenanceDTO(int id, String name, String description, String status, Date date, String type, MachineDTO machine) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -30,7 +29,6 @@ public class MaintenanceDTO {
         this.date = date;
         this.type = type;
         this.machine = machine;
-        this.stepList = stepList;
     }
 
     public int getId() {
@@ -65,10 +63,6 @@ public class MaintenanceDTO {
         return user;
     }
 
-    public List<StepDTO> getStepList() {
-        return stepList;
-    }
-
     public static class MaintenanceDTOBuilder {
 
         private int id;
@@ -80,7 +74,6 @@ public class MaintenanceDTO {
 
         private UserDTO user;
         private MachineDTO machine;
-        private List<StepDTO> stepList;
 
         public MaintenanceDTOBuilder setId(int id) {
             this.id = id;
@@ -122,13 +115,8 @@ public class MaintenanceDTO {
             return this;
         }
 
-        public MaintenanceDTOBuilder setStepList(List<StepDTO> stepList) {
-            this.stepList = stepList;
-            return this;
-        }
-
         public MaintenanceDTO build(){
-            return new MaintenanceDTO(id, name, description, status, date, type, machine, stepList);
+            return new MaintenanceDTO(id, name, description, status, date, type, machine);
         }
     }
 }

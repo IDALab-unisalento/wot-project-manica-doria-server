@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "api/user/maintenace")
+@RequestMapping(value = "api/user/maintenance")
 public class UMRestController {
 
     @Autowired
     private IUserMaintenanceService userMaintenanceService;
 
-    @GetMapping()
+    @GetMapping(value = "/getAll")
     public List<UserMaintenanceDTO> getAll(){
         return UserMaintenanceMapper.makeUserMaintenanceDTOList(userMaintenanceService.getAll());
     }

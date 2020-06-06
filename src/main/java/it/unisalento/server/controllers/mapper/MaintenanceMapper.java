@@ -23,9 +23,6 @@ public class MaintenanceMapper {
          if (maintenance.getMachine() != null)
             maintenanceDTOBuilder.setMachine(MachineMapper.makeMachineDTO(maintenance.getMachine()));
 
-         if (maintenance.getStepList() != null)
-             maintenanceDTOBuilder.setStepList(StepMapper.makeStepDTOList(maintenance.getStepList()));
-
          return maintenanceDTOBuilder.build();
      }
 
