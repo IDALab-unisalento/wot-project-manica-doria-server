@@ -54,4 +54,9 @@ public class UserRestController {
     public List<UserDTO> getAllByRole(@PathVariable String role) {
         return UserMapper.makeUserDTOList(userService.getAllByRole(role));
     }
+
+    @GetMapping(value = "/login/{email}/{password}")
+    public UserDTO getAllByRole(@PathVariable String email, @PathVariable String password) throws ObjectNotFoundException {
+        return UserMapper.makeUserDTO(userService.login(email, password));
+    }
 }

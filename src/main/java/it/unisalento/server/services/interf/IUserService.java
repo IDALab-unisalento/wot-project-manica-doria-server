@@ -1,5 +1,6 @@
 package it.unisalento.server.services.interf;
 
+import it.unisalento.server.DTO.UserDTO;
 import it.unisalento.server.entities.User;
 import it.unisalento.server.exception.ObjectAlreadyExistException;
 import it.unisalento.server.exception.ObjectNotFoundException;
@@ -19,4 +20,7 @@ public interface IUserService {
     User getByEmail(String email) throws ObjectNotFoundException;
 
     User update(User makeUser) throws ObjectNotFoundException;
+
+    User login(String email, String password) throws ObjectNotFoundException;
+    User login(UserDTO userDTO) throws ObjectNotFoundException;
 }

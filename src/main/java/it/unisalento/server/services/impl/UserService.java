@@ -1,5 +1,6 @@
 package it.unisalento.server.services.impl;
 
+import it.unisalento.server.DTO.UserDTO;
 import it.unisalento.server.entities.User;
 import it.unisalento.server.exception.ObjectAlreadyExistException;
 import it.unisalento.server.exception.ObjectNotFoundException;
@@ -50,6 +51,24 @@ public class UserService implements IUserService {
             return userRepository.save(updated.get());
         }
         else throw new ObjectNotFoundException("User Not Found");
+    }
+
+    @Override
+    public User login(String email, String password) throws ObjectNotFoundException {
+        Optional<User> user = userRepository.findByEmailAndPassword(email, password);
+        if (user.isPresent())
+            return userRepository.save(user.get());
+        else
+            throw new ObjectNotFoundException("User Not Exist");
+    }
+
+    @Override
+    public User login(UserDTO userDTO) throws ObjectNotFoundException {
+        Optional<User> user = userRepository.findByEmailAndPassword(userDTO.getEmail(), userDTO.getPassword());
+        if (user.isPresent())
+            return userRepository.save(user.get());
+        else
+            throw new ObjectNotFoundException("User Not Exist");
     }
 
     @Override
