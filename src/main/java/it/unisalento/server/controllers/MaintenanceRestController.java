@@ -1,7 +1,10 @@
 package it.unisalento.server.controllers;
 
 import it.unisalento.server.DTO.MaintenanceDTO;
+import it.unisalento.server.DTO.UserDTO;
 import it.unisalento.server.controllers.mapper.MaintenanceMapper;
+import it.unisalento.server.controllers.mapper.UserMapper;
+import it.unisalento.server.entities.Maintenance;
 import it.unisalento.server.exception.ObjectAlreadyExistException;
 import it.unisalento.server.exception.ObjectNotFoundException;
 import it.unisalento.server.repositories.MaintenanceRepository;
@@ -48,4 +51,21 @@ public class MaintenanceRestController {
     public List<MaintenanceDTO> getMaintenaceFromUser(@PathVariable int id) throws ObjectNotFoundException {
         return MaintenanceMapper.makeMaintenanceDTOList(maintenanceRepository.findMaintenanceByUser_Id(id));
     }
+
+    @GetMapping(value = "/getByStatusAndUser/{status}/{id}")
+    public MaintenanceDTO getByStatusAndUser(@PathVariable String status, @PathVariable int id) throws ObjectNotFoundException {
+        return MaintenanceMapper.makeMaintenanceDTO(maintenanceService.getByStatusAndUser(status, id));
+    }
+
+    @PutMapping(value = "/start/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public MaintenanceDTO start(@PathVariable int id) throws ObjectNotFoundException {
+        return MaintenanceMapper.makeMaintenanceDTO(maintenanceService.startMaintenance(id));
+    }
+
+    @PutMapping(value = "/complete/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public MaintenanceDTO complete(@PathVariable int id) throws ObjectNotFoundException {
+        return MaintenanceMapper.makeMaintenanceDTO(maintenanceService.completeMaintenance(id));
+    }
+
+
 }

@@ -61,6 +61,35 @@ public class MaintenanceService implements IMaintenanceService {
     @Override
     @Transactional
     public Maintenance getById(int id) throws ObjectNotFoundException {
-        return maintenanceRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Machine with id='"+id+"' Not Found"));
+        return maintenanceRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Maintenance with id='"+id+"' Not Found"));
+    }
+
+    @Override
+    public Maintenance getByStatusAndUser(String status, int id) throws ObjectNotFoundException {
+        return maintenanceRepository.findMaintenanceByStatusAndUser_Id(status, id).orElseThrow(() -> new ObjectNotFoundException("Maintenance with id='"+id+"' Not Found"));
+    }
+
+    @Override
+    public Maintenance startMaintenance(int id) throws ObjectNotFoundException {
+        Optional<Maintenance> started = maintenanceRepository.findById(id);
+        if (started.isPresent()) {
+            if (!(started.get().getStatus().equals("started"))){
+                started.get().setStatus("started");
+                return maintenanceRepository.save(started.get());
+            } else {
+                throw new ObjectNotFoundException("Maintenance Already Started");
+            }
+        }
+        else throw new ObjectNotFoundException("Maintenance Not Found");
+    }
+
+    @Override
+    public Maintenance completeMaintenance(int id) throws ObjectNotFoundException {
+        Optional<Maintenance> started = maintenanceRepository.findById(id);
+        if (started.isPresent()) {
+            started.get().setStatus("completed");
+            return maintenanceRepository.save(started.get());
+        }
+        else throw new ObjectNotFoundException("Maintenance Not Found");
     }
 }
