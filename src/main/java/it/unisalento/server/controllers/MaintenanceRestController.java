@@ -47,7 +47,7 @@ public class MaintenanceRestController {
         return MaintenanceMapper.makeMaintenanceDTO(maintenanceService.getById(id));
     }
 
-    @GetMapping(value = "/getMaintenaceFromUser/{id}")
+    @GetMapping(value = "/getMaintenanceFromUser/{id}")
     public List<MaintenanceDTO> getMaintenaceFromUser(@PathVariable int id) throws ObjectNotFoundException {
         return MaintenanceMapper.makeMaintenanceDTOList(maintenanceRepository.findMaintenanceByUser_Id(id));
     }
@@ -57,9 +57,9 @@ public class MaintenanceRestController {
         return MaintenanceMapper.makeMaintenanceDTO(maintenanceService.getByStatusAndUser(status, id));
     }
 
-    @PutMapping(value = "/start/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public MaintenanceDTO start(@PathVariable int id) throws ObjectNotFoundException {
-        return MaintenanceMapper.makeMaintenanceDTO(maintenanceService.startMaintenance(id));
+    @PutMapping(value = "/start/{id_maintenance}/{id_user}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public MaintenanceDTO start(@PathVariable int id_maintenance, @PathVariable int id_user) throws ObjectNotFoundException {
+        return MaintenanceMapper.makeMaintenanceDTO(maintenanceService.startMaintenance(id_maintenance, id_user));
     }
 
     @PutMapping(value = "/complete/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
