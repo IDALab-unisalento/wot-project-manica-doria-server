@@ -64,4 +64,13 @@ public class StepService implements IStepService {
         else
             return stepList;
     }
+
+    @Override
+    public List<Step> getByMaintenanceId(int id) {
+        List<Step> stepList = stepRepository.findAll();
+        if (stepList.isEmpty())
+            return new ArrayList<>();
+        else
+            return stepList;
+    }
 }

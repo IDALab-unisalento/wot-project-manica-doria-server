@@ -38,4 +38,7 @@ public class StepRestController {
     public List<StepDTO> getAll(){
         return StepMapper.makeStepDTOList(stepService.getAll());
     }
+
+    @GetMapping(value = "/getByMaintenanceId/{id}")
+    public List<StepDTO> getByMaintenanceId(@PathVariable int id) { return StepMapper.makeStepDTOList(stepService.getByMaintenanceId(id));}
 }
