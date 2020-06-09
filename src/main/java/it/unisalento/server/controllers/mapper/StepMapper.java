@@ -18,7 +18,8 @@ public class StepMapper {
                 .setName(step.getName())
                 .setDescription(step.getDescription())
                 .setDuration(step.getDuration())
-                .setEstimateDuration(step.getEstimateDuration());
+                .setEstimateDuration(step.getEstimateDuration())
+                .setStatus(step.getStatus());
 
         if (step.getAttachmentList() != null) {
             stepDTOBuilder.setAttachmentList(AttachmentMapper.makeAttachmentDTOList(step.getAttachmentList()));
@@ -38,6 +39,7 @@ public class StepMapper {
                 stepDTO.getDescription(),
                 stepDTO.getDuration(),
                 stepDTO.getEstimateDuration(),
+                stepDTO.getStatus(),
                 new Maintenance(),
                 new Zone());
 

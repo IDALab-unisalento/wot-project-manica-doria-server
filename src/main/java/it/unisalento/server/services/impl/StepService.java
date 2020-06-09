@@ -73,4 +73,13 @@ public class StepService implements IStepService {
         else
             return stepList;
     }
+
+    public Step completeStep(int id) throws ObjectNotFoundException {
+        Optional<Step> completed = stepRepository.findById(id);
+        if (completed.isPresent()) {
+            completed.get().setStatus("completed");
+            return stepRepository.save(completed.get());
+        }
+        else throw new ObjectNotFoundException("Step Not Found");
+    }
 }

@@ -13,6 +13,7 @@ public class Step {
     private String description;
     private double duration;
     private double estimateDuration;
+    private String status;
 
     @OneToMany(mappedBy = "step", orphanRemoval = true)
     private List<Attachment> attachmentList;
@@ -26,12 +27,13 @@ public class Step {
     public Step() {
     }
 
-    public Step(int id, String name, String description, double duration, double estimateDuration, Maintenance maintenance, Zone zone) {
+    public Step(int id, String name, String description, double duration, double estimateDuration, String status, Maintenance maintenance, Zone zone) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.duration = duration;
         this.estimateDuration = estimateDuration;
+        this.status = status;
         this.maintenance = maintenance;
         this.zone = zone;
     }
@@ -74,6 +76,14 @@ public class Step {
 
     public void setEstimateDuration(double estimateDuration) {
         this.estimateDuration = estimateDuration;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public List<Attachment> getAttachmentList() {
