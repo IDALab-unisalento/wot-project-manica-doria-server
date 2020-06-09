@@ -15,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api/maintenance")
@@ -57,12 +58,12 @@ public class MaintenanceRestController {
         return MaintenanceMapper.makeMaintenanceDTO(maintenanceService.getByStatusAndUser(status, id));
     }
 
-    @PutMapping(value = "/start/{id_maintenance}/{id_user}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/start/{id_maintenance}/{id_user}")
     public MaintenanceDTO start(@PathVariable int id_maintenance, @PathVariable int id_user) throws ObjectNotFoundException {
         return MaintenanceMapper.makeMaintenanceDTO(maintenanceService.startMaintenance(id_maintenance, id_user));
     }
 
-    @PutMapping(value = "/complete/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/complete/{id}")
     public MaintenanceDTO complete(@PathVariable int id) throws ObjectNotFoundException {
         return MaintenanceMapper.makeMaintenanceDTO(maintenanceService.completeMaintenance(id));
     }

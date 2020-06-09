@@ -38,4 +38,9 @@ public class StepRestController {
     public List<StepDTO> getAll(){
         return StepMapper.makeStepDTOList(stepService.getAll());
     }
+
+    @PutMapping(value = "/complete/{id}")
+    public StepDTO complete(@PathVariable int id) throws ObjectNotFoundException {
+        return StepMapper.makeStepDTO(stepService.completeStep(id));
+    }
 }

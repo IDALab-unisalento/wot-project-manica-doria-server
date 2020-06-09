@@ -13,4 +13,6 @@ public interface IStepService {
     Step getById(int id) throws ObjectNotFoundException;
     List<Step> getAll();
 
+    Step completeStep(int id)  throws ObjectNotFoundException;
+
 }

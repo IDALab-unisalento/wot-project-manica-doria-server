@@ -61,7 +61,7 @@ public class MaintenanceService implements IMaintenanceService {
     @Override
     @Transactional
     public Maintenance getById(int id) throws ObjectNotFoundException {
-        return maintenanceRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Maintenance with id='"+id+"' Not Found"));
+        return maintenanceRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("No Maintenance Started"));
     }
 
     @Override

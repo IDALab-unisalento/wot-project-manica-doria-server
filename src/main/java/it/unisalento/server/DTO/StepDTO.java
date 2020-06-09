@@ -12,6 +12,7 @@ public class StepDTO {
     private String description;
     private double duration;
     private double estimateDuration;
+    private String status;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private MaintenanceDTO maintenance;
@@ -21,12 +22,13 @@ public class StepDTO {
     public StepDTO() {
     }
 
-    public StepDTO(int id, String name, String description, double duration, double estimateDuration, List<AttachmentDTO> attachmentList, ZoneDTO zone) {
+    public StepDTO(int id, String name, String description, double duration, double estimateDuration, String status, List<AttachmentDTO> attachmentList, ZoneDTO zone) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.duration = duration;
         this.estimateDuration = estimateDuration;
+        this.status = status;
         this.attachmentList = attachmentList;
         this.zone = zone;
     }
@@ -51,6 +53,10 @@ public class StepDTO {
         return estimateDuration;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
     public MaintenanceDTO getMaintenance() {
         return maintenance;
     }
@@ -69,6 +75,7 @@ public class StepDTO {
         private String description;
         private double duration;
         private double estimateDuration;
+        private String status;
 
         private MaintenanceDTO maintenance;
         private ZoneDTO zone;
@@ -99,6 +106,11 @@ public class StepDTO {
             return this;
         }
 
+        public StepDTOBuilder setStatus(String status) {
+            this.status = status;
+            return this;
+        }
+
         public StepDTOBuilder setAttachmentList(List<AttachmentDTO> attachmentList) {
             this.attachmentList = attachmentList;
             return this;
@@ -115,7 +127,7 @@ public class StepDTO {
         }
 
         public StepDTO build() {
-            return new StepDTO(id, name, description, duration, estimateDuration, attachmentList, zone);
+            return new StepDTO(id, name, description, duration, estimateDuration, status, attachmentList, zone);
         }
     }
 }
