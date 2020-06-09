@@ -66,7 +66,7 @@ public class MaintenanceService implements IMaintenanceService {
 
     @Override
     public Maintenance getByStatusAndUser(String status, int id) throws ObjectNotFoundException {
-        return maintenanceRepository.findMaintenanceByStatusAndUser_Id(status, id).orElseThrow(() -> new ObjectNotFoundException("Maintenance with id='"+id+"' Not Found"));
+        return maintenanceRepository.findMaintenanceByStatusAndUser_Id(status, id).orElseThrow(() -> new ObjectNotFoundException("User not has active maintenance"));
     }
 
     @Override
