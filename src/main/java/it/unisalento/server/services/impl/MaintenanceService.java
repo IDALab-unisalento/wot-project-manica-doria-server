@@ -65,14 +65,15 @@ public class MaintenanceService implements IMaintenanceService {
     }
 
     @Override
-    public Maintenance getByStatusAndUser(String status, int id) throws ObjectNotFoundException {
-        return maintenanceRepository.findMaintenanceByStatusAndUser_Id(status, id).orElseThrow(() -> new ObjectNotFoundException("User not has active maintenance"));
+    public List<Maintenance> getByStatusAndUser(String status, int id){
+        return maintenanceRepository.findMaintenanceByStatusAndUser_Id(status, id);
     }
 
     @Override
     public Maintenance startMaintenance(int id_maintenance, int id_user) throws ObjectNotFoundException {
-        Optional<Maintenance> started = maintenanceRepository.findMaintenanceByStatusAndUser_Id("started", id_user);
-        if (!(started.isPresent())) {
+        List<Maintenance> started = maintenanceRepository.findMaintenanceByStatusAndUser_Id("started", id_user);
+        System.out.println(started);
+        if ((started.isEmpty())) {
             Optional<Maintenance> maintenance = maintenanceRepository.findMaintenanceByIdAndUser_Id(id_maintenance, id_user);
             if (maintenance.isPresent()){
                 maintenance.get().setStatus("started");

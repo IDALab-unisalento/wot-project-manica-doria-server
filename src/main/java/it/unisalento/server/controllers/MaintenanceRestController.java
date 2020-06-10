@@ -54,8 +54,8 @@ public class MaintenanceRestController {
     }
 
     @GetMapping(value = "/getByStatusAndUser/{status}/{id}")
-    public MaintenanceDTO getByStatusAndUser(@PathVariable String status, @PathVariable int id) throws ObjectNotFoundException {
-        return MaintenanceMapper.makeMaintenanceDTO(maintenanceService.getByStatusAndUser(status, id));
+    public List<MaintenanceDTO> getByStatusAndUser(@PathVariable String status, @PathVariable int id) {
+        return MaintenanceMapper.makeMaintenanceDTOList(maintenanceService.getByStatusAndUser(status, id));
     }
 
     @PutMapping(value = "/start/{id_maintenance}/{id_user}")
