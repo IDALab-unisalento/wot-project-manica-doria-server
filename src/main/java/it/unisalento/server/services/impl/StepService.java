@@ -67,7 +67,7 @@ public class StepService implements IStepService {
 
     @Override
     public List<Step> getByMaintenanceId(int id) {
-        List<Step> stepList = stepRepository.findAll();
+        List<Step> stepList = stepRepository.findAllByMaintenance_Id(id);
         if (stepList.isEmpty())
             return new ArrayList<>();
         else
