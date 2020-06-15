@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface StepRepository extends JpaRepository<Step, Integer> {
 
-    List<Step> findAllByMaintenance_Id(int id);
+    List<Step> findAllByMaintenance_IdOrderByName(int id);
 
 }

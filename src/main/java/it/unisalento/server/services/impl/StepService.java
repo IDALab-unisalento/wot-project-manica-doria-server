@@ -67,17 +67,27 @@ public class StepService implements IStepService {
 
     @Override
     public List<Step> getByMaintenanceId(int id) {
-        List<Step> stepList = stepRepository.findAllByMaintenance_Id(id);
+        List<Step> stepList = stepRepository.findAllByMaintenance_IdOrderByName(id);
         if (stepList.isEmpty())
             return new ArrayList<>();
         else
             return stepList;
     }
 
-    public Step completeStep(int id) throws ObjectNotFoundException {
-        Optional<Step> completed = stepRepository.findById(id);
+    @Override
+    public Step completeStep(double duration, int id_step, int id_maintenance) throws ObjectNotFoundException {
+        Optional<Step> completed = stepRepository.findById(id_step);
+        List<Step> stepList = stepRepository.findAllByMaintenance_IdOrderByName(id_maintenance);
         if (completed.isPresent()) {
+            for(int i = 0; i < stepList.size(); i ++) {
+                if (stepList.get(i).getId() == (completed.get().getId())) {
+                    if(i != (stepList.size() - 1)) {
+                        stepList.get(i + 1).setStatus("started");
+                    }
+                }
+            }
             completed.get().setStatus("completed");
+            completed.get().setDuration(duration);
             return stepRepository.save(completed.get());
         }
         else throw new ObjectNotFoundException("Step Not Found");

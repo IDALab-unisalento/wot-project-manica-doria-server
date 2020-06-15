@@ -42,8 +42,8 @@ public class StepRestController {
     @GetMapping(value = "/getByMaintenanceId/{id}")
     public List<StepDTO> getByMaintenanceId(@PathVariable int id) { return StepMapper.makeStepDTOList(stepService.getByMaintenanceId(id));}
 
-    @PutMapping(value = "/complete/{id}")
-    public StepDTO complete(@PathVariable int id) throws ObjectNotFoundException {
-        return StepMapper.makeStepDTO(stepService.completeStep(id));
+    @PutMapping(value = "/complete/{duration}/{id_step}/{id_maintenance}")
+    public StepDTO complete(@PathVariable double duration, @PathVariable int id_step, @PathVariable int id_maintenance) throws ObjectNotFoundException {
+        return StepMapper.makeStepDTO(stepService.completeStep(duration, id_step, id_maintenance));
     }
 }
