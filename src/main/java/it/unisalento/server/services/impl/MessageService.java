@@ -63,4 +63,8 @@ public class MessageService implements IMessageService {
     public Message getById(int id) throws ObjectNotFoundException {
         return messageRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Message with id='"+id+"' Not Found"));
     }
+
+    public Message sendMessage(Message message) {
+        return messageRepository.save(message);
+    }
 }

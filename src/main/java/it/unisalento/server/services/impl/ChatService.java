@@ -5,6 +5,7 @@ import it.unisalento.server.exception.ObjectAlreadyExistException;
 import it.unisalento.server.exception.ObjectNotFoundException;
 import it.unisalento.server.repositories.ChatRepository;
 import it.unisalento.server.repositories.MaintenanceRepository;
+import it.unisalento.server.repositories.MessageRepository;
 import it.unisalento.server.services.interf.IChatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,9 @@ public class ChatService implements IChatService {
 
     @Autowired
     MaintenanceRepository maintenanceRepository;
+
+    @Autowired
+    MessageRepository messageRepository;
 
     @Override
     public Chat save(Chat chat) throws ObjectAlreadyExistException {
@@ -51,6 +55,11 @@ public class ChatService implements IChatService {
     @Override
     public Chat getByMaintenance(int id) {
         return chatRepository.findChatByMaintenance_Id(id);
+    }
+
+    @Override
+    public Message sendMessage(Message message) {
+        return messageRepository.save(message);
     }
 
     @Override

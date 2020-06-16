@@ -3,6 +3,7 @@ package it.unisalento.server.services.interf;
 
 import it.unisalento.server.entities.Chat;
 import it.unisalento.server.entities.Machine;
+import it.unisalento.server.entities.Message;
 import it.unisalento.server.exception.ObjectAlreadyExistException;
 import it.unisalento.server.exception.ObjectNotFoundException;
 
@@ -16,4 +17,6 @@ public interface IChatService {
     List<Chat> getAll();
     Chat getById(int id) throws ObjectNotFoundException;
     Chat getByMaintenance(int id);
+
+    Message sendMessage(Message makeMessage);
 }
