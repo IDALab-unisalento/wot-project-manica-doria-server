@@ -11,4 +11,6 @@ public interface IZoneService {
     Zone delete(int id) throws ObjectNotFoundException;
     Zone getById(int id) throws ObjectNotFoundException;
     List<Zone> getAll();
+
+    List<Zone> getAllZoneByMachine(int id);
 }

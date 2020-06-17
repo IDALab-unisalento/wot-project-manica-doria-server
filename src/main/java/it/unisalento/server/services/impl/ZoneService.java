@@ -2,6 +2,7 @@ package it.unisalento.server.services.impl;
 
 import it.unisalento.server.entities.Beacon;
 import it.unisalento.server.entities.Machine;
+import it.unisalento.server.entities.Step;
 import it.unisalento.server.entities.Zone;
 import it.unisalento.server.exception.ObjectAlreadyExistException;
 import it.unisalento.server.exception.ObjectNotFoundException;
@@ -63,6 +64,15 @@ public class ZoneService implements IZoneService {
     @Transactional
     public List<Zone> getAll() {
         List<Zone> zoneList = zoneRepository.findAll();
+        if (zoneList.isEmpty())
+            return new ArrayList<>();
+        else
+            return zoneList;
+    }
+
+    @Override
+    public List<Zone> getAllZoneByMachine(int id) {
+        List<Zone> zoneList = zoneRepository.findAllByMachine_IdOrderByName(id);
         if (zoneList.isEmpty())
             return new ArrayList<>();
         else
