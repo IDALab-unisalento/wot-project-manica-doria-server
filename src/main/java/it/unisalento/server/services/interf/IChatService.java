@@ -18,5 +18,5 @@ public interface IChatService {
     Chat getById(int id) throws ObjectNotFoundException;
     Chat getByMaintenance(int id);
 
-    Message sendMessage(Message makeMessage);
+    Message saveMessage(Message makeMessage) throws ObjectNotFoundException;
 }

@@ -58,7 +58,8 @@ public class ChatService implements IChatService {
     }
 
     @Override
-    public Message sendMessage(Message message) {
+    public Message saveMessage(Message message) throws ObjectNotFoundException {
+        message.setChat(getById(message.getChat().getId()));
         return messageRepository.save(message);
     }
 
