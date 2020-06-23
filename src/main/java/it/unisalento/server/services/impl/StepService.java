@@ -7,6 +7,7 @@ import it.unisalento.server.exception.ObjectNotFoundException;
 import it.unisalento.server.repositories.MaintenanceRepository;
 import it.unisalento.server.repositories.StepRepository;
 import it.unisalento.server.repositories.ZoneRepository;
+import it.unisalento.server.services.interf.IMaintenanceService;
 import it.unisalento.server.services.interf.IStepService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,9 @@ public class StepService implements IStepService {
     MaintenanceRepository maintenanceRepository;
     @Autowired
     ZoneRepository zoneRepository;
+
+    @Autowired
+    IMaintenanceService maintenanceService;
 
     @Override
     public Step save(Step step) throws ObjectNotFoundException {
@@ -83,6 +87,8 @@ public class StepService implements IStepService {
                 if (stepList.get(i).getId() == (completed.get().getId())) {
                     if(i != (stepList.size() - 1)) {
                         stepList.get(i + 1).setStatus("started");
+                    } else {
+                        maintenanceService.completeMaintenance(id_maintenance);
                     }
                 }
             }
