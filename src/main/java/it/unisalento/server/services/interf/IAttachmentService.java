@@ -16,7 +16,7 @@ public interface IAttachmentService {
     List<Attachment> getAll();
     Attachment getById(int id) throws ObjectNotFoundException;
 
-    List<String> getFile(int id) throws IOException, ObjectNotFoundException;
+    List<Attachment> getFile(int id) throws IOException, ObjectNotFoundException;
     Attachment upload(MultipartFile file, String type, int id_step) throws IOException, ObjectNotFoundException;
 
 }

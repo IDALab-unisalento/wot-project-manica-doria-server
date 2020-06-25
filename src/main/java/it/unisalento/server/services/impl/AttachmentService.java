@@ -87,18 +87,22 @@ public class AttachmentService implements IAttachmentService {
     }
 
     @Override
-    public List<String> getFile(int id) throws IOException, ObjectNotFoundException {
+    public List<Attachment> getFile(int id) throws IOException, ObjectNotFoundException {
         List<Attachment> attachmentList = attachmentRepository.findAllByStep_Id(id);
-        List<String> encoded = new ArrayList<>();
         if(!(attachmentList.isEmpty())) {
-            for(int i = 0; i < attachmentList.size(); i++)
-            {
-                File file = ResourceUtils.getFile(attachmentList.get(i).getPath());
+            for (Attachment attachment : attachmentList) {
+                File file = ResourceUtils.getFile(attachment.getPath());
                 byte[] content = (Files.readAllBytes(file.toPath()));
-                encoded.add(i , Base64.getEncoder().encodeToString(content));
-
+                if (attachment.getType().equals("image")) {
+                    String encoded = "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(content);
+                    attachment.setFile(encoded);
+                }
+                if (attachment.getType().equals("video")) {
+                    String encoded = "data:video/mp4;base64," + Base64.getEncoder().encodeToString(content);
+                    attachment.setFile(encoded);
+                }
             }
-            return encoded;
+            return attachmentList;
         }
         else
             throw new ObjectNotFoundException("Attachment does not found");

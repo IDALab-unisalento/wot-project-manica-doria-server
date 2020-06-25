@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class AttachmentDTO {
 
     private int id;
+    private String file;
     private String path;
     private String filename;
     private String type;
@@ -15,8 +16,9 @@ public class AttachmentDTO {
 
     public AttachmentDTO() { }
 
-    public AttachmentDTO(int id, String path, String filename, String type) {
+    public AttachmentDTO(int id, String file, String path, String filename, String type) {
         this.id = id;
+        this.file = file;
         this.path = path;
         this.filename = filename;
         this.type = type;
@@ -24,6 +26,10 @@ public class AttachmentDTO {
 
     public int getId() {
         return id;
+    }
+
+    public String getFile() {
+        return file;
     }
 
     public String getPath() {
@@ -44,6 +50,7 @@ public class AttachmentDTO {
 
     public static class AttachmentDTOBuilder {
         private int id;
+        private String file;
         private String path;
         private String filename;
         private String type;
@@ -52,6 +59,11 @@ public class AttachmentDTO {
 
         public AttachmentDTOBuilder setId(int id) {
             this.id = id;
+            return this;
+        }
+
+        public AttachmentDTOBuilder setFile(String file) {
+            this.file = file;
             return this;
         }
 
@@ -76,7 +88,7 @@ public class AttachmentDTO {
         }
 
         public AttachmentDTO build() {
-            return new AttachmentDTO(id, path, filename, type);
+            return new AttachmentDTO(id, file, path, filename, type);
         }
     }
 }

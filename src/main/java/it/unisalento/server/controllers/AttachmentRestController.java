@@ -56,8 +56,8 @@ public class AttachmentRestController {
     }
 
     @GetMapping(value = "/getFile/{id}")
-    public List<String> getFile(@PathVariable int id) throws IOException, ObjectNotFoundException {
-        return attachmentService.getFile(id);
+    public List<AttachmentDTO> getFile(@PathVariable int id) throws IOException, ObjectNotFoundException {
+        return AttachmentMapper.makeAttachmentDTOList(attachmentService.getFile(id));
     }
 
 }

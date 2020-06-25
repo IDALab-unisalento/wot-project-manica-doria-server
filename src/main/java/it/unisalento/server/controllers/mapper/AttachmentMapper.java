@@ -14,6 +14,7 @@ public class AttachmentMapper {
 
         AttachmentDTO.AttachmentDTOBuilder attachmentDTOBuilder = new AttachmentDTO.AttachmentDTOBuilder()
                 .setId(attachment.getId())
+                .setFile(attachment.getFile())
                 .setFilename(attachment.getFilename())
                 .setPath(attachment.getPath())
                 .setType(attachment.getType());
@@ -24,6 +25,7 @@ public class AttachmentMapper {
     public static Attachment makeAttachment(AttachmentDTO attachmentDTO) {
        Attachment attachment = new Attachment(
                 attachmentDTO.getId(),
+                attachmentDTO.getFile(),
                 attachmentDTO.getPath(),
                 attachmentDTO.getFilename(),
                 attachmentDTO.getType(),
