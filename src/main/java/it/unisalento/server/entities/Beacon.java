@@ -1,6 +1,7 @@
 package it.unisalento.server.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Beacon {
@@ -12,8 +13,8 @@ public class Beacon {
     private String name;
     private String mac;
 
-    @OneToOne(mappedBy = "beacon", orphanRemoval = true)
-    private Zone zone;
+    @OneToMany(mappedBy = "beacon", orphanRemoval = true)
+    private List<Zone> zoneList;
 
     public Beacon() { }
 
@@ -47,11 +48,11 @@ public class Beacon {
         this.mac = mac;
     }
 
-    public Zone getZone() {
-        return zone;
+    public List<Zone> getZoneList() {
+        return zoneList;
     }
 
-    public void setZone(Zone zone) {
-        this.zone = zone;
+    public void setZoneList(List<Zone> zoneList) {
+        this.zoneList = zoneList;
     }
 }

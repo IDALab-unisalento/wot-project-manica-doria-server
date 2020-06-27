@@ -9,6 +9,7 @@ import java.util.List;
 public interface IBeaconService {
 
     Beacon save(Beacon beacon) throws ObjectAlreadyExistException;
+    Beacon modify(Beacon beacon) throws ObjectNotFoundException;
     Beacon delete(int id) throws ObjectNotFoundException;
 
     List<Beacon> getAll();

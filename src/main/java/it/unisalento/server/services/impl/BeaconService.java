@@ -1,6 +1,7 @@
 package it.unisalento.server.services.impl;
 
 import it.unisalento.server.entities.Beacon;
+import it.unisalento.server.entities.User;
 import it.unisalento.server.exception.ObjectAlreadyExistException;
 import it.unisalento.server.exception.ObjectNotFoundException;
 import it.unisalento.server.repositories.BeaconRepository;
@@ -25,6 +26,17 @@ public class BeaconService implements IBeaconService {
             throw new ObjectAlreadyExistException("Beacon Already Exist");
         else
             return beaconRepository.save(beacon);
+    }
+
+    @Override
+    public Beacon modify(Beacon beacon) throws ObjectNotFoundException {
+        Optional<Beacon> modified = beaconRepository.findById(beacon.getId());
+        if (modified.isPresent()){
+            modified.get().setName(beacon.getName());
+            modified.get().setMac(beacon.getMac());
+            return beaconRepository.save(modified.get());
+        }
+        else throw new ObjectNotFoundException("Beacon Not Found");
     }
 
     @Override

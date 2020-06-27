@@ -17,7 +17,7 @@ public class Zone {
     @ManyToOne
     private Machine machine;
 
-    @OneToOne
+    @ManyToOne
     private Beacon beacon;
 
     public Zone() {
