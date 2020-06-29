@@ -11,22 +11,16 @@ public class MaintenanceDTO {
     private int id;
     private String name;
     private String description;
-    private String status;
-    private Date date;
     private String type;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private UserDTO user;
     private MachineDTO machine;
 
     public MaintenanceDTO() { }
 
-    public MaintenanceDTO(int id, String name, String description, String status, Date date, String type, MachineDTO machine) {
+    public MaintenanceDTO(int id, String name, String description, String type, MachineDTO machine) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.status = status;
-        this.date = date;
         this.type = type;
         this.machine = machine;
     }
@@ -43,14 +37,6 @@ public class MaintenanceDTO {
         return description;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
     public String getType() {
         return type;
     }
@@ -59,20 +45,13 @@ public class MaintenanceDTO {
         return machine;
     }
 
-    public UserDTO getUser() {
-        return user;
-    }
-
     public static class MaintenanceDTOBuilder {
 
         private int id;
         private String name;
         private String description;
-        private String status;
-        private Date date;
         private String type;
 
-        private UserDTO user;
         private MachineDTO machine;
 
         public MaintenanceDTOBuilder setId(int id) {
@@ -90,16 +69,6 @@ public class MaintenanceDTO {
             return this;
         }
 
-        public MaintenanceDTOBuilder setStatus(String status) {
-            this.status = status;
-            return this;
-        }
-
-        public MaintenanceDTOBuilder setDate(Date date) {
-            this.date = date;
-            return this;
-        }
-
         public MaintenanceDTOBuilder setType(String type) {
             this.type = type;
             return this;
@@ -110,13 +79,8 @@ public class MaintenanceDTO {
             return this;
         }
 
-        public MaintenanceDTOBuilder setUser(UserDTO user) {
-            this.user = user;
-            return this;
-        }
-
         public MaintenanceDTO build(){
-            return new MaintenanceDTO(id, name, description, status, date, type, machine);
+            return new MaintenanceDTO(id, name, description, type, machine);
         }
     }
 }

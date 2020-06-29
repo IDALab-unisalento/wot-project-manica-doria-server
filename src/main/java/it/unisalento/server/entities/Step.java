@@ -1,6 +1,7 @@
 package it.unisalento.server.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -9,6 +10,7 @@ public class Step {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private int numbered;
     private String name;
     private String description;
     private double duration;
@@ -27,8 +29,9 @@ public class Step {
     public Step() {
     }
 
-    public Step(int id, String name, String description, double duration, double estimateDuration, String status, Maintenance maintenance, Zone zone) {
+    public Step(int id, int numbered, String name, String description, double duration, double estimateDuration, String status, Maintenance maintenance, Zone zone) {
         this.id = id;
+        this.numbered = numbered;
         this.name = name;
         this.description = description;
         this.duration = duration;
@@ -44,6 +47,14 @@ public class Step {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getNumbered() {
+        return numbered;
+    }
+
+    public void setNumbered(int numbered) {
+        this.numbered = numbered;
     }
 
     public String getName() {
@@ -110,3 +121,4 @@ public class Step {
         this.zone = zone;
     }
 }
+

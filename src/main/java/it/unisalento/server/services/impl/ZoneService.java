@@ -2,7 +2,6 @@ package it.unisalento.server.services.impl;
 
 import it.unisalento.server.entities.Beacon;
 import it.unisalento.server.entities.Machine;
-import it.unisalento.server.entities.Step;
 import it.unisalento.server.entities.Zone;
 import it.unisalento.server.exception.ObjectAlreadyExistException;
 import it.unisalento.server.exception.ObjectNotFoundException;

@@ -1,6 +1,8 @@
 package it.unisalento.server.controllers.mapper;
 
 import it.unisalento.server.DTO.UserMaintenanceDTO;
+import it.unisalento.server.entities.Maintenance;
+import it.unisalento.server.entities.User;
 import it.unisalento.server.entities.UserMaintenance;
 
 import java.util.ArrayList;
@@ -11,7 +13,9 @@ public class UserMaintenanceMapper {
 
     public static UserMaintenanceDTO makeUserMaintenanceDTO(UserMaintenance userMaintenance) {
         UserMaintenanceDTO.UserMaintenanceBuilderDTO userMaintenanceBuilderDTO = new UserMaintenanceDTO.UserMaintenanceBuilderDTO()
-            .setId(userMaintenance.getId());
+                .setId(userMaintenance.getId())
+                .setDate(userMaintenance.getDate())
+                .setStatus(userMaintenance.getStatus());
 
         if (userMaintenance.getMaintenance() != null) {
             userMaintenanceBuilderDTO.setMaintenance(MaintenanceMapper.makeMaintenanceDTO(userMaintenance.getMaintenance()));
@@ -23,11 +27,22 @@ public class UserMaintenanceMapper {
     }
 
     public static UserMaintenance makeUserMaintenance(UserMaintenanceDTO userMaintenanceDTO) {
-        return new UserMaintenance(
+        UserMaintenance userMaintenance = new UserMaintenance(
                 userMaintenanceDTO.getId(),
-                UserMapper.makeUser(userMaintenanceDTO.getUser()),
-                MaintenanceMapper.makeMaintenance(userMaintenanceDTO.getMaintenance())
-        );
+                userMaintenanceDTO.getDate(),
+                userMaintenanceDTO.getStatus(),
+                new User(),
+                new Maintenance());
+
+        if (userMaintenanceDTO.getUser() != null) {
+            userMaintenance.setUser(UserMapper.makeUser(userMaintenanceDTO.getUser()));
+        }
+
+        if (userMaintenanceDTO.getMaintenance() != null) {
+            userMaintenance.setMaintenance(MaintenanceMapper.makeMaintenance(userMaintenanceDTO.getMaintenance()));
+        }
+
+        return userMaintenance;
     }
 
     public static List<UserMaintenanceDTO> makeUserMaintenanceDTOList(List<UserMaintenance> userList) {

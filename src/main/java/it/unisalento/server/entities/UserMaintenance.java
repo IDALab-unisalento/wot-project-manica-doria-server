@@ -1,6 +1,7 @@
 package it.unisalento.server.entities;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class UserMaintenance {
@@ -8,6 +9,8 @@ public class UserMaintenance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private Date date;
+    private String status;
 
     @ManyToOne
     private User user;
@@ -18,8 +21,10 @@ public class UserMaintenance {
     public UserMaintenance() {
     }
 
-    public UserMaintenance(int id, User user, Maintenance maintenance) {
+    public UserMaintenance(int id, Date date, String status, User user, Maintenance maintenance) {
         this.id = id;
+        this.date = date;
+        this.status = status;
         this.user = user;
         this.maintenance = maintenance;
     }
@@ -28,26 +33,39 @@ public class UserMaintenance {
         return id;
     }
 
-    public UserMaintenance setId(int id) {
+    public void setId(int id) {
         this.id = id;
-        return this;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public User getUser() {
         return user;
     }
 
-    public UserMaintenance setUser(User user) {
+    public void setUser(User user) {
         this.user = user;
-        return this;
     }
 
     public Maintenance getMaintenance() {
         return maintenance;
     }
 
-    public UserMaintenance setMaintenance(Maintenance maintenance) {
+    public void setMaintenance(Maintenance maintenance) {
         this.maintenance = maintenance;
-        return this;
     }
 }

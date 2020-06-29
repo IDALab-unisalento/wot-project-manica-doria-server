@@ -1,10 +1,7 @@
 package it.unisalento.server.services.impl;
 
-import it.unisalento.server.DTO.AttachmentDTO;
 import it.unisalento.server.entities.Attachment;
-import it.unisalento.server.entities.Maintenance;
 import it.unisalento.server.entities.Step;
-import it.unisalento.server.entities.Zone;
 import it.unisalento.server.exception.ObjectNotFoundException;
 import it.unisalento.server.repositories.AttachmentRepository;
 import it.unisalento.server.repositories.StepRepository;

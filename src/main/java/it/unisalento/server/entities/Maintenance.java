@@ -12,15 +12,10 @@ public class Maintenance {
     private int id;
     private String name;
     private String description;
-    private String status;
-    private Date date;
     private String type;
 
     @ManyToOne
     private Machine machine;
-
-    @ManyToOne
-    private User user;
 
     @OneToMany(mappedBy = "maintenance", orphanRemoval = true)
     private List<Step> stepList;
@@ -30,15 +25,12 @@ public class Maintenance {
 
     public Maintenance() { }
 
-    public Maintenance(int id, String name, String description, String status, Date date, String type, Machine machine, User user) {
+    public Maintenance(int id, String name, String description, String type, Machine machine) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.status = status;
-        this.date = date;
         this.type = type;
         this.machine = machine;
-        this.user = user;
     }
 
     public int getId() {
@@ -65,22 +57,6 @@ public class Maintenance {
         this.description = description;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public String getType() {
         return type;
     }
@@ -95,14 +71,6 @@ public class Maintenance {
 
     public void setMachine(Machine machine) {
         this.machine = machine;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public List<Step> getStepList() {

@@ -13,8 +13,9 @@ public interface IMaintenanceService {
 
     List<Maintenance> getAll();
     Maintenance getById(int id) throws ObjectNotFoundException;
-    List<Maintenance> getByStatusAndUser(String status, int id);
-    Maintenance startMaintenance(int id_maintenance, int id_user) throws ObjectNotFoundException;
-    Maintenance completeMaintenance(int id) throws ObjectNotFoundException;
+    List<Maintenance> getAllByMachine(int id);
+    //List<Maintenance> getByStatusAndUser(String status, int id);
+    //Maintenance startMaintenance(int id_maintenance, int id_user) throws ObjectNotFoundException;
+    //Maintenance completeMaintenance(int id) throws ObjectNotFoundException;
 
 }

@@ -15,6 +15,7 @@ public class StepMapper {
 
         StepDTO.StepDTOBuilder stepDTOBuilder = new StepDTO.StepDTOBuilder()
                 .setId(step.getId())
+                .setNumbered(step.getNumbered())
                 .setName(step.getName())
                 .setDescription(step.getDescription())
                 .setDuration(step.getDuration())
@@ -35,6 +36,7 @@ public class StepMapper {
     public static Step makeStep(StepDTO stepDTO) {
         Step step = new Step(
                 stepDTO.getId(),
+                stepDTO.getNumbered(),
                 stepDTO.getName(),
                 stepDTO.getDescription(),
                 stepDTO.getDuration(),

@@ -8,6 +8,7 @@ import java.util.List;
 public class StepDTO {
 
     private int id;
+    private int numbered;
     private String name;
     private String description;
     private double duration;
@@ -22,8 +23,9 @@ public class StepDTO {
     public StepDTO() {
     }
 
-    public StepDTO(int id, String name, String description, double duration, double estimateDuration, String status, List<AttachmentDTO> attachmentList, ZoneDTO zone) {
+    public StepDTO(int id, int numbered, String name, String description, double duration, double estimateDuration, String status, List<AttachmentDTO> attachmentList, ZoneDTO zone) {
         this.id = id;
+        this.numbered = numbered;
         this.name = name;
         this.description = description;
         this.duration = duration;
@@ -35,6 +37,10 @@ public class StepDTO {
 
     public int getId() {
         return id;
+    }
+
+    public int getNumbered() {
+        return numbered;
     }
 
     public String getName() {
@@ -71,6 +77,7 @@ public class StepDTO {
 
     public static class StepDTOBuilder {
         private int id;
+        private int numbered;
         private String name;
         private String description;
         private double duration;
@@ -83,6 +90,11 @@ public class StepDTO {
 
         public StepDTOBuilder setId(int id) {
             this.id = id;
+            return this;
+        }
+
+        public StepDTOBuilder setNumbered(int numbered) {
+            this.numbered = numbered;
             return this;
         }
 
@@ -127,7 +139,7 @@ public class StepDTO {
         }
 
         public StepDTO build() {
-            return new StepDTO(id, name, description, duration, estimateDuration, status, attachmentList, zone);
+            return new StepDTO(id, numbered, name, description, duration, estimateDuration, status, attachmentList, zone);
         }
     }
 }

@@ -10,7 +10,8 @@ import java.util.Optional;
 @Repository
 public interface MaintenanceRepository extends JpaRepository<Maintenance, Integer> {
 
-    List<Maintenance> findMaintenanceByUser_Id(int id);
-    List<Maintenance> findMaintenanceByStatusAndUser_Id(String status, int id);
-    Optional<Maintenance> findMaintenanceByIdAndUser_Id(int id_maintenance, int id_user);
+    //List<Maintenance> findMaintenanceByUser_Id(int id);
+    //List<Maintenance> findMaintenanceByStatusAndUser_Id(String status, int id);
+    //Optional<Maintenance> findMaintenanceByIdAndUser_Id(int id_maintenance, int id_user);
+    List<Maintenance> findMaintenanceByMachine_Id(int id_machine);
 }

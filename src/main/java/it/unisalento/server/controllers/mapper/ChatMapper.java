@@ -1,11 +1,8 @@
 package it.unisalento.server.controllers.mapper;
 
 import it.unisalento.server.DTO.ChatDTO;
-import it.unisalento.server.DTO.ChatDTO;
-import it.unisalento.server.entities.Chat;
 import it.unisalento.server.entities.Chat;
 import it.unisalento.server.entities.Maintenance;
-import it.unisalento.server.entities.Step;
 
 import java.util.ArrayList;
 import java.util.Iterator;

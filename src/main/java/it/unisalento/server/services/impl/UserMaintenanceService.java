@@ -55,4 +55,40 @@ public class UserMaintenanceService implements IUserMaintenanceService {
     public List<UserMaintenance> getAll() {
         return userMaintenanceRepository.findAll();
     }
+
+    @Override
+    public List<UserMaintenance> getAllByUserId(int id) {
+        return userMaintenanceRepository.findUserMaintenanceByUser_Id(id);
+    }
+
+    @Override
+    public List<UserMaintenance> getByStatusAndUser(String status, int id) {
+        return userMaintenanceRepository.findUserMaintenanceByStatusAndUser_Id(status, id);
+    }
+
+    @Override
+    public UserMaintenance startMaintenance(int id_maintenance, int id_user) throws ObjectNotFoundException {
+        List<UserMaintenance> started = userMaintenanceRepository.findUserMaintenanceByStatusAndUser_Id("started", id_user);
+        System.out.println(started);
+        if ((started.isEmpty())) {
+            Optional<UserMaintenance> userMaintenance = userMaintenanceRepository.findById(id_maintenance);
+            if (userMaintenance.isPresent()){
+                userMaintenance.get().setStatus("started");
+                return userMaintenanceRepository.save(userMaintenance.get());
+            } else {
+                throw new ObjectNotFoundException("UserMaintenance Not Found");
+            }
+        }
+        else throw new ObjectNotFoundException("UserMaintenance Already Started");
+    }
+
+    @Override
+    public UserMaintenance completeMaintenance(int id) throws ObjectNotFoundException {
+        Optional<UserMaintenance> started = userMaintenanceRepository.findById(id);
+        if (started.isPresent()) {
+            started.get().setStatus("completed");
+            return userMaintenanceRepository.save(started.get());
+        }
+        else throw new ObjectNotFoundException("UserMaintenance Not Found");
+    }
 }

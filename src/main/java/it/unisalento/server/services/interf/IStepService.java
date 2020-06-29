@@ -1,7 +1,6 @@
 package it.unisalento.server.services.interf;
 
 import it.unisalento.server.entities.Step;
-import it.unisalento.server.exception.ObjectAlreadyExistException;
 import it.unisalento.server.exception.ObjectNotFoundException;
 
 import java.util.List;
@@ -14,6 +13,7 @@ public interface IStepService {
     List<Step> getAll();
 
     List<Step> getByMaintenanceId(int id);
-    Step completeStep(double duration, int id_step, int id_maintenance)  throws ObjectNotFoundException;
+    List<Step> getByZoneId(int id);
+    Step completeStep(double duration, int id_step, int id_maintenance, int id_user_maintenance)  throws ObjectNotFoundException;
 
 }

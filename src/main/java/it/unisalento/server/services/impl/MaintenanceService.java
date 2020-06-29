@@ -30,10 +30,8 @@ public class MaintenanceService implements IMaintenanceService {
     @Transactional
     public Maintenance save(Maintenance maintenance) throws ObjectAlreadyExistException, ObjectNotFoundException  {
         Optional<Machine> machine = machineRepository.findById(maintenance.getMachine().getId());
-        Optional<User> user = userRepository.findById(maintenance.getUser().getId());
-        if (machine.isPresent() && user.isPresent()) {
+        if (machine.isPresent()) {
             maintenance.setMachine(machine.get());
-            maintenance.setUser(user.get());
             return maintenanceRepository.save(maintenance);
         } else {
             throw new ObjectNotFoundException("Child Object not Found");
@@ -65,11 +63,16 @@ public class MaintenanceService implements IMaintenanceService {
     }
 
     @Override
-    public List<Maintenance> getByStatusAndUser(String status, int id){
-        return maintenanceRepository.findMaintenanceByStatusAndUser_Id(status, id);
+    public List<Maintenance> getAllByMachine(int id) {
+        return maintenanceRepository.findMaintenanceByMachine_Id(id);
     }
 
-    @Override
+    /*@Override
+    public List<Maintenance> getByStatusAndUser(String status, int id){
+        return maintenanceRepository.findMaintenanceByStatusAndUser_Id(status, id);
+    }*/
+
+    /*@Override
     public Maintenance startMaintenance(int id_maintenance, int id_user) throws ObjectNotFoundException {
         List<Maintenance> started = maintenanceRepository.findMaintenanceByStatusAndUser_Id("started", id_user);
         System.out.println(started);
@@ -83,9 +86,9 @@ public class MaintenanceService implements IMaintenanceService {
             }
         }
         else throw new ObjectNotFoundException("Maintenance Already Started");
-    }
+    }*/
 
-    @Override
+    /*@Override
     public Maintenance completeMaintenance(int id) throws ObjectNotFoundException {
         Optional<Maintenance> started = maintenanceRepository.findById(id);
         if (started.isPresent()) {
@@ -93,5 +96,5 @@ public class MaintenanceService implements IMaintenanceService {
             return maintenanceRepository.save(started.get());
         }
         else throw new ObjectNotFoundException("Maintenance Not Found");
-    }
+    }*/
 }

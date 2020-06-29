@@ -1,22 +1,36 @@
 package it.unisalento.server.DTO;
 
+import java.util.Date;
+
 public class UserMaintenanceDTO {
 
     private int id;
+    private Date date;
+    private String status;
     private UserDTO user;
     private MaintenanceDTO maintenance;
 
     private UserMaintenanceDTO() {
     }
 
-    private UserMaintenanceDTO(int id, UserDTO user, MaintenanceDTO maintenance) {
+    public UserMaintenanceDTO(int id, Date date, String status, UserDTO user, MaintenanceDTO maintenance) {
         this.id = id;
+        this.date = date;
+        this.status = status;
         this.user = user;
         this.maintenance = maintenance;
     }
 
     public int getId() {
         return id;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public UserDTO getUser() {
@@ -29,11 +43,23 @@ public class UserMaintenanceDTO {
 
     public static class UserMaintenanceBuilderDTO {
         private int id;
+        private Date date;
+        private String status;
         private UserDTO user;
         private MaintenanceDTO maintenance;
 
         public UserMaintenanceBuilderDTO setId(int id) {
             this.id = id;
+            return this;
+        }
+
+        public UserMaintenanceBuilderDTO setDate(Date date) {
+            this.date = date;
+            return this;
+        }
+
+        public UserMaintenanceBuilderDTO setStatus(String status) {
+            this.status = status;
             return this;
         }
 
@@ -48,7 +74,7 @@ public class UserMaintenanceDTO {
         }
 
         public UserMaintenanceDTO build() {
-            return new UserMaintenanceDTO(id, user, maintenance);
+            return new UserMaintenanceDTO(id, date, status, user, maintenance);
         }
     }
 }

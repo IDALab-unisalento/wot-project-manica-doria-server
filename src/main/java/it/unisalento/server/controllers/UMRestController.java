@@ -42,4 +42,25 @@ public class UMRestController {
     public UserMaintenanceDTO delete(@PathVariable int id) throws ObjectNotFoundException {
         return UserMaintenanceMapper.makeUserMaintenanceDTO(userMaintenanceService.delete(id));
     }
+
+    @GetMapping(value = "/getMaintenanceFromUser/{id}")
+    public List<UserMaintenanceDTO> getMaintenaceFromUser(@PathVariable int id) throws ObjectNotFoundException {
+        return UserMaintenanceMapper.makeUserMaintenanceDTOList(userMaintenanceService.getAllByUserId(id));
+    }
+
+    @GetMapping(value = "/getByStatusAndUser/{status}/{id}")
+    public List<UserMaintenanceDTO> getByStatusAndUser(@PathVariable String status, @PathVariable int id) {
+        return UserMaintenanceMapper.makeUserMaintenanceDTOList(userMaintenanceService.getByStatusAndUser(status, id));
+    }
+
+    @PutMapping(value = "/start/{id_maintenance}/{id_user}")
+    public UserMaintenanceDTO start(@PathVariable int id_maintenance, @PathVariable int id_user) throws ObjectNotFoundException {
+        return UserMaintenanceMapper.makeUserMaintenanceDTO(userMaintenanceService.startMaintenance(id_maintenance, id_user));
+    }
+
+    @PutMapping(value = "/complete/{id}")
+    public UserMaintenanceDTO complete(@PathVariable int id) throws ObjectNotFoundException {
+        return UserMaintenanceMapper.makeUserMaintenanceDTO(userMaintenanceService.completeMaintenance(id));
+    }
+
 }

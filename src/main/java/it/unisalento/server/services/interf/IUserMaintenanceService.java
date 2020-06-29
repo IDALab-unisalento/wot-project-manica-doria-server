@@ -18,5 +18,10 @@ public interface IUserMaintenanceService {
     List<Maintenance> getUserMaintenanceById(int id);
     List<UserMaintenance> getAll();
 
+    List<UserMaintenance> getAllByUserId(int id);
+    List<UserMaintenance> getByStatusAndUser(String status, int id);
+    UserMaintenance startMaintenance(int id_maintenance, int id_user) throws ObjectNotFoundException;
+    UserMaintenance completeMaintenance(int id) throws ObjectNotFoundException;
+
 
 }
