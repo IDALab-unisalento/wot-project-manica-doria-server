@@ -67,6 +67,11 @@ public class MaintenanceService implements IMaintenanceService {
         return maintenanceRepository.findMaintenanceByMachine_Id(id);
     }
 
+    @Override
+    public List<Maintenance> getAllByStatus(String status) {
+        return maintenanceRepository.findAllByStatus(status);
+    }
+
     /*@Override
     public List<Maintenance> getByStatusAndUser(String status, int id){
         return maintenanceRepository.findMaintenanceByStatusAndUser_Id(status, id);

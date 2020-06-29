@@ -13,6 +13,7 @@ public class Maintenance {
     private String name;
     private String description;
     private String type;
+    private String status;
 
     @ManyToOne
     private Machine machine;
@@ -25,11 +26,12 @@ public class Maintenance {
 
     public Maintenance() { }
 
-    public Maintenance(int id, String name, String description, String type, Machine machine) {
+    public Maintenance(int id, String name, String description, String type, String status, Machine machine) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.type = type;
+        this.status = status;
         this.machine = machine;
     }
 
@@ -63,6 +65,14 @@ public class Maintenance {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Machine getMachine() {

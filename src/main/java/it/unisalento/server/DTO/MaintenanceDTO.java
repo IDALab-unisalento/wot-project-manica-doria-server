@@ -12,16 +12,18 @@ public class MaintenanceDTO {
     private String name;
     private String description;
     private String type;
+    private String status;
 
     private MachineDTO machine;
 
     public MaintenanceDTO() { }
 
-    public MaintenanceDTO(int id, String name, String description, String type, MachineDTO machine) {
+    public MaintenanceDTO(int id, String name, String description, String type, String status, MachineDTO machine) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.type = type;
+        this.status = status;
         this.machine = machine;
     }
 
@@ -41,6 +43,10 @@ public class MaintenanceDTO {
         return type;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
     public MachineDTO getMachine() {
         return machine;
     }
@@ -51,6 +57,7 @@ public class MaintenanceDTO {
         private String name;
         private String description;
         private String type;
+        private String status;
 
         private MachineDTO machine;
 
@@ -74,13 +81,18 @@ public class MaintenanceDTO {
             return this;
         }
 
+        public MaintenanceDTOBuilder setStatus(String status) {
+            this.status = status;
+            return this;
+        }
+
         public MaintenanceDTOBuilder setMachine(MachineDTO machine) {
             this.machine = machine;
             return this;
         }
 
         public MaintenanceDTO build(){
-            return new MaintenanceDTO(id, name, description, type, machine);
+            return new MaintenanceDTO(id, name, description, type, status, machine);
         }
     }
 }

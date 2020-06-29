@@ -54,6 +54,11 @@ public class MaintenanceRestController {
         return MaintenanceMapper.makeMaintenanceDTOList(maintenanceService.getAllByMachine(id));
     }
 
+    @GetMapping(value = "/getAllByStatus/{status}")
+    public List<MaintenanceDTO> getByStatusAndUser(@PathVariable String status) {
+        return MaintenanceMapper.makeMaintenanceDTOList(maintenanceService.getAllByStatus(status));
+    }
+
 
     /*@GetMapping(value = "/getMaintenanceFromUser/{id}")
     public List<MaintenanceDTO> getMaintenaceFromUser(@PathVariable int id) throws ObjectNotFoundException {

@@ -14,4 +14,5 @@ public interface MaintenanceRepository extends JpaRepository<Maintenance, Intege
     //List<Maintenance> findMaintenanceByStatusAndUser_Id(String status, int id);
     //Optional<Maintenance> findMaintenanceByIdAndUser_Id(int id_maintenance, int id_user);
     List<Maintenance> findMaintenanceByMachine_Id(int id_machine);
+    List<Maintenance> findAllByStatus(String status);
 }
