@@ -11,7 +11,7 @@ import java.util.List;
 public interface IUserMaintenanceService {
 
     /* --------------------- CRUD --------------------- */
-    UserMaintenance save(UserMaintenance userMaintenance) throws ObjectAlreadyExistException;
+    UserMaintenance save(UserMaintenance userMaintenance) throws ObjectNotFoundException;
     UserMaintenance delete(int id) throws ObjectNotFoundException;
 
     /* -------------------- GETTER -------------------- */

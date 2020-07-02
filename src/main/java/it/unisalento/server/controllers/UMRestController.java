@@ -33,7 +33,7 @@ public class UMRestController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public UserMaintenanceDTO save(@RequestBody UserMaintenanceDTO userMaintenanceDTO) throws ObjectAlreadyExistException {
+    public UserMaintenanceDTO save(@RequestBody UserMaintenanceDTO userMaintenanceDTO) throws ObjectNotFoundException {
         return UserMaintenanceMapper.makeUserMaintenanceDTO(
                 userMaintenanceService.save(UserMaintenanceMapper.makeUserMaintenance(userMaintenanceDTO)));
     }

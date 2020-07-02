@@ -40,8 +40,13 @@ public class StepService implements IStepService {
     public Step save(Step step) throws ObjectNotFoundException {
         Optional<Maintenance> maintenance = maintenanceRepository.findById(step.getMaintenance().getId());
         Optional<Zone> zone = zoneRepository.findById(step.getZone().getId());
-
+        Optional<Step> stepUpdate = stepRepository.findById(step.getId());
         if (maintenance.isPresent() && zone.isPresent()){
+            if(stepUpdate.isPresent()) {
+                stepUpdate.get().setStatus(step.getStatus());
+                stepUpdate.get().setNumbered(step.getNumbered());
+                return stepRepository.save(stepUpdate.get());
+            }
             step.setMaintenance(maintenance.get());
             step.setZone(zone.get());
             return stepRepository.save(step);
