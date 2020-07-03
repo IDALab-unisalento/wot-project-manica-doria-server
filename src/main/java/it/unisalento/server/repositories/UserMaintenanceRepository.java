@@ -13,4 +13,5 @@ public interface UserMaintenanceRepository extends JpaRepository<UserMaintenance
     List<UserMaintenance> findUserMaintenanceByUser_Id(int id);
     List<UserMaintenance> findUserMaintenanceByStatusAndUser_Id(String status, int id);
     Optional<UserMaintenance> findUserMaintenanceByMaintenance_IdAndUser_Id(int id_maintenance, int id_user);
+    List<UserMaintenance> findUserMaintenanceByStatus(String status);
 }

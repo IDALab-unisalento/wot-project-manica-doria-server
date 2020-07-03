@@ -53,6 +53,12 @@ public class UMRestController {
         return UserMaintenanceMapper.makeUserMaintenanceDTOList(userMaintenanceService.getByStatusAndUser(status, id));
     }
 
+    @GetMapping(value = "/getAllByStatus/{status}")
+    public List<UserMaintenanceDTO> getByStatusAndUser(@PathVariable String status) {
+        return UserMaintenanceMapper.makeUserMaintenanceDTOList(userMaintenanceService.getAllByStatus(status));
+    }
+
+
     @PutMapping(value = "/start/{id_maintenance}/{id_user}")
     public UserMaintenanceDTO start(@PathVariable int id_maintenance, @PathVariable int id_user) throws ObjectNotFoundException {
         return UserMaintenanceMapper.makeUserMaintenanceDTO(userMaintenanceService.startMaintenance(id_maintenance, id_user));
