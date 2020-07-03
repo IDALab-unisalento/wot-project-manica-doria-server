@@ -8,7 +8,7 @@ public class Attachment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String file;
+    private String encodedFile;
     private String path;
     private String filename;
     private String type;
@@ -18,9 +18,9 @@ public class Attachment {
 
     public Attachment() { }
 
-    public Attachment(int id, String file, String path, String filename, String type, Step step) {
+    public Attachment(int id, String encodedFile, String path, String filename, String type, Step step) {
         this.id = id;
-        this.file = file;
+        this.encodedFile = encodedFile;
         this.path = path;
         this.filename = filename;
         this.type = type;
@@ -35,12 +35,12 @@ public class Attachment {
         this.id = id;
     }
 
-    public String getFile() {
-        return file;
+    public String getEncodedFile() {
+        return encodedFile;
     }
 
-    public void setFile(String file) {
-        this.file = file;
+    public void setEncodedFile(String encodedFile) {
+        this.encodedFile = encodedFile;
     }
 
     public String getPath() {

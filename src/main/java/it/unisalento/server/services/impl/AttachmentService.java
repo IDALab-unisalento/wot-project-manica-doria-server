@@ -92,11 +92,11 @@ public class AttachmentService implements IAttachmentService {
                 byte[] content = (Files.readAllBytes(file.toPath()));
                 if (attachment.getType().equals("image")) {
                     String encoded = "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(content);
-                    attachment.setFile(encoded);
+                    attachment.setEncodedFile(encoded);
                 }
                 if (attachment.getType().equals("video")) {
                     String encoded = "data:video/mp4;base64," + Base64.getEncoder().encodeToString(content);
-                    attachment.setFile(encoded);
+                    attachment.setEncodedFile(encoded);
                 }
             }
             return attachmentList;
