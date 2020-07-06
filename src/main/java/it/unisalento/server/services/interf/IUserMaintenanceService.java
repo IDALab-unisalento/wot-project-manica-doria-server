@@ -15,7 +15,7 @@ public interface IUserMaintenanceService {
     UserMaintenance delete(int id) throws ObjectNotFoundException;
 
     /* -------------------- GETTER -------------------- */
-    List<Maintenance> getUserMaintenanceById(int id);
+    UserMaintenance getUserMaintenanceById(int id) throws ObjectNotFoundException;
     List<UserMaintenance> getAll();
 
     List<UserMaintenance> getAllByUserId(int id);

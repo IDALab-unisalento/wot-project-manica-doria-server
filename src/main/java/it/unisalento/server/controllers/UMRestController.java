@@ -27,8 +27,8 @@ public class UMRestController {
     }
 
     @GetMapping(value = "/getById/{id}")
-    public List<MaintenanceDTO> getById(@PathVariable int id) throws ObjectNotFoundException {
-        return MaintenanceMapper.makeMaintenanceDTOList(userMaintenanceService.getUserMaintenanceById(id));
+    public UserMaintenanceDTO getById(@PathVariable int id) throws ObjectNotFoundException {
+        return UserMaintenanceMapper.makeUserMaintenanceDTO(userMaintenanceService.getUserMaintenanceById(id));
     }
 
     @ResponseStatus(HttpStatus.CREATED)

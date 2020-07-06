@@ -54,15 +54,8 @@ public class UserMaintenanceService implements IUserMaintenanceService {
 
     @Override
     @Transactional
-    public List<Maintenance> getUserMaintenanceById(int id) {
-        List<UserMaintenance> userMaintenanceList = userMaintenanceRepository.findUserMaintenanceByUser_Id(id);
-        List<Maintenance> maintenanceList = new ArrayList<>();
-        Iterator<UserMaintenance> iter = userMaintenanceList.iterator();
-        while (iter.hasNext()) {
-            maintenanceList.add(iter.next().getMaintenance());
-        }
-        System.out.println(maintenanceList);
-        return maintenanceList;
+    public UserMaintenance getUserMaintenanceById(int id) throws ObjectNotFoundException{
+        return userMaintenanceRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("UM with id='"+id+"' Not Found"));
     }
 
     @Override
