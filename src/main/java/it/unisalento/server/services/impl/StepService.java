@@ -107,7 +107,7 @@ public class StepService implements IStepService {
             for(int i = 0; i < stepList.size(); i ++) {
                 if (stepList.get(i).getId() == (completed.get().getId())) {
                     if(i != (stepList.size() - 1)) {
-                        stepList.get(i + 1).setStatus("started");
+                        stepList.get(i + 1).setStatus("in-progress");
                     } else {
                         userMaintenanceService.completeMaintenance(id_user_maintenance);
                     }
