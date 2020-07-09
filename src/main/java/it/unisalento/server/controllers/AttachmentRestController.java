@@ -2,28 +2,14 @@ package it.unisalento.server.controllers;
 
 import it.unisalento.server.DTO.AttachmentDTO;
 import it.unisalento.server.controllers.mapper.AttachmentMapper;
-import it.unisalento.server.entities.Attachment;
 import it.unisalento.server.exception.ObjectNotFoundException;
 import it.unisalento.server.services.interf.IAttachmentService;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.http.*;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.net.MalformedURLException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Base64;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/api/attachment")
@@ -61,6 +47,12 @@ public class AttachmentRestController {
     @GetMapping(value = "/getFile/{id}")
     public List<AttachmentDTO> getFile(@PathVariable int id) throws IOException, ObjectNotFoundException {
         return AttachmentMapper.makeAttachmentDTOList(attachmentService.getFile(id));
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(value = "/saveVideo/{id_step}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public AttachmentDTO saveVideo(@RequestBody AttachmentDTO attachmentDTO, @PathVariable int id_step) throws ObjectNotFoundException {
+        return AttachmentMapper.makeAttachmentDTO(attachmentService.saveVideo(AttachmentMapper.makeAttachment(attachmentDTO), id_step));
     }
 
     /*

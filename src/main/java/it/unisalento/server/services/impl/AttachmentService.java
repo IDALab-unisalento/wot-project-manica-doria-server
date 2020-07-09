@@ -88,16 +88,16 @@ public class AttachmentService implements IAttachmentService {
         List<Attachment> attachmentList = attachmentRepository.findAllByStep_Id(id);
         if(!(attachmentList.isEmpty())) {
             for (Attachment attachment : attachmentList) {
-                File file = ResourceUtils.getFile(attachment.getPath());
-                byte[] content = (Files.readAllBytes(file.toPath()));
                 if (attachment.getType().equals("image")) {
+                    File file = ResourceUtils.getFile(attachment.getPath());
+                    byte[] content = (Files.readAllBytes(file.toPath()));
                     String encoded = "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(content);
                     attachment.setEncodedFile(encoded);
                 }
-                if (attachment.getType().equals("video")) {
+                /*if (attachment.getType().equals("video")) {
                     String encoded = "data:video/mp4;base64," + Base64.getEncoder().encodeToString(content);
                     attachment.setEncodedFile(encoded);
-                }
+                }*/
             }
             return attachmentList;
         }
@@ -114,6 +114,19 @@ public class AttachmentService implements IAttachmentService {
         Optional<Step> step = stepRepository.findById(id_step);
         if (step.isPresent()) {
             saveFile(file); //salva il file
+            attachment.setStep(step.get());
+            return attachmentRepository.save(attachment);
+        }
+        else {
+            throw new ObjectNotFoundException("Child Object not Found");
+        }
+    }
+
+    @Override
+    public Attachment saveVideo(Attachment attachment, int id_step) throws ObjectNotFoundException {
+        Optional<Step> step = stepRepository.findById(id_step);
+
+        if (step.isPresent()) {
             attachment.setStep(step.get());
             return attachmentRepository.save(attachment);
         }

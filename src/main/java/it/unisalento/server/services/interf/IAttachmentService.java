@@ -18,5 +18,6 @@ public interface IAttachmentService {
 
     List<Attachment> getFile(int id) throws IOException, ObjectNotFoundException;
     Attachment upload(MultipartFile file, String type, int id_step) throws IOException, ObjectNotFoundException;
+    Attachment saveVideo(Attachment attachment, int id_step) throws ObjectNotFoundException;
 
 }
