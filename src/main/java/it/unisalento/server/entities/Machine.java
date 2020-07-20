@@ -11,6 +11,7 @@ public class Machine {
     private int id;
     private String name;
     private String serialNumber;
+    private String status;
 
     @OneToMany(mappedBy = "machine", orphanRemoval = true)
     private List<Maintenance> maintenanceList;
@@ -48,6 +49,14 @@ public class Machine {
 
     public void setSerialNumber(String serialNumber) {
         this.serialNumber = serialNumber;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public List<Maintenance> getMaintenanceList() {
