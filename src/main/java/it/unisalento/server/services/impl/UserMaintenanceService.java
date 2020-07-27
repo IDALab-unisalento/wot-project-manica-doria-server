@@ -81,12 +81,12 @@ public class UserMaintenanceService implements IUserMaintenanceService {
 
     @Override
     public UserMaintenance startMaintenance(int id_maintenance, int id_user) throws ObjectNotFoundException {
-        List<UserMaintenance> started = userMaintenanceRepository.findUserMaintenanceByStatusAndUser_Id("started", id_user);
+        List<UserMaintenance> started = userMaintenanceRepository.findUserMaintenanceByStatusAndUser_Id("in-progress", id_user);
         System.out.println(started);
         if ((started.isEmpty())) {
             Optional<UserMaintenance> userMaintenance = userMaintenanceRepository.findById(id_maintenance);
             if (userMaintenance.isPresent()){
-                userMaintenance.get().setStatus("started");
+                userMaintenance.get().setStatus("in-progress");
                 return userMaintenanceRepository.save(userMaintenance.get());
             } else {
                 throw new ObjectNotFoundException("UserMaintenance Not Found");
