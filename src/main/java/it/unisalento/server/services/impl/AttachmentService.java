@@ -28,6 +28,8 @@ public class AttachmentService implements IAttachmentService {
     @Autowired
     StepRepository stepRepository;
 
+    String UPLOADED_FOLDER = "/Users/alex59/Downloads/fotoSafeMaintenance/";
+
     @Override
     @Transactional
     public Attachment save(Attachment attachment) throws ObjectNotFoundException {
@@ -67,12 +69,9 @@ public class AttachmentService implements IAttachmentService {
         return attachmentRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Attachment with id='"+id+"' Not Found"));
     }
 
-    String UPLOADED_FOLDER = "/Users/alex59/Downloads/";
-
-    private void saveFile(MultipartFile file) throws IOException {
+    private void saveFile(MultipartFile file, String filename) throws IOException {
         //salva un file
         byte[] bytes = file.getBytes();
-        String filename = generateUID() + file.getOriginalFilename();
         Path path = Paths.get(UPLOADED_FOLDER + filename); //generiamo nome del file
         Files.write(path, bytes);
     }
@@ -109,11 +108,12 @@ public class AttachmentService implements IAttachmentService {
     public Attachment upload(MultipartFile file, String type, int id_step) throws IOException, ObjectNotFoundException {
         Attachment attachment = new Attachment();
         attachment.setType(type);
-        attachment.setFilename(file.getOriginalFilename());
-        attachment.setPath(UPLOADED_FOLDER + file.getOriginalFilename());
+        String filename = generateUID() + file.getOriginalFilename();
+        attachment.setFilename(filename);
+        attachment.setPath(UPLOADED_FOLDER + filename);
         Optional<Step> step = stepRepository.findById(id_step);
         if (step.isPresent()) {
-            saveFile(file); //salva il file
+            saveFile(file, filename); //salva il file
             attachment.setStep(step.get());
             return attachmentRepository.save(attachment);
         }
